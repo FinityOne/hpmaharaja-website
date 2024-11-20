@@ -107,7 +107,7 @@ export default async function Articles() {
                       {formatDate(frontmatter.date)}
                     </p>
                     <p className="text-gray-600 text-sm">
-                      {frontmatter.description}
+                      {frontmatter.description}.
                     </p>
                   </div>
                 </div>
