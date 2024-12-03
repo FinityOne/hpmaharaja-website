@@ -14,6 +14,11 @@ export default function Home() {
     },
     {
       date: "February 2025",
+      title: "Lake Tahoe Snow Excursion",
+      color: "border-sky-500",
+    },
+    {
+      date: "February 2025",
       title: "Miami Rameelo + Maharaja Estates Trip",
       color: "border-yellow-500",
     },
