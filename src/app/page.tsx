@@ -8,11 +8,6 @@ export default function Home() {
       color: "border-blue-500",
     },
     {
-      date: "Dec 23 - 30, 2024",
-      title: "Yosemite Trip",
-      color: "border-green-500",
-    },
-    {
       date: "February 2025",
       title: "Lake Tahoe Snow Excursion",
       color: "border-sky-500",
@@ -28,12 +23,7 @@ export default function Home() {
       color: "border-red-500",
     },
     {
-      date: "May 2025",
-      title: "Walt Disney World Trip",
-      color: "border-purple-500",
-    },
-    {
-      date: "June 2025",
+      date: "April 2025",
       title: "India",
       color: "border-pink-500",
     },
@@ -61,7 +51,7 @@ export default function Home() {
             href="/articles"
             className="px-6 py-3 bg-white text-black text-lg font-medium rounded hover:bg-blue-800 hover:text-white transition"
           >
-            Explore the Unknown
+            View Articles
           </Link>
         </div>
       </header>

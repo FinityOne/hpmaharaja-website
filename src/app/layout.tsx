@@ -30,9 +30,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="bg-gray-50 text-gray-800 font-sans">
+      <body className="bg-white font-sans">
         {/* Header */}
-        <header className=" text-slate-700">
+        <header className=" text-slate-900">
           <div className="container mx-auto flex justify-between items-center p-4">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">

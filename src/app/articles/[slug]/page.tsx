@@ -1,84 +1,77 @@
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
-import { marked } from "marked";
-import Link from "next/link";
-
-// interface ArticlePageProps {
-//   params: { slug: string };
-// }
 
 export async function generateStaticParams() {
-  const files = fs.readdirSync(path.join("src/content/articles"));
+  const directory = path.join("src/content/articles");
+  const files = fs.readdirSync(directory);
 
-  return files.map((filename) => ({
-    slug: filename.replace(".md", ""),
+  const params = files.map((file) => ({
+    slug: file.replace(".html", ""),
   }));
+
+  return params;
 }
 
-function formatDate(date: string): string {
-  const options: Intl.DateTimeFormatOptions = {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  };
-
-  const formattedDate = new Intl.DateTimeFormat("en-US", options)
-    .format(new Date(date))
-    .toUpperCase();
-  return formattedDate;
-}
-
-export default async function ArticlePage({ params }: any) {
+export default async function ArticlePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  // Destructure slug directly from params
   const { slug } = await params;
-  // const { params } = await props; // Await the props to resolve
 
-  // if (!params || !params.slug) {
-  //   throw new Error("Slug parameter is missing!");
+  if (!slug) {
+    throw new Error("Slug parameter is missing!");
+  }
 
-  const filePath = path.join("src/content/articles", `${slug}.md`);
+  // Construct the file path for the article
+  const filePath = path.join("src/content/articles", `${slug}.html`);
   if (!fs.existsSync(filePath)) {
     throw new Error(`Article file not found for slug: ${slug}`);
   }
 
-  const markdownWithMeta = fs.readFileSync(filePath, "utf-8");
-  const { data: frontmatter, content } = matter(markdownWithMeta);
+  // Read the HTML file content
+  const htmlWithMeta = fs.readFileSync(filePath, "utf-8");
+
+  // Extract metadata from the HTML comments
+  const metadataMatch = htmlWithMeta.match(/<!--\s*([\s\S]*?)\s*-->/);
+  const metadata = metadataMatch ? JSON.parse(metadataMatch[1]) : {};
+  const content = htmlWithMeta.replace(/<!--[\s\S]*?-->/, ""); // Remove metadata from content
 
   return (
     <main>
       {/* Header Section */}
       <header
         className="relative h-[50vh] bg-cover bg-center"
-        style={{ backgroundImage: `url('${frontmatter.image}')` }}
-      >
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-75"></div>
-
-        {/* Text Content */}
-        <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-6">
-          <h1 className="text-4xl md:text-5xl font-bold">
-            {frontmatter.title}
-          </h1>
-        </div>
-      </header>
+        style={{
+          backgroundImage: `url('${metadata.image || "/default-image.jpg"}')`,
+        }}
+      ></header>
 
       {/* Article Content */}
-      <section className="container mx-auto py-12 px-6">
-        <p className="text-gray-600 text-sm mb-4">
-          Published on {formatDate(frontmatter.date)}
-        </p>
-        <div className="prose max-w-none">
-          <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
-        </div>
+      <section className="container mx-auto max-w-screen-lg py-12 px-6">
+        {metadata.date && (
+          <p className="text-gray-600 text-sm mb-4">
+            Published on {new Date(metadata.date).toLocaleDateString()}
+          </p>
+        )}
+
+        <h1 className="text-4xl font-bold mb-2 py-2 text-black">
+          {metadata.title || "Untitled"}
+        </h1>
+        <div
+          className="prose"
+          dangerouslySetInnerHTML={{ __html: content }}
+        ></div>
 
         {/* Back Link */}
         <div className="mt-8">
-          <Link
+          <a
             href="/articles"
             className="text-blue-600 hover:underline font-medium"
           >
             ← Back to All Articles
-          </Link>
+          </a>
         </div>
       </section>
     </main>
