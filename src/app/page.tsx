@@ -9,23 +9,23 @@ export default function Home() {
     },
     {
       date: "February 2025",
-      title: "Lake Tahoe Snow Excursion",
+      title: "NYC Move (yes, HP has moved to NYC)",
       color: "border-sky-500",
     },
     {
-      date: "February 2025",
+      date: "April 2025",
+      title: "Chadha + Plaha Take On NYC",
+      color: "border-red-500",
+    },
+    {
+      date: "May 2025",
       title: "Miami Rameelo + Maharaja Estates Trip",
       color: "border-yellow-500",
     },
     {
-      date: "March 2025",
-      title: "Alaska Trip",
-      color: "border-red-500",
-    },
-    {
-      date: "April 2025",
-      title: "India",
-      color: "border-pink-500",
+      date: "September 2025",
+      title: "Rameelo (Orange County, CA)",
+      color: "border-purple-500",
     },
   ];
 
@@ -80,18 +80,6 @@ export default function Home() {
           My Majestic Ventures
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 container mx-auto px-6">
-          {/* FinityOne */}
-          <Link
-            href="#"
-            className="border-l-4 border-blue-600 bg-white text-black rounded-lg shadow-md hover:shadow-lg transition transform hover:scale-105 p-6 flex flex-col items-start"
-          >
-            <h3 className="text-2xl font-bold mb-2">FinityOne</h3>
-            <p className="text-sm text-gray-600">
-              Tech company focused on fintech, event tech, healthtech, and
-              proptech!
-            </p>
-          </Link>
-
           {/* Rameelo */}
           <Link
             href="#"
@@ -99,7 +87,21 @@ export default function Home() {
           >
             <h3 className="text-2xl font-bold mb-2">Rameelo</h3>
             <p className="text-sm text-gray-600">
-              Raas Garba events non-profit delivering deep cultural experiences!
+              Non-profit organization focused on creating, growing, and
+              preserving Gujarati Raas Garba culture through deep cultural
+              experiences!
+            </p>
+          </Link>
+
+          {/* FinityOne */}
+          <Link
+            href="#"
+            className="border-l-4 border-blue-600 bg-white text-black rounded-lg shadow-md hover:shadow-lg transition transform hover:scale-105 p-6 flex flex-col items-start"
+          >
+            <h3 className="text-2xl font-bold mb-2">FinityOne</h3>
+            <p className="text-sm text-gray-600">
+              Tech company focused on building growth digital products in
+              fintech, event tech, healthtech, and proptech!
             </p>
           </Link>
 
@@ -110,7 +112,8 @@ export default function Home() {
           >
             <h3 className="text-2xl font-bold mb-2">Maharaja Estates</h3>
             <p className="text-sm text-gray-600">
-              Real estate division for rentals and flipping!
+              Arizona-based real estate company operating a portfolio of
+              property acquisition, maintenance, and growth!
             </p>
           </Link>
 
@@ -121,7 +124,9 @@ export default function Home() {
           >
             <h3 className="text-2xl font-bold mb-2">Melux Events</h3>
             <p className="text-sm text-gray-600">
-              Event decor, experience, and design company!
+              Brand new company spun off of Rameelo delivering event decor,
+              experience, and design to Southern California's desi cultural
+              events!
             </p>
           </Link>
         </div>
