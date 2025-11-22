@@ -1,0 +1,18 @@
+{
+  "builds": [
+    {
+      "src": "hpmaharaja/asgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/staticfiles/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "hpmaharaja/asgi.py"
+    }
+  ]
+}
