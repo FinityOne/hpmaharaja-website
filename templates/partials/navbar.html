@@ -14,7 +14,7 @@
       <!-- DESKTOP NAV -->
       <div class="hidden md:flex items-center gap-10">
         {% with cp=current_page|default:"" %}
-          <a href="{% url 'home' %}#hero"
+          <a href="{% url 'home' %}"
              class="nav-link {% if cp == 'home' %}text-maharaja_gold{% else %}text-slate-300{% endif %}">Home</a>
           <a href="#music" class="nav-link text-slate-300">Music</a>
           <a href="#vlogs" class="nav-link text-slate-300">Vlogs</a>

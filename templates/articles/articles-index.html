@@ -1,46 +1,50 @@
 {% extends "base/base.html" %}
 {% load static %}
-{% block title %}HP Journal – Articles by HP Maharaja{% endblock %}
+{% load article_extras %}
+{% block title %}Maharaja News – Articles by HP Maharaja{% endblock %}
 {% block content %}
-  <div class="pt-20 pb-16 bg-maharaja_bg text-slate-100">
+  <div class="pt-20 pb-16 bg-[#f8f5f0] text-slate-900">
     <div class="max-w-6xl mx-auto px-4">
       <!-- TOP: NAMEPLATE / HEADING -->
-      <header class="mb-8 md:mb-10 border-b border-slate-800 pb-4">
+      <header class="mb-8 md:mb-10 border-b border-slate-200 pb-4">
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3">
           <div>
-            <p class="text-[0.65rem] tracking-[0.3em] uppercase text-slate-500 mb-1">HP MAHARAJA · JOURNAL</p>
+            <p class="text-[0.65rem] tracking-[0.3em] uppercase text-slate-500 mb-1">Maharaja News · JOURNAL</p>
             <h1 class="text-3xl md:text-4xl font-semibold tracking-tight">Articles · Pursuing Balance in Chaos</h1>
-            <p class="text-sm md:text-base text-slate-400 mt-2 max-w-xl">
-              Long-form thoughts on hustle, faith, politics, and building an empire without
-              losing your center.
+            <p class="text-sm md:text-base text-slate-600 mt-2 max-w-xl">
+              A curated publication of articles on hustle, faith, politics, culture, and building an
+              empire without losing your center.
             </p>
           </div>
-          <div class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-500 flex items-center gap-2">
-            <span class="h-px w-8 bg-slate-700"></span>
-            <span>Curated by HP Maharaja</span>
+          <div class="text-right space-y-1">
+            <p class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-500 flex items-center justify-end gap-2">
+              <span class="h-px w-8 bg-slate-300"></span>
+              <span>Curated by HP Maharaja</span>
+            </p>
+            <p class="text-[0.65rem] text-slate-400">Est. 2013 · Independent Editorial Perspective</p>
           </div>
         </div>
       </header>
       <!-- BREAKING NEWS BANNER -->
       {% if breaking_article %}
         <section class="mb-8">
-          <div class="rounded-2xl border border-maharaja_gold/40 bg-gradient-to-r from-maharaja_gold/12 via-amber-950/60 to-maharaja_bg/80 px-4 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <div class="rounded-xl border border-maharaja_gold/60 bg-gradient-to-r from-[#fff8e7] via-[#fdf5e9] to-[#f8f5f0] px-4 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <div class="flex items-center gap-3">
-              <div class="h-8 w-8 rounded-full border border-maharaja_gold flex items-center justify-center">
+              <div class="h-8 w-8 rounded-full border border-maharaja_gold flex items-center justify-center bg-white">
                 <span class="text-[0.6rem] tracking-[0.18em] uppercase text-maharaja_gold">Live</span>
               </div>
               <div>
                 <p class="text-[0.65rem] tracking-[0.3em] uppercase text-maharaja_gold mb-0.5">Breaking Perspective</p>
                 <a href="{% url 'article_detail' breaking_article.slug %}"
-                   class="text-sm md:text-base font-medium text-slate-50 hover:text-maharaja_gold_soft transition">
+                   class="text-sm md:text-base font-medium text-slate-900 hover:text-maharaja_gold transition">
                   {{ breaking_article.title }}
                 </a>
-                <p class="text-[0.7rem] text-slate-300 mt-0.5">
+                <p class="text-[0.7rem] text-slate-500 mt-0.5">
                   {{ breaking_article.date }} · {{ breaking_article.category }} · {{ breaking_article.reading_time }}
                 </p>
               </div>
             </div>
-            <div class="text-[0.65rem] text-slate-300 md:text-right">
+            <div class="text-[0.65rem] text-slate-500 md:text-right">
               <p class="uppercase tracking-[0.24em]">#HustleMindset · Balance in Chaos</p>
             </div>
           </div>
@@ -52,28 +56,28 @@
           <!-- Primary Featured Article -->
           {% if featured_articles %}
             {% with feature=featured_articles.0 %}
-              <article class="group border border-slate-800 rounded-3xl overflow-hidden bg-black/60">
+              <article class="group border border-slate-200 rounded-3xl overflow-hidden bg-white shadow-sm">
                 <div class="relative h-64 md:h-80 overflow-hidden">
-                  <img src="{% static feature.image %}"
+                  <img src="{{ feature.image|article_image_src }}"
                        alt="{{ feature.title }}"
                        class="w-full h-full object-cover transform group-hover:scale-[1.03] transition duration-700 ease-out" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent"></div>
                   <div class="absolute bottom-4 left-4 right-4">
-                    <p class="inline-flex px-2 py-1 rounded-full bg-black/70 border border-slate-700 text-[0.65rem] uppercase tracking-[0.24em] text-slate-200 mb-2">
+                    <p class="inline-flex px-2 py-1 rounded-full bg-black/70 border border-slate-600 text-[0.65rem] uppercase tracking-[0.24em] text-slate-100 mb-2">
                       {{ feature.category }} · {{ feature.reading_time }}
                     </p>
                     <a href="{% url 'article_detail' feature.slug %}">
-                      <h2 class="text-2xl md:text-3xl font-semibold leading-tight group-hover:text-maharaja_gold_soft transition">
+                      <h2 class="text-2xl md:text-3xl font-semibold leading-tight text-white group-hover:text-maharaja_gold_soft transition">
                         {{ feature.title }}
                       </h2>
                     </a>
-                    <p class="text-xs md:text-sm text-slate-300 mt-2">{{ feature.subtitle }}</p>
+                    <p class="text-xs md:text-sm text-slate-100/80 mt-2">{{ feature.subtitle }}</p>
                   </div>
                 </div>
-                <div class="px-5 py-4 border-t border-slate-800">
-                  <div class="flex items-center justify-between text-[0.7rem] text-slate-400">
+                <div class="px-5 py-4 border-t border-slate-200 bg-[#faf7f1]">
+                  <div class="flex items-center justify-between text-[0.7rem] text-slate-600">
                     <span>{{ feature.date }}</span>
-                    <span class="uppercase tracking-[0.24em] text-slate-500">Feature</span>
+                    <span class="uppercase tracking-[0.24em] text-slate-500">Feature Essay</span>
                   </div>
                 </div>
               </article>
@@ -81,31 +85,31 @@
           {% endif %}
           <!-- Secondary / Side Column -->
           <div class="space-y-4">
-            <div class="border border-slate-800 rounded-2xl bg-black/60 px-4 py-3">
-              <p class="text-[0.65rem] uppercase tracking-[0.24em] text-slate-500 mb-1">Today’s Line-Up</p>
-              <p class="text-sm text-slate-300">
-                A curated selection of essays shaping how we think about hustle, identity,
-                community, and power.
+            <div class="border border-slate-200 rounded-2xl bg-white px-4 py-3 shadow-sm">
+              <p class="text-[0.65rem] uppercase tracking-[0.24em] text-slate-500 mb-1">Today’s Editorial Line-Up</p>
+              <p class="text-sm text-slate-700">
+                A daily snapshot of the ideas shaping how we think about hustle, identity,
+                community, and power through the lens of HP Maharaja.
               </p>
             </div>
             {% for article in featured_articles|slice:"1:" %}
-              <article class="group border border-slate-800 rounded-2xl bg-black/60 overflow-hidden flex flex-col sm:flex-row">
+              <article class="group border border-slate-200 rounded-2xl bg-white overflow-hidden flex flex-col sm:flex-row shadow-sm">
                 <div class="sm:w-2/5 h-32 sm:h-auto relative">
-                  <img src="{% static article.image %}"
+                  <img src="{{ article.image|article_image_src }}"
                        alt="{{ article.title }}"
                        class="w-full h-full object-cover group-hover:scale-[1.03] transition duration-700" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent"></div>
                 </div>
                 <div class="sm:w-3/5 p-4 flex flex-col">
                   <p class="text-[0.65rem] uppercase tracking-[0.24em] text-slate-500 mb-1">
                     {{ article.category }} · {{ article.date }}
                   </p>
                   <a href="{% url 'article_detail' article.slug %}">
-                    <h3 class="text-sm md:text-base font-semibold text-slate-100 group-hover:text-maharaja_gold_soft transition">
+                    <h3 class="text-sm md:text-base font-semibold text-slate-900 group-hover:text-maharaja_gold transition">
                       {{ article.title }}
                     </h3>
                   </a>
-                  <p class="text-xs text-slate-400 mt-1">{{ article.summary }}</p>
+                  <p class="text-xs text-slate-600 mt-1">{{ article.summary }}</p>
                   <p class="text-[0.65rem] text-slate-500 mt-2">{{ article.reading_time }}</p>
                 </div>
               </article>
@@ -114,17 +118,20 @@
         </div>
       </section>
       <!-- REST OF ARTICLES GRID -->
-      <section class="border-t border-slate-800 pt-8">
+      <section class="border-t border-slate-200 pt-8">
         <div class="flex items-center justify-between mb-4">
-          <h2 class="text-lg md:text-xl font-semibold">All Essays & Features</h2>
+          <div>
+            <h2 class="text-lg md:text-xl font-semibold">Older Articles</h2>
+            <p class="text-xs text-slate-500 mt-1">Browse the full archive of perspectives from the HP Maharaja Journal.</p>
+          </div>
           <p class="text-[0.7rem] uppercase tracking-[0.24em] text-slate-500 hidden sm:block">HP Maharaja · #HustleMindset</p>
         </div>
         <div class="grid md:grid-cols-2 gap-6">
           {% for article in other_articles %}
-            <article class="group border border-slate-800 rounded-2xl bg-black/50 overflow-hidden flex flex-col">
+            <article class="group border border-slate-200 rounded-2xl bg-white overflow-hidden flex flex-col shadow-sm">
               <div class="h-40 overflow-hidden">
                 <a href="{% url 'article_detail' article.slug %}">
-                  <img src="{% static article.image %}"
+                  <img src="{{ article.image|article_image_src }}"
                        alt="{{ article.title }}"
                        class="w-full h-full object-cover group-hover:scale-[1.03] transition duration-700" />
                 </a>
@@ -134,11 +141,11 @@
                   {{ article.category }} · {{ article.date }} · {{ article.reading_time }}
                 </p>
                 <a href="{% url 'article_detail' article.slug %}">
-                  <h3 class="text-base md:text-lg font-semibold text-slate-100 group-hover:text-maharaja_gold_soft transition">
+                  <h3 class="text-base md:text-lg font-semibold text-slate-900 group-hover:text-maharaja_gold transition">
                     {{ article.title }}
                   </h3>
                 </a>
-                <p class="text-xs text-slate-400">{{ article.summary }}</p>
+                <p class="text-xs text-slate-600">{{ article.summary }}</p>
               </div>
             </article>
           {% endfor %}
