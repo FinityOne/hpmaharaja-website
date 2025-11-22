@@ -25,8 +25,18 @@ SECRET_KEY = 'django-insecure-k+574q#u$326f&_!9u3zfz7=n)yt!00%(74x*=sjxoy&esjtl_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+SECURE_SSL_REDIRECT = os.environ.get("DJANGO_SECURE_SSL_REDIRECT", "true").lower() == "true"
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
+ALLOWED_HOSTS = [
+    ".vercel.app",        # Vercel’s domain
+    "localhost",
+    "127.0.0.1",
+    # add your custom domain here when you connect one, e.g.:
+    "hpmaharaja.com",
+    "heranpatel.com"
+]
 
 # Application definition
 
@@ -105,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "America/Los_Angeles"
 
 USE_I18N = True
 
@@ -126,3 +136,4 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'  # for production collectstatic later
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
