@@ -8,9 +8,11 @@ https://docs.djangoproject.com/en/5.2/howto/deployment/asgi/
 """
 
 import os
-
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hpmaharaja.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "hpmaharaja.settings")
 
-application = get_asgi_application()
+app = get_asgi_application()     # 👈 Vercel uses this
+application = app                # 👈 Django convention (optional but nice)
+
+
