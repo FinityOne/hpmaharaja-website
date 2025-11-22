@@ -1,0 +1,92 @@
+<nav class="fixed top-0 inset-x-0 z-40 bg-black/80 backdrop-blur-xl border-b border-slate-800/70">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <!-- BRAND -->
+      <a href="{% url 'home' %}" class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-full border border-maharaja_gold flex items-center justify-center">
+          <span class="text-sm font-semibold tracking-widest text-maharaja_gold">HP</span>
+        </div>
+        <div class="leading-tight">
+          <p class="text-sm font-semibold tracking-[0.22em] uppercase text-slate-200">Maharaja</p>
+          <p class="text-[0.60rem] tracking-[0.28em] uppercase text-slate-500">Pursuing Balance in Chaos</p>
+        </div>
+      </a>
+      <!-- DESKTOP NAV -->
+      <div class="hidden md:flex items-center gap-10">
+        {% with cp=current_page|default:"" %}
+          <a href="{% url 'home' %}#hero"
+             class="nav-link {% if cp == 'home' %}text-maharaja_gold{% else %}text-slate-300{% endif %}">Home</a>
+          <a href="#music" class="nav-link text-slate-300">Music</a>
+          <a href="#vlogs" class="nav-link text-slate-300">Vlogs</a>
+          {% with cp=current_page|default:"" %}
+            <a href="{% url 'article_list' %}"
+               class="nav-link {% if cp == 'articles' %}text-maharaja_gold{% else %}text-slate-300{% endif %}">
+              Articles
+            </a>
+            <!-- and keep Music/Vlogs as section anchors -->
+          {% endwith %}
+          <a href="#merch" class="nav-link text-slate-300">Merch</a>
+          <a href="#community" class="nav-link text-slate-300">Community</a>
+          <a href="#contact" class="nav-link text-slate-300">Contact</a>
+        {% endwith %}
+      </div>
+      <!-- MOBILE TOGGLE -->
+      <button id="nav-toggle"
+              class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-full border border-slate-700/70 hover:border-slate-500 transition">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             fill="none"
+             viewBox="0 0 24 24"
+             stroke-width="1.5"
+             stroke="currentColor"
+             class="w-6 h-6 text-slate-200">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
+    <!-- MOBILE MENU -->
+    <div id="nav-menu"
+         class="md:hidden hidden pb-4 border-t border-slate-800/70">
+      <div class="flex flex-col gap-2 pt-3">
+        <a href="{% url 'home' %}#hero" class="mobile-link">Home</a>
+        <a href="#music" class="mobile-link">Music</a>
+        <a href="#vlogs" class="mobile-link">Vlogs</a>
+        <a href="#articles" class="mobile-link">Articles</a>
+        <a href="#merch" class="mobile-link">Merch</a>
+        <a href="#community" class="mobile-link">Community</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- CUSTOM NAV STYLE -->
+<style>
+  .nav-link {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: color 0.25s ease;
+  }
+  .nav-link:hover {
+    color: #f9e3b8;
+  }
+
+  .mobile-link {
+    font-size: 0.70rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #d1d5db;
+    padding: 0.5rem 0.25rem;
+    transition: color 0.25s ease;
+  }
+  .mobile-link:hover {
+    color: #f9e3b8;
+  }
+</style>
+<script>
+  const navToggle = document.getElementById("nav-toggle");
+  const navMenu = document.getElementById("nav-menu");
+
+  navToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("hidden");
+  });
+</script>

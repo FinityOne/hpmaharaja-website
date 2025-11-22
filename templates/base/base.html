@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Favicon -->
+    <link rel="icon"
+          type="image/x-icon"
+          href="{% static 'images/hp-favicon.ico' %}" />
+    <!-- Primary Meta Tags -->
+    <title>
+      {% block title %}HP Maharaja – Pursuing Balance in Chaos · #HustleMindset{% endblock %}
+    </title>
+    <meta name="title"
+          content="HP Maharaja – Pursuing Balance in Chaos · #HustleMindset" />
+    <meta name="description"
+          content="HP Maharaja blends rap, vlogs, and long-form writing to explore ambition, identity, faith, and the pursuit of balance in chaos. A luxury creator brand grounded in discipline, culture, and the #HustleMindset." />
+    <meta name="keywords"
+          content="HP Maharaja, Hustle Mindset, Pursuing Balance in Chaos, Heran Patel, hip hop creator, motivational blogging, vlogs, mindset content, Gujarati American, immigrant hustle, luxury creator brand" />
+    <meta name="author" content="HP Maharaja" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HP Maharaja – Pursuing Balance in Chaos" />
+    <meta property="og:description"
+          content="Where ambition meets discipline. Rap, vlogs, and essays built on the #HustleMindset and the pursuit of balance in chaos." />
+    <meta property="og:url" content="https://hpmaharaja.com/" />
+    <meta property="og:image" content="{% static 'images/header-bg.jpg' %}" />
+    <meta property="og:image:alt"
+          content="HP Maharaja – Pursuing Balance in Chaos" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title"
+          content="HP Maharaja – Pursuing Balance in Chaos · #HustleMindset" />
+    <meta name="twitter:description"
+          content="Rap. Vlogs. Essays. Faith. Culture. Ambition. HP Maharaja explores the grind with the #HustleMindset while pursuing balance in chaos." />
+    <meta name="twitter:image" content="{% static 'images/header-bg.jpg' %}" />
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            maharaja_bg: '#050507',
+            maharaja_gold: '#f4c56a',
+            maharaja_gold_soft: '#f9e3b8',
+          }
+        }
+      }
+    }
+    </script>
+  </head>
+  <body class="bg-maharaja_bg text-slate-100 min-h-screen flex flex-col">
+    {% include "partials/navbar.html" %}
+    <main class="flex-1">
+      {% block content %}{% endblock %}
+    </main>
+    <footer class="border-t border-slate-800/60 bg-black/60 backdrop-blur">
+      <div class="max-w-6xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs md:text-sm text-slate-400">
+        <p>© {{ now|date:"Y" }} HP Maharaja. All rights reserved.</p>
+        <p class="text-slate-500">Built with hustle, faith, and late-night sessions.</p>
+      </div>
+    </footer>
+    <script>
+    const navToggle = document.getElementById("nav-toggle");
+    const navMenu = document.getElementById("nav-menu");
+    if (navToggle && navMenu) {
+      navToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("hidden");
+      });
+    }
+    </script>
+  </body>
+</html>

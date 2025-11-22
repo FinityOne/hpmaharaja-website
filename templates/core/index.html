@@ -1,0 +1,258 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}HP Maharaja – HustleMindset.{% endblock %}
+{% block content %}
+  <div class="pt-16"></div>
+  <!-- HERO -->
+  <section id="hero"
+           class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="{% static 'images/base/header-bg.jpg' %}"
+           alt="HP Maharaja Header"
+           class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/75 to-maharaja_bg/95"></div>
+    </div>
+    <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+      <p class="text-xs md:text-sm uppercase tracking-[0.32em] text-maharaja_gold_soft mb-3">
+        HP Maharaja · Hustle Mindset · Royal Energy
+      </p>
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight mb-4">Hustle Mindset is the Way.</h1>
+      <p class="text-base md:text-xl text-slate-300 max-w-2xl mx-auto mb-8">
+        Rap. Vlogs. Essays. One empire of ideas built on grind, faith, and a
+        Maharaja-level life.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
+        <a href="#articles"
+           class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-maharaja_gold text-black text-xs md:text-sm font-semibold uppercase tracking-[0.28em] hover:bg-maharaja_gold_soft transition">
+          Read Articles
+        </a>
+        <div class="flex flex-wrap items-center justify-center gap-2">
+          <a href="https://soundcloud.com/hpmaharaja"
+             target="_blank"
+             rel="noreferrer"
+             class="inline-flex items-center justify-center px-4 py-2 rounded-full border border-slate-700 text-[0.7rem] uppercase tracking-[0.24em] text-slate-200 hover:border-maharaja_gold hover:text-maharaja_gold_soft transition">
+            Listen on SoundCloud
+          </a>
+          <a href="https://www.youtube.com/channel/UClwSJMiNA__2Ua2pyB30OQg"
+             target="_blank"
+             rel="noreferrer"
+             class="inline-flex items-center justify-center px-4 py-2 rounded-full border border-slate-700 text-[0.7rem] uppercase tracking-[0.24em] text-slate-200 hover:border-maharaja_gold hover:text-maharaja_gold_soft transition">
+            Watch on YouTube
+          </a>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left text-xs md:text-sm">
+        <div class="bg-black/40 border border-slate-800 rounded-xl p-4">
+          <p class="text-maharaja_gold text-[0.65rem] uppercase tracking-[0.26em] mb-1">Mindset</p>
+          <p class="text-slate-200 font-medium mb-1">The Hustle</p>
+          <p class="text-slate-400 text-xs">Stories, scars, and systems for staying locked in on the bigger dream.</p>
+        </div>
+        <div class="bg-black/40 border border-slate-800 rounded-xl p-4">
+          <p class="text-maharaja_gold text-[0.65rem] uppercase tracking-[0.26em] mb-1">Spirit</p>
+          <p class="text-slate-200 font-medium mb-1">Faith & Values</p>
+          <p class="text-slate-400 text-xs">Politics, religion, and philosophy from a grounded, desi-son-of-immigrants lens.</p>
+        </div>
+        <div class="bg-black/40 border border-slate-800 rounded-xl p-4">
+          <p class="text-maharaja_gold text-[0.65rem] uppercase tracking-[0.26em] mb-1">Empire</p>
+          <p class="text-slate-200 font-medium mb-1">Brands & Moves</p>
+          <p class="text-slate-400 text-xs">Rameelo, Maharaja Estates, Melux, and whatever wild venture comes next.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- TIMELINE -->
+  <section id="timeline" class="py-12 md:py-16">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-xl md:text-2xl font-semibold text-center mb-2">👑 Journey of Majesty: Upcoming Royal Affairs 👑</h2>
+      <p class="text-sm text-slate-400 text-center mb-8">Where HP and the Maharaja energy are physically pulling up next.</p>
+      <div class="space-y-4">
+        {% for event in upcoming_events %}
+          <div class="relative pl-4">
+            <div class="absolute left-0 top-0 bottom-0 w-px bg-slate-800"></div>
+            <div class="ml-2 border-l-4 {{ event.accent }} bg-black/40 border-slate-700 rounded-lg shadow-sm p-3">
+              <p class="text-[0.7rem] text-slate-400 uppercase tracking-[0.18em] mb-1">{{ event.date }}</p>
+              <p class="text-sm md:text-base font-medium text-slate-100">{{ event.title }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <!-- VENTURES -->
+  <section id="projects"
+           class="py-12 md:py-16 bg-black/50 border-y border-slate-900">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-2">My Majestic Ventures</h2>
+      <p class="text-sm text-slate-400 text-center mb-10 max-w-xl mx-auto">
+        HP isn’t just bars and blogs. It’s an ecosystem of brands building culture,
+        community, and real-world equity.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+        <a href="#"
+           class="group border border-red-700/60 bg-gradient-to-br from-black to-red-950/40 text-slate-100 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 p-5 flex flex-col">
+          <h3 class="text-lg font-semibold mb-1">Rameelo</h3>
+          <p class="text-xs text-slate-300 mb-3">
+            Non-profit reimagining Gujarati Raas Garba as large-scale cultural experiences.
+          </p>
+          <span class="mt-auto text-[0.65rem] uppercase tracking-[0.22em] text-red-300 group-hover:text-red-200">
+            Cultural Empire
+          </span>
+        </a>
+        <a href="#"
+           class="group border border-blue-700/60 bg-gradient-to-br from-black to-blue-950/40 text-slate-100 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 p-5 flex flex-col">
+          <h3 class="text-lg font-semibold mb-1">FinityOne</h3>
+          <p class="text-xs text-slate-300 mb-3">
+            Tech studio building digital products at the edges of fintech, event-tech, and proptech.
+          </p>
+          <span class="mt-auto text-[0.65rem] uppercase tracking-[0.22em] text-blue-300 group-hover:text-blue-200">
+            Product Lab
+          </span>
+        </a>
+        <a href="#"
+           class="group border border-emerald-700/60 bg-gradient-to-br from-black to-emerald-950/40 text-slate-100 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 p-5 flex flex-col">
+          <h3 class="text-lg font-semibold mb-1">Maharaja Estates</h3>
+          <p class="text-xs text-slate-300 mb-3">
+            Arizona-based portfolio of rental and long-term holds powered by hands-on renovations.
+          </p>
+          <span class="mt-auto text-[0.65rem] uppercase tracking-[0.22em] text-emerald-300 group-hover:text-emerald-200">
+            Real Estate
+          </span>
+        </a>
+        <a href="#"
+           class="group border border-purple-700/60 bg-gradient-to-br from-black to-purple-950/40 text-slate-100 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 p-5 flex flex-col">
+          <h3 class="text-lg font-semibold mb-1">Melux Events</h3>
+          <p class="text-xs text-slate-300 mb-3">
+            Design-first event decor and experience studio born from Rameelo’s production DNA.
+          </p>
+          <span class="mt-auto text-[0.65rem] uppercase tracking-[0.22em] text-purple-300 group-hover:text-purple-200">
+            Aesthetic Ops
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- CONTENT HUB -->
+  <section class="py-12 md:py-16" id="music">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="border border-slate-800 rounded-xl bg-black/50 p-5 flex flex-col">
+          <p class="text-[0.7rem] uppercase tracking-[0.26em] text-maharaja_gold mb-1">Music</p>
+          <h3 class="text-lg font-semibold mb-2">HP Maharaja on the Mic</h3>
+          <p class="text-sm text-slate-300 mb-4">
+            Rap tracks about hustle, heartbreak, faith, and building something bigger than yourself.
+          </p>
+          <div class="mt-auto">
+            <a href="https://soundcloud.com"
+               target="_blank"
+               rel="noreferrer"
+               class="inline-flex items-center px-4 py-2 rounded-full bg-maharaja_gold text-black text-xs uppercase tracking-[0.24em] hover:bg-maharaja_gold_soft transition">
+              Open SoundCloud
+            </a>
+          </div>
+        </div>
+        <div id="vlogs"
+             class="border border-slate-800 rounded-xl bg-black/50 p-5 flex flex-col">
+          <p class="text-[0.7rem] uppercase tracking-[0.26em] text-maharaja_gold mb-1">Vlogs</p>
+          <h3 class="text-lg font-semibold mb-2">Life in Motion</h3>
+          <p class="text-sm text-slate-300 mb-4">
+            Vlogs from trips, events, late-night sessions, and behind-the-scenes of building the HP empire.
+          </p>
+          <div class="mt-auto">
+            <a href="https://youtube.com"
+               target="_blank"
+               rel="noreferrer"
+               class="inline-flex items-center px-4 py-2 rounded-full border border-maharaja_gold text-maharaja_gold text-xs uppercase tracking-[0.24em] hover:bg-maharaja_gold hover:text-black transition">
+              Watch on YouTube
+            </a>
+          </div>
+        </div>
+        <div id="articles"
+             class="border border-slate-800 rounded-xl bg-black/50 p-5 flex flex-col">
+          <p class="text-[0.7rem] uppercase tracking-[0.26em] text-maharaja_gold mb-1">Articles</p>
+          <h3 class="text-lg font-semibold mb-2">Essays from the Throne</h3>
+          <p class="text-sm text-slate-300 mb-4">
+            Long-form thoughts on motivation, politics, religion, and personal philosophy.
+          </p>
+          <div class="space-y-3 mb-4">
+            {% for article in featured_articles %}
+              <article class="border border-slate-800/60 rounded-lg p-3 hover:border-maharaja_gold/70 transition">
+                <p class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">
+                  {{ article.category }} · {{ article.reading_time }}
+                </p>
+                <h4 class="text-sm font-semibold text-slate-100 mb-1">{{ article.title }}</h4>
+                <p class="text-xs text-slate-400">{{ article.summary }}</p>
+              </article>
+            {% endfor %}
+          </div>
+          <a href="/articles"
+             class="inline-flex items-center px-4 py-2 rounded-full bg-slate-100 text-black text-xs uppercase tracking-[0.24em] hover:bg-maharaja_gold transition">
+            View All Articles
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- MERCH -->
+  <section id="merch"
+           class="py-12 md:py-16 bg-black/60 border-y border-slate-900">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <p class="text-[0.7rem] uppercase tracking-[0.26em] text-maharaja_gold mb-2">Maharaja Drip · Coming Soon</p>
+      <h2 class="text-2xl md:text-3xl font-semibold mb-3">Wear the Crown Before the World Knows the Name.</h2>
+      <p class="text-sm md:text-base text-slate-300 max-w-2xl mx-auto mb-6">
+        Limited drop hoodies, tees, and pieces inspired by royal Indian aesthetics, NYC grit,
+        and West Coast hustle. Early supporters get first dibs.
+      </p>
+      <p class="text-xs text-slate-400 mb-3">Drop 001: HP Maharaja Essentials. Sign up below to be first in line.</p>
+      <a href="mailto:hp@maharaja.com?subject=Merch%20Drop%20List&body=Add%20me%20to%20the%20Maharaja%20merch%20list."
+         class="inline-flex items-center px-5 py-2.5 rounded-full bg-maharaja_gold text-black text-xs uppercase tracking-[0.26em] hover:bg-maharaja_gold_soft transition">
+        Join the Merch List
+      </a>
+    </div>
+  </section>
+  <!-- COMMUNITY -->
+  <section id="community" class="py-12 md:py-16">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-3">Build the Maharaja Community</h2>
+      <p class="text-sm md:text-base text-slate-300 text-center max-w-2xl mx-auto mb-6">
+        HP Maharaja is for the kids of immigrants, the grinders, the ones trying to
+        balance faith, family, and ambition without losing themselves.
+      </p>
+      <div class="grid md:grid-cols-3 gap-4 text-xs md:text-sm">
+        <div class="border border-slate-800 rounded-xl p-4 bg-black/50">
+          <p class="font-semibold text-slate-100 mb-1">Share Your Story</p>
+          <p class="text-slate-400">DM or email your journey. Some stories will be featured in future articles & vlogs.</p>
+        </div>
+        <div class="border border-slate-800 rounded-xl p-4 bg-black/50">
+          <p class="font-semibold text-slate-100 mb-1">Collab on Content</p>
+          <p class="text-slate-400">Producers, videographers, writers – if you resonate with the mission, reach out.</p>
+        </div>
+        <div class="border border-slate-800 rounded-xl p-4 bg-black/50">
+          <p class="font-semibold text-slate-100 mb-1">Pull Up IRL</p>
+          <p class="text-slate-400">Meet at Rameelo, NYC linkups, and future Maharaja pop-ups tied to trips & shows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CONTACT -->
+  <section id="contact" class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="bg-gradient-to-r from-maharaja_gold/10 via-black to-maharaja_gold/5 border border-maharaja_gold/30 rounded-2xl p-6 md:p-8 text-center md:text-left">
+        <h2 class="text-2xl md:text-3xl font-semibold mb-3">Let’s Build Something Majestic</h2>
+        <p class="text-sm md:text-base text-slate-200 mb-5 max-w-2xl">
+          For collaborations, speaking, partnerships, or just a real conversation about hustle
+          and purpose, hit me directly.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3">
+          <a href="tel:+19499039366"
+             class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-slate-100 text-black text-xs uppercase tracking-[0.26em] hover:bg-maharaja_gold transition">
+            Call HP
+          </a>
+          <a href="mailto:heran@finityone.com"
+             class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border border-slate-200 text-slate-100 text-xs uppercase tracking-[0.26em] hover:border-maharaja_gold hover:text-maharaja_gold_soft transition">
+            Email HP
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

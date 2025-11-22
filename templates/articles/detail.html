@@ -1,0 +1,38 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}{{ article.title }} – HP Journal{% endblock %}
+{% block content %}
+  <div class="pt-20 pb-16 bg-maharaja_bg text-slate-100">
+    <div class="max-w-3xl mx-auto px-4">
+      <!-- Breadcrumb / Back -->
+      <div class="mb-4 text-[0.7rem] uppercase tracking-[0.24em] text-slate-500 flex items-center gap-2">
+        <a href="{% url 'article_list' %}"
+           class="hover:text-maharaja_gold_soft transition">← All Articles</a>
+        <span class="h-px w-6 bg-slate-700"></span>
+        <span>HP Journal</span>
+      </div>
+      <!-- Header -->
+      <header class="mb-6">
+        <p class="text-[0.65rem] uppercase tracking-[0.3em] text-slate-500 mb-1">{{ article.category }}</p>
+        <h1 class="text-3xl md:text-4xl font-semibold tracking-tight mb-3">{{ article.title }}</h1>
+        {% if article.subtitle %}<p class="text-sm md:text-base text-slate-300 mb-3">{{ article.subtitle }}</p>{% endif %}
+        <p class="text-[0.75rem] text-slate-400">{{ article.date }} · {{ article.reading_time }} · by HP Maharaja</p>
+      </header>
+      <!-- Hero image -->
+      <div class="mb-8 rounded-3xl overflow-hidden border border-slate-800 bg-black/60">
+        <img src="{% static article.image %}"
+             alt="{{ article.title }}"
+             class="w-full h-64 md:h-80 object-cover" />
+      </div>
+      <!-- Body (for now, placeholder – paste your real text here) -->
+      <article class="prose prose-invert prose-sm md:prose-base max-w-none prose-headings:text-slate-100 prose-p:text-slate-300 prose-strong:text-slate-100 prose-a:text-maharaja_gold">
+        <p>
+          <!-- Replace this with your real article body content for each article. -->
+          This is where the full article body goes. You can either hard-code content
+          per article in the template using conditionals on the slug, or later move
+          to markdown files or a database-backed model.
+        </p>
+      </article>
+    </div>
+  </div>
+{% endblock %}
