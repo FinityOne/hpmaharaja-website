@@ -25,9 +25,6 @@ SECRET_KEY = 'django-insecure-k+574q#u$326f&_!9u3zfz7=n)yt!00%(74x*=sjxoy&esjtl_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# SECURE_SSL_REDIRECT = os.environ.gçet("DJANGO_SECURE_SSL_REDIRECT", "true").lower() == "true"
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
 
 ALLOWED_HOSTS = [
     ".vercel.app",        # Vercel’s domain
@@ -35,7 +32,9 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     # add your custom domain here when you connect one, e.g.:
     "hpmaharaja.com",
-    "heranpatel.com"
+    "www.hpmaharaja.com",
+    "heranpatel.com",
+    "www.heranpatel.com"
 ]
 
 # Application definition
