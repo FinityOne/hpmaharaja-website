@@ -4,7 +4,7 @@ import LegalPage from "@/components/LegalPage";
 import { CONTACT_EMAIL, PERSON_NAME, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Terms of Use – Heran Patel (HP Maharaja)",
+  title: "Terms of Use",
   description:
     "The terms that apply when you use heranpatel.com / hpmaharaja.com, including how the writing, music and brand names on the site may be used.",
   alternates: { canonical: `${SITE_URL}/terms` },

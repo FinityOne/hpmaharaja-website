@@ -1,11 +1,44 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { FEATURED_ARTICLES, LINKEDIN_URL, RESUME_URL } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import { loadAllArticles } from "@/lib/articles";
+import {
+  NAME_KEYWORDS,
+  OG_IMAGE,
+  OG_IMAGE_ALT,
+  PERSON_ALTERNATE_NAME,
+  PERSON_NAME,
+  SITE_NAME,
+  SITE_URL,
+  VENTURES,
+} from "@/lib/seo";
+import { HOME_ARTICLE_COUNT, LINKEDIN_URL, RESUME_URL } from "@/lib/site";
 import { buildTourDates, buildTourMeta } from "@/lib/tour";
 
+const HOME_DESCRIPTION =
+  "Heran Patel, also known as HP Maharaja, is a founder, operator and creator in New York City building Rameelo, FinityOne, Maharaja Estates and Melux Events — plus rap, vlogs and essays on ambition, faith and pursuing balance in chaos.";
+
 export const metadata: Metadata = {
-  title: "Heran Patel (HP Maharaja) – Founder, Builder, Creator",
+  /* Absolute: the home page title already carries both names, so it opts out
+     of the layout's "· Heran Patel (HP Maharaja)" suffix. */
+  title: { absolute: "Heran Patel (HP Maharaja) – Founder, Builder, Creator in New York City" },
+  description: HOME_DESCRIPTION,
+  alternates: { canonical: `${SITE_URL}/` },
+  keywords: NAME_KEYWORDS,
+  openGraph: {
+    type: "profile",
+    title: "Heran Patel (HP Maharaja) – Founder, Builder, Creator",
+    description: HOME_DESCRIPTION,
+    url: `${SITE_URL}/`,
+    images: [{ url: OG_IMAGE, alt: OG_IMAGE_ALT }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Heran Patel (HP Maharaja) – Founder, Builder, Creator",
+    description: HOME_DESCRIPTION,
+    images: [OG_IMAGE],
+  },
 };
 
 /**
@@ -17,9 +50,55 @@ export const revalidate = 86400;
 export default function HomePage() {
   const tourDates = buildTourDates();
   const tourMeta = buildTourMeta(tourDates);
+  const articles = loadAllArticles().slice(0, HOME_ARTICLE_COUNT);
 
   return (
     <>
+      {/* Structured data: the home page is this person's profile page, and the
+          ventures are named as organizations he founded. Together with the
+          Person node in the layout, that states the Heran Patel / HP Maharaja
+          identity and what he builds as facts rather than leaving both to be
+          inferred from the prose. */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "ProfilePage",
+              "@id": `${SITE_URL}/#profilepage`,
+              url: `${SITE_URL}/`,
+              name: `${PERSON_NAME} (${PERSON_ALTERNATE_NAME})`,
+              description: HOME_DESCRIPTION,
+              inLanguage: "en",
+              isPartOf: { "@id": `${SITE_URL}/#website` },
+              mainEntity: { "@id": `${SITE_URL}/#person` },
+              about: { "@id": `${SITE_URL}/#person` },
+              primaryImageOfPage: {
+                "@type": "ImageObject",
+                url: `${SITE_URL}${OG_IMAGE}`,
+                caption: OG_IMAGE_ALT,
+              },
+            },
+            /* The ventures as entities of their own, each pointing back at the
+               Person node the layout declares. The person is referenced by
+               @id rather than restated, so there is one definition of him. */
+            ...VENTURES.map((venture) => ({
+              "@type": venture.name === "Rameelo" ? "NGO" : "Organization",
+              "@id": `${SITE_URL}/#${venture.name.toLowerCase().replace(/\s+/g, "-")}`,
+              name: venture.name,
+              description: venture.description,
+              url: venture.url || undefined,
+              founder: { "@id": `${SITE_URL}/#person` },
+            })),
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: SITE_NAME, item: `${SITE_URL}/` },
+              ],
+            },
+          ],
+        }}
+      />
       {/* ============================ HERO ============================ */}
         <section id="hero" className="pt-28 lg:pt-44">
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -54,8 +133,11 @@ export default function HomePage() {
           {/* Full-bleed image band */}
           <div className="mt-16 lg:mt-20">
             <div className="relative overflow-hidden bg-paper_2">
-              <img src="/images/base/header-bg.jpg"
-                   alt="Heran Patel, aka HP Maharaja"
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={OG_IMAGE}
+                   alt="Heran Patel, also known as HP Maharaja, founder and creator based in New York City"
+                   width={2400}
+                   height={1350}
                    className="w-full h-[42vh] md:h-[58vh] lg:h-[66vh] object-cover grayscale contrast-[1.08]" />
             </div>
           </div>
@@ -204,58 +286,61 @@ export default function HomePage() {
                 </p>
               </div>
             </div>
+            {/* Cards used to be four `href="#"` placeholders. A venture is now a
+                real outbound link when it has a live site, and a plain block —
+                no link, no hover arrow — when it does not. */}
             <div className="grid md:grid-cols-2 border-t border-line">
-              <a href="#"
-                 className="group reveal py-10 md:pr-12 border-b md:border-r border-line flex flex-col">
-                <div className="flex items-start justify-between gap-6 mb-6">
-                  <p className="label">01</p>
-                  <span className="arrow text-ink_3 group-hover:text-ink transition" aria-hidden="true">→</span>
-                </div>
-                <h3 className="text-2xl lg:text-3xl font-semibold tracking-tight mb-3">Rameelo</h3>
-                <p className="text-sm text-ink_3 leading-relaxed mb-7 max-w-md">
-                  Non-profit reimagining Gujarati Raas Garba as large-scale cultural
-                  experiences.
-                </p>
-                <p className="label mt-auto">Cultural Empire</p>
-              </a>
-              <a href="#"
-                 className="group reveal py-10 md:pl-12 border-b border-line flex flex-col">
-                <div className="flex items-start justify-between gap-6 mb-6">
-                  <p className="label">02</p>
-                  <span className="arrow text-ink_3 group-hover:text-ink transition" aria-hidden="true">→</span>
-                </div>
-                <h3 className="text-2xl lg:text-3xl font-semibold tracking-tight mb-3">FinityOne</h3>
-                <p className="text-sm text-ink_3 leading-relaxed mb-7 max-w-md">
-                  Tech studio building digital products at the edges of fintech,
-                  event-tech, and proptech.
-                </p>
-                <p className="label mt-auto">Product Lab</p>
-              </a>
-              <a href="#"
-                 className="group reveal py-10 md:pr-12 border-b md:border-b-0 md:border-r border-line flex flex-col">
-                <div className="flex items-start justify-between gap-6 mb-6">
-                  <p className="label">03</p>
-                  <span className="arrow text-ink_3 group-hover:text-ink transition" aria-hidden="true">→</span>
-                </div>
-                <h3 className="text-2xl lg:text-3xl font-semibold tracking-tight mb-3">Maharaja Estates</h3>
-                <p className="text-sm text-ink_3 leading-relaxed mb-7 max-w-md">
-                  Arizona-based portfolio of rentals and long-term holds powered by
-                  hands-on renovations.
-                </p>
-                <p className="label mt-auto">Real Estate</p>
-              </a>
-              <a href="#" className="group reveal py-10 md:pl-12 flex flex-col">
-                <div className="flex items-start justify-between gap-6 mb-6">
-                  <p className="label">04</p>
-                  <span className="arrow text-ink_3 group-hover:text-ink transition" aria-hidden="true">→</span>
-                </div>
-                <h3 className="text-2xl lg:text-3xl font-semibold tracking-tight mb-3">Melux Events</h3>
-                <p className="text-sm text-ink_3 leading-relaxed mb-7 max-w-md">
-                  Design-first event decor and experience studio born from Rameelo's
-                  production DNA.
-                </p>
-                <p className="label mt-auto">Aesthetic Ops</p>
-              </a>
+              {VENTURES.map((venture, index) => {
+                const isLeftColumn = index % 2 === 0;
+                const isLastRow = index >= VENTURES.length - 2;
+                const layout = [
+                  "reveal py-10 flex flex-col",
+                  isLeftColumn ? "md:pr-12 md:border-r border-line" : "md:pl-12",
+                  isLastRow ? "border-b md:border-b-0" : "border-b",
+                  index === VENTURES.length - 1 ? "" : "border-line",
+                ]
+                  .filter(Boolean)
+                  .join(" ");
+
+                const body = (
+                  <>
+                    <div className="flex items-start justify-between gap-6 mb-6">
+                      <p className="label">{String(index + 1).padStart(2, "0")}</p>
+                      {venture.url ? (
+                        <span
+                          className="arrow text-ink_3 group-hover:text-ink transition"
+                          aria-hidden="true"
+                        >
+                          →
+                        </span>
+                      ) : null}
+                    </div>
+                    <h3 className="text-2xl lg:text-3xl font-semibold tracking-tight mb-3">
+                      {venture.name}
+                    </h3>
+                    <p className="text-sm text-ink_3 leading-relaxed mb-7 max-w-md">
+                      {venture.description}
+                    </p>
+                    <p className="label mt-auto">{venture.category}</p>
+                  </>
+                );
+
+                return venture.url ? (
+                  <a
+                    key={venture.name}
+                    href={venture.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`group ${layout}`}
+                  >
+                    {body}
+                  </a>
+                ) : (
+                  <div key={venture.name} className={layout}>
+                    {body}
+                  </div>
+                );
+              })}
             </div>
             <div className="mt-12 flex flex-wrap items-center gap-3">
               <a href="mailto:heran@finityone.com?subject=Founder%20Intro&body=Company%3A%0AWhat%20you%27re%20building%3A%0AWhere%20we%20overlap%3A"
@@ -357,10 +442,10 @@ export default function HomePage() {
               </div>
             </div>
             <div className="border-t border-line">
-              {FEATURED_ARTICLES.map((article, index) => (
+              {articles.map((article, index) => (
                 <Link
                   key={article.slug}
-                  href="/articles"
+                  href={`/articles/${article.slug}`}
                   className="group reveal block border-b border-line py-8 lg:py-9"
                 >
                   <div className="grid lg:grid-cols-12 gap-y-3 lg:gap-x-10 items-baseline">
@@ -369,7 +454,9 @@ export default function HomePage() {
                       <h3 className="text-xl lg:text-2xl font-semibold tracking-tight mb-2 group-hover:opacity-60 transition">
                         {article.title}
                       </h3>
-                      <p className="text-sm text-ink_3 leading-relaxed max-w-xl">{article.summary}</p>
+                      <p className="text-sm text-ink_3 leading-relaxed max-w-xl">
+                        {article.summary ?? article.subtitle}
+                      </p>
                     </div>
                     <div className="lg:col-span-3 flex items-center justify-between lg:justify-end gap-6">
                       <p className="label">{article.category} · {article.readingTime}</p>

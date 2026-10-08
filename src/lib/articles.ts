@@ -23,6 +23,8 @@ export type Article = {
   isFeatured: boolean;
   isBreaking: boolean;
   bodyHtml: string;
+  /** The source markdown, kept so /llms-full.txt can serve the essay as text. */
+  bodyMarkdown: string;
 };
 
 /** GitHub-flavoured markdown, matching python-markdown's fenced_code + tables. */
@@ -78,6 +80,7 @@ function buildArticle(data: Record<string, unknown>, bodyMd: string, slugFromFil
     isFeatured: Boolean(data.is_featured),
     isBreaking: Boolean(data.is_breaking),
     bodyHtml: markdownToHtml(bodyMd),
+    bodyMarkdown: bodyMd.trim(),
   };
 }
 
@@ -101,6 +104,16 @@ export function loadAllArticles(): Article[] {
 
 export function getArticleBySlug(slug: string): Article | undefined {
   return loadAllArticles().find((article) => article.slug === slug);
+}
+
+/**
+ * Alt text for an article's cover image.
+ *
+ * The image is the essay's own artwork, so the alt names what it illustrates
+ * and who wrote it rather than repeating the headline verbatim next to it.
+ */
+export function articleImageAlt(article: Pick<Article, "title" | "category">): string {
+  return `Cover image for the ${article.category.toLowerCase()} "${article.title}" by Heran Patel (HP Maharaja)`;
 }
 
 /**

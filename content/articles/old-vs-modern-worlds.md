@@ -11,7 +11,7 @@ is_featured: false
 is_breaking: false
 ---
 
-![Header](https://rameelo-2024.s3.us-east-1.amazonaws.com/modern-world/sunset.jpg)
+![Sunset over an open landscape, illustrating the shift from the old world to the modern world](https://rameelo-2024.s3.us-east-1.amazonaws.com/modern-world/sunset.jpg)
 
 ## Introduction
 

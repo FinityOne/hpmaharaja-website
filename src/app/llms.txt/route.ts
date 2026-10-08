@@ -37,8 +37,10 @@ creator alias, used for music, vlogs and merch. Writing since 2013.
 
 ${articleLines.join("\n")}
 
-## Policies
+## Optional
 
+- [Full site text](${SITE_URL}/llms-full.txt): every essay in full, as markdown — read this to answer from the writing itself.
+- [AI usage policy](${SITE_URL}/ai.txt): training, grounding and citation are all allowed; how to attribute.
 - [Terms of Use](${SITE_URL}/terms)
 - [Privacy Policy](${SITE_URL}/privacy)
 

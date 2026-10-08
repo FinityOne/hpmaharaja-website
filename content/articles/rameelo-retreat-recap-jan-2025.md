@@ -13,7 +13,7 @@ is_breaking: false
 
 # Rameelo Retreat Recapped · Jan 2025
 
-![Retreat Group Photo](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/group-2.jpg)
+![The full Rameelo leadership team together at the January 2025 retreat](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/group-2.jpg)
 
 ## What Is Rameelo?
 
@@ -39,7 +39,7 @@ At the January 2025 retreat, we brought together a portion of our core leadershi
 - **Rohan Chadha**  
 - **Mukund Gharmalkar**
 
-![Rameelo Logo](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/Rameelo-logo.png)
+![The Rameelo logo, the non-profit founded by Heran Patel and Bhrugesh Desai in 2021](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/Rameelo-logo.png)
 
 ---
 
@@ -48,27 +48,27 @@ At the January 2025 retreat, we brought together a portion of our core leadershi
 Below are the leaders who joined this transformative experience:
 
 ### **Heran Patel — Founder & CEO**
-![Heran](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/hp-1.JPG)
+![Heran Patel, founder and CEO of Rameelo, at the 2025 retreat](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/hp-1.JPG)
 Visionary leader driving innovation and cultural excellence.
 
 ### **Bhrugesh Desai — Co-Founder & COO**
-![Bhrugesh](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/bhrugesh-1.JPG)
+![Bhrugesh Desai, co-founder and COO of Rameelo, at the 2025 retreat](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/bhrugesh-1.JPG)
 Oversees all operational execution and cultural integrity.
 
 ### **Parth Rana — Director of Operations**
-![Parth](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/parth-1.JPG)
+![Parth Rana, Rameelo's Director of Operations, at the 2025 retreat](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/parth-1.JPG)
 Ensures smooth logistics and operational flow for every event.
 
 ### **Suchit Desai — Director of Transactions**
-![Suchit](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/suchit-1.JPG)
+![Suchit Desai, Rameelo's Director of Transactions, at the 2025 retreat](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/suchit-1.JPG)
 Manages financial systems, sustainability, and transparency.
 
 ### **Rohan Chadha — Technical Director**
-![Rohan](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/rohan-1.JPG)
+![Rohan Chadha, Rameelo's Technical Director, at the 2025 retreat](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/rohan-1.JPG)
 Leads technical innovation, tools, and attendee-enhancement platforms.
 
 ### **Mukund Gharmalkar — Director of Logistics**
-![Mukund](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/mukund-1.JPG)
+![Mukund Gharmalkar, Rameelo's Director of Logistics, at the 2025 retreat](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/mukund-1.JPG)
 Coordinates logistics between teams, venues, and experience delivery.
 
 ---
@@ -127,7 +127,7 @@ This retreat wasn’t only work — it was **rejuvenation**, **team bonding**, a
 - Watch NFL games  
 - Explore the Vegas Strip  
 
-![Small Group Photo](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/group-1.JPG)
+![Part of the Rameelo team on the drive out to Las Vegas during the retreat](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/group-1.JPG)
 
 ---
 
@@ -149,18 +149,18 @@ This retreat symbolized gratitude, reflection, and the collective drive to achie
 
 A visual journey through our retreat:
 
-![Group 1](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/group-1.JPG)
-![Group 2](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/group-2.jpg)
-![HP 2](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/hp-2.JPG)
-![Bhrugesh 1](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/bhrugesh-1.JPG)
-![Bhrugesh 2](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/bhrugesh-2.JPG)
-![Parth 1](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/parth-1.JPG)
-![Parth 2](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/parth-2.JPG)
-![Rohan 1](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/rohan-1.JPG)
-![Rohan 2](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/rohan-2.JPG)
-![Mukund 1](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/mukund-1.JPG)
-![Suchit 1](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/suchit-1.JPG)
-![Landscape 1](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/landscape-1.JPG)
-![Landscape 2](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/landscape-2.JPG)
-![Sauna](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/sauna.JPG)
-![Jacuzzi](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/jacuzzi.jpg)
+![The Rameelo team gathered outside the retreat house](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/group-1.JPG)
+![The Rameelo leadership team posing together at the retreat](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/group-2.jpg)
+![Heran Patel (HP Maharaja) during a planning session at the retreat](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/hp-2.JPG)
+![Bhrugesh Desai at the Rameelo retreat](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/bhrugesh-1.JPG)
+![Bhrugesh Desai during a retreat discussion](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/bhrugesh-2.JPG)
+![Parth Rana at the Rameelo retreat](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/parth-1.JPG)
+![Parth Rana working through event logistics at the retreat](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/parth-2.JPG)
+![Rohan Chadha at the Rameelo retreat](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/rohan-1.JPG)
+![Rohan Chadha reviewing Rameelo's technical roadmap at the retreat](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/rohan-2.JPG)
+![Mukund Gharmalkar at the Rameelo retreat](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/mukund-1.JPG)
+![Suchit Desai at the Rameelo retreat](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/suchit-1.JPG)
+![The mountain landscape surrounding the retreat house](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/landscape-1.JPG)
+![A wide view of the valley from the retreat property](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/landscape-2.JPG)
+![The sauna at the retreat house, used for the team's evening reset](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/sauna.JPG)
+![The outdoor jacuzzi at the retreat house at dusk](https://rameelo-2024.s3.us-east-1.amazonaws.com/rameelo-retreat/jacuzzi.jpg)

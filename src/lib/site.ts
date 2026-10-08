@@ -8,39 +8,11 @@
 export const RESUME_URL = "";
 export const LINKEDIN_URL = "";
 
-export type FeaturedArticle = {
-  title: string;
-  slug: string;
-  category: string;
-  summary: string;
-  readingTime: string;
-};
-
 /**
- * The home page journal teaser. These are editorial placeholders carried over
- * from the Django view: they are not the markdown articles under
- * content/articles/, and each row links to the articles index.
+ * How many essays the home page journal teaser shows.
+ *
+ * The teaser used to be a hand-written list of titles that did not exist, each
+ * row linking to the archive index; it now renders the newest real articles so
+ * every row links to the essay it names.
  */
-export const FEATURED_ARTICLES: FeaturedArticle[] = [
-  {
-    title: "Hustle Mindset: Building Calm in Chaos",
-    slug: "hustle-mindset-calm-in-chaos",
-    category: "Motivation",
-    summary: "How to chase big visions without burning out your soul.",
-    readingTime: "7 min read",
-  },
-  {
-    title: "Faith, Politics, and Power: Why Values Matter",
-    slug: "faith-politics-power-values",
-    category: "Politics",
-    summary: "A personal take on building influence without losing integrity.",
-    readingTime: "6 min read",
-  },
-  {
-    title: "Maharaja Code: Rules I Live By",
-    slug: "maharaja-code-rules",
-    category: "Personal",
-    summary: "From Tempe to NYC, these are the principles that never changed.",
-    readingTime: "5 min read",
-  },
-];
+export const HOME_ARTICLE_COUNT = 3;
