@@ -1,0 +1,11 @@
+# Keep out of the deployment: Django serves none of it, and locally old-site/
+# carries ~380MB of node_modules that would be uploaded by `vercel deploy`.
+old-site/
+
+.venv/
+venv/
+__pycache__/
+*.pyc
+db.sqlite3
+.DS_Store
+.claude/

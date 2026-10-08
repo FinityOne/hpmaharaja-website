@@ -20,10 +20,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-k+574q#u$326f&_!9u3zfz7=n)yt!00%(74x*=sjxoy&esjtl_'
+# Set DJANGO_SECRET_KEY in the Vercel project's environment variables.
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    'django-insecure-k+574q#u$326f&_!9u3zfz7=n)yt!00%(74x*=sjxoy&esjtl_',
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Vercel always sets VERCEL=1, so deploys default to DEBUG off while local
+# runserver stays on. DJANGO_DEBUG=1 / 0 overrides either way.
+DEBUG = os.environ.get("DJANGO_DEBUG", "0" if os.environ.get("VERCEL") else "1") == "1"
 
 
 ALLOWED_HOSTS = [
@@ -36,6 +42,20 @@ ALLOWED_HOSTS = [
     "heranpatel.com",
     "www.heranpatel.com"
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.vercel.app",
+    "https://hpmaharaja.com",
+    "https://www.hpmaharaja.com",
+    "https://heranpatel.com",
+    "https://www.heranpatel.com",
+]
+
+if not DEBUG:
+    # Vercel terminates TLS at its proxy and forwards this header.
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
 
 # Application definition
 
@@ -51,6 +71,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # On Vercel static files are served from the CDN and this is inert; it is
+    # what serves them under `vercel dev` and any non-Vercel host.
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -59,9 +81,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
 
 ROOT_URLCONF = 'hpmaharaja.urls'
 
@@ -81,6 +100,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'hpmaharaja.wsgi.application'
+
+# Vercel resolves the serverless entrypoint from these two settings, preferring
+# ASGI when both are present. Without it, hpmaharaja/asgi.py is never used.
+ASGI_APPLICATION = 'hpmaharaja.asgi.application'
 
 
 # Database
@@ -129,7 +152,20 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',   # we’ll create static/ in root
 ]
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # for production collectstatic later
+# Required for Vercel to run collectstatic during the build and serve the
+# result from its CDN at STATIC_URL.
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Django 5.1 removed the STATICFILES_STORAGE setting this project used to set,
+# so that line was silently doing nothing; STORAGES replaces it.
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
 
 
 # Default primary key field type
