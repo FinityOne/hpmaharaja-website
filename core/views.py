@@ -10,6 +10,13 @@ import markdown
 from .articles_repo import load_all_articles, get_article_by_slug
 
 
+# Public links surfaced in the recruiter-facing section of the home page.
+# Both are optional: the matching buttons are only rendered when set.
+# TODO: point RESUME_URL at the hosted resume and fill in LINKEDIN_URL.
+RESUME_URL = ""
+LINKEDIN_URL = ""
+
+
 # Rameelo Garba Tour 2026 — across America, one garba community.
 # 11 events across 5 cities, Aug 29 – Oct 17. There are 10 stops below
 # because the Austin date (Oct 16 & 17) is a two-night event.
@@ -136,6 +143,8 @@ def home(request):
             "remaining": sum(1 for stop in tour_dates if not stop["is_past"]),
         },
         "featured_articles": featured_articles,
+        "resume_url": RESUME_URL,
+        "linkedin_url": LINKEDIN_URL,
     }
     return render(request, "core/index.html", context)
 

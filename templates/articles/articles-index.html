@@ -1,7 +1,7 @@
 {% extends "base/base.html" %}
 {% load static %}
 {% load article_extras %}
-{% block title %}Maharaja News – Articles by HP Maharaja{% endblock %}
+{% block title %}Maharaja News – Articles by Heran Patel (HP Maharaja){% endblock %}
 {% block content %}
   <div class="pt-28 lg:pt-36 pb-20 bg-paper text-ink">
     <div class="max-w-6xl mx-auto px-4">
@@ -19,7 +19,7 @@
           <div class="text-right space-y-1">
             <p class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-500 flex items-center justify-end gap-2">
               <span class="h-px w-8 bg-slate-300"></span>
-              <span>Curated by HP Maharaja</span>
+              <span>Curated by Heran Patel</span>
             </p>
             <p class="text-[0.65rem] text-slate-400">Est. 2013 · Independent Editorial Perspective</p>
           </div>
@@ -89,7 +89,7 @@
               <p class="text-[0.65rem] uppercase tracking-[0.24em] text-slate-500 mb-1">Today’s Editorial Line-Up</p>
               <p class="text-sm text-slate-700">
                 A daily snapshot of the ideas shaping how we think about hustle, identity,
-                community, and power through the lens of HP Maharaja.
+                community, and power through the lens of Heran Patel.
               </p>
             </div>
             {% for article in featured_articles|slice:"1:" %}
@@ -122,9 +122,9 @@
         <div class="flex items-center justify-between mb-4">
           <div>
             <h2 class="text-lg md:text-xl font-semibold">Older Articles</h2>
-            <p class="text-xs text-slate-500 mt-1">Browse the full archive of perspectives from the HP Maharaja Journal.</p>
+            <p class="text-xs text-slate-500 mt-1">Browse the full archive of perspectives from the Heran Patel Journal.</p>
           </div>
-          <p class="text-[0.7rem] uppercase tracking-[0.24em] text-slate-500 hidden sm:block">HP Maharaja · #HustleMindset</p>
+          <p class="text-[0.7rem] uppercase tracking-[0.24em] text-slate-500 hidden sm:block">Heran Patel · aka HP Maharaja</p>
         </div>
         <div class="grid md:grid-cols-2 gap-6">
           {% for article in other_articles %}

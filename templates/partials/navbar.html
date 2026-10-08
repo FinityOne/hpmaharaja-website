@@ -5,7 +5,7 @@
     <div id="nav-strip"
          class="hidden lg:block border-b border-line/70 transition-all duration-300">
       <div class="max-w-7xl mx-auto px-6 lg:px-10 h-8 flex items-center justify-between">
-        <p class="label text-[0.6rem]">HP Maharaja · Independent Creator Brand · Est. 2013</p>
+        <p class="label text-[0.6rem]">Heran Patel · aka HP Maharaja · Est. 2013</p>
         <div class="flex items-center gap-6">
           <a href="https://soundcloud.com/hpmaharaja"
              target="_blank"
@@ -25,17 +25,18 @@
           <!-- BRAND -->
           <a href="{% url 'home' %}"
              class="flex items-center gap-3 shrink-0"
-             aria-label="HP Maharaja — home">
+             aria-label="Heran Patel — home">
             <span class="h-9 w-9 bg-ink text-paper flex items-center justify-center font-mono text-[0.62rem] tracking-[0.1em]">HP</span>
             <span class="leading-tight">
-              <span class="block text-[0.8rem] font-semibold tracking-[0.2em] uppercase text-ink">Maharaja</span>
-              <span class="hidden sm:block label text-[0.58rem] mt-0.5">Pursuing Balance in Chaos</span>
+              <span class="block text-[0.8rem] font-semibold tracking-[0.2em] uppercase text-ink">Heran Patel</span>
+              <span class="hidden sm:block label text-[0.58rem] mt-0.5">aka HP Maharaja</span>
             </span>
           </a>
           <!-- DESKTOP NAV -->
           <nav class="hidden lg:flex items-center gap-9" aria-label="Primary">
             <a href="{% url 'home' %}"
                class="nav-link {% if cp == 'home' %}is-active{% endif %}">Home</a>
+            <a href="{% url 'home' %}#for-recruiters" class="nav-link">Hiring</a>
             <a href="{% url 'article_list' %}"
                class="nav-link {% if cp == 'articles' %}is-active{% endif %}">Articles</a>
             <a href="{% url 'home' %}#ventures" class="nav-link">Ventures</a>
@@ -72,11 +73,12 @@
       <p class="label mb-5">Menu</p>
       <nav class="flex flex-col" aria-label="Mobile">
         <a href="{% url 'home' %}" class="mobile-link"><span>Home</span><span class="label">01</span></a>
-        <a href="{% url 'article_list' %}" class="mobile-link"><span>Articles</span><span class="label">02</span></a>
-        <a href="{% url 'home' %}#ventures" class="mobile-link"><span>Ventures</span><span class="label">03</span></a>
-        <a href="{% url 'home' %}#media" class="mobile-link"><span>Media</span><span class="label">04</span></a>
-        <a href="{% url 'home' %}#merch" class="mobile-link"><span>Merch</span><span class="label">05</span></a>
-        <a href="{% url 'home' %}#community" class="mobile-link"><span>Community</span><span class="label">06</span></a>
+        <a href="{% url 'home' %}#for-recruiters" class="mobile-link"><span>Hiring</span><span class="label">02</span></a>
+        <a href="{% url 'article_list' %}" class="mobile-link"><span>Articles</span><span class="label">03</span></a>
+        <a href="{% url 'home' %}#ventures" class="mobile-link"><span>Ventures</span><span class="label">04</span></a>
+        <a href="{% url 'home' %}#media" class="mobile-link"><span>Media</span><span class="label">05</span></a>
+        <a href="{% url 'home' %}#merch" class="mobile-link"><span>Merch</span><span class="label">06</span></a>
+        <a href="{% url 'home' %}#community" class="mobile-link"><span>Community</span><span class="label">07</span></a>
       </nav>
       <a href="{% url 'home' %}#contact" class="btn btn-solid w-full mt-8">Get in touch</a>
       <div class="mt-auto pt-10 flex items-center gap-6">
