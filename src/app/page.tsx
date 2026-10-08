@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import Hero from "@/components/hero/Hero";
 import JsonLd from "@/components/JsonLd";
 import { loadAllArticles } from "@/lib/articles";
 import {
@@ -99,70 +100,7 @@ export default function HomePage() {
           ],
         }}
       />
-      {/* ============================ HERO ============================ */}
-        <section id="hero" className="pt-28 lg:pt-44">
-          <div className="max-w-7xl mx-auto px-6 lg:px-10">
-            <div className="grid lg:grid-cols-12 gap-y-10 lg:gap-x-10 items-end">
-              <div className="lg:col-span-9">
-                <p className="label mb-7">01 — Founder · Operator · Creator</p>
-                <h1 className="display text-ink text-[clamp(2.75rem,8.2vw,7rem)] max-w-[18ch]">
-                  Heran Patel
-                </h1>
-                <p className="mt-6 font-mono text-[0.78rem] tracking-[0.18em] uppercase text-ink_2">
-                  aka HP Maharaja
-                </p>
-                <p className="mt-7 text-xl lg:text-2xl tracking-tight text-ink_2 max-w-[28ch]">
-                  Pursuing balance in chaos.
-                </p>
-              </div>
-              <div className="lg:col-span-3 lg:pb-3">
-                <p className="text-base text-ink_2 leading-relaxed">
-                  Rap, vlogs, and long-form essays on ambition, faith, and identity — built
-                  on discipline and the pursuit of a Maharaja-level life.
-                </p>
-              </div>
-            </div>
-            <div className="mt-12 flex flex-wrap items-center gap-3">
-              <Link href="/articles" className="btn btn-solid">
-                Read the journal
-                <span className="arrow" aria-hidden="true">→</span>
-              </Link>
-              <a href="#media" className="btn btn-ghost">Watch & listen</a>
-            </div>
-          </div>
-          {/* Full-bleed image band */}
-          <div className="mt-16 lg:mt-20">
-            <div className="relative overflow-hidden bg-paper_2">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={OG_IMAGE}
-                   alt="Heran Patel, also known as HP Maharaja, founder and creator based in New York City"
-                   width={2400}
-                   height={1350}
-                   className="w-full h-[42vh] md:h-[58vh] lg:h-[66vh] object-cover grayscale contrast-[1.08]" />
-            </div>
-          </div>
-          {/* Hairline fact strip */}
-          <div className="max-w-7xl mx-auto px-6 lg:px-10">
-            <dl className="grid grid-cols-2 lg:grid-cols-4 border-b border-line">
-              <div className="border-t border-line py-7 pr-6 lg:border-r">
-                <dt className="label mb-2">Ventures</dt>
-                <dd className="text-xl sm:text-2xl font-semibold tracking-tight">Four</dd>
-              </div>
-              <div className="border-t border-line py-7 pl-6 lg:pl-7 lg:pr-6 lg:border-r">
-                <dt className="label mb-2">Based</dt>
-                <dd className="text-xl sm:text-2xl font-semibold tracking-tight">New York City</dd>
-              </div>
-              <div className="border-t border-line py-7 pr-6 lg:pl-7 lg:border-r">
-                <dt className="label mb-2">Writing since</dt>
-                <dd className="text-xl sm:text-2xl font-semibold tracking-tight">2013</dd>
-              </div>
-              <div className="border-t border-line py-7 pl-6 lg:pl-7">
-                <dt className="label mb-2">Operating thesis</dt>
-                <dd className="text-xl sm:text-2xl font-semibold tracking-tight">Discipline</dd>
-              </div>
-            </dl>
-          </div>
-        </section>
+      <Hero />
         {/* ========================= START HERE ========================= */}
         <section id="start-here" className="py-20 lg:py-28">
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
