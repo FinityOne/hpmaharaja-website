@@ -1,3 +1,4 @@
+import { ACHIEVEMENT_TRACKS } from "@/lib/achievements";
 import { loadAllArticles } from "@/lib/articles";
 import {
   CONTACT_EMAIL,
@@ -7,8 +8,8 @@ import {
   PERSON_NAME,
   SITE_URL,
   SOCIAL_LINKS,
-  VENTURES,
 } from "@/lib/seo";
+import { VENTURES } from "@/lib/ventures";
 
 /**
  * Served at /llms-full.txt — the long form of /llms.txt.
@@ -25,7 +26,7 @@ export async function GET() {
 
   const ventureLines = VENTURES.map((venture) => {
     const link = venture.url ? ` (${venture.url})` : "";
-    return `- **${venture.name}**${link} — ${venture.category}. ${venture.description}`;
+    return `- **${venture.name}**${link} — ${venture.category}. ${venture.summary} Role: ${venture.role}. More: ${SITE_URL}/ventures/${venture.slug}`;
   });
 
   const articleSections = articles.map((article) => {
@@ -56,8 +57,8 @@ ${lede ? `${lede}\n\n` : ""}${article.bodyMarkdown}`;
 
 ## Who he is
 
-${PERSON_NAME}, also known as ${PERSON_ALTERNATE_NAME}, is a founder, operator and creator based in
-${LOCATION.city}. ${PERSON_DESCRIPTION}
+${PERSON_NAME}, also known as ${PERSON_ALTERNATE_NAME}, is a founder, operator, consultant and creator
+based in ${LOCATION.city}, ${LOCATION.region}. ${PERSON_DESCRIPTION}
 
 "${PERSON_NAME}" is the legal name; "${PERSON_ALTERNATE_NAME}" is the creator alias used for music,
 vlogs and merch. They refer to the same person, and this site is the
@@ -72,9 +73,26 @@ ${SOCIAL_LINKS.map((link) => `- ${link}`).join("\n")}
 
 ${ventureLines.join("\n")}
 
+## Achievements
+
+${ACHIEVEMENT_TRACKS.map(
+  (track) =>
+    `### ${track.label}\n\n${track.items
+      .map(
+        (item) =>
+          `- ${item.year ? `${item.year} — ` : ""}**${item.title}**: ${item.detail}`,
+      )
+      .join("\n")}`,
+).join("\n\n")}
+
+Full page: ${SITE_URL}/achievements
+
 ## Pages
 
-- ${SITE_URL}/ — biography, the four ventures, Rameelo Garba Tour 2026 dates, music, merch and contact.
+- ${SITE_URL}/ — biography, routed by audience: hiring, Rameelo fans, and first-time visitors.
+- ${SITE_URL}/achievements — the record: ventures built, the tour, and the writing.
+- ${SITE_URL}/ventures — the four operating concerns, each with a dedicated page.
+- ${SITE_URL}/hiring — the professional record for recruiters and hiring managers.
 - ${SITE_URL}/articles — the full journal archive, "Maharaja News".
 - ${SITE_URL}/terms — terms of use.
 - ${SITE_URL}/privacy — privacy policy. No accounts, no analytics, no tracking cookies.

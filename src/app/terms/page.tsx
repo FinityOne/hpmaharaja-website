@@ -37,8 +37,8 @@ export default function TermsPage() {
       <h2>Views are personal</h2>
       <p>
         Opinions on this site belong to {PERSON_NAME} personally. They are not statements by, and do
-        not represent the positions of, Rameelo, FinityOne, Maharaja Estates, Melux, Vaihom or any
-        other organisation he is connected to, and they are not statements by any employer, client or
+        not represent the positions of, Rameelo, FinityOne, Maharaja Estates, Vaihom or any other
+        organisation he is connected to, and they are not statements by any employer, client or
         partner.
       </p>
 

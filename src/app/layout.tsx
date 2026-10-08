@@ -18,8 +18,8 @@ import {
   SITE_NAME,
   SITE_URL,
   SOCIAL_LINKS,
-  VENTURES,
 } from "@/lib/seo";
+import { VENTURES } from "@/lib/ventures";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -147,7 +147,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 /* The ventures are defined on the home page; named here by
                    @id so the person resolves to them from any page. */
                 worksFor: VENTURES.map((venture) => ({
-                  "@id": `${SITE_URL}/#${venture.name.toLowerCase().replace(/\s+/g, "-")}`,
+                  "@id": `${SITE_URL}/#${venture.slug}`,
                 })),
                 sameAs: SOCIAL_LINKS,
                 knowsAbout: [
@@ -193,8 +193,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   </span>
                 </Link>
                 <p className="mt-5 text-sm text-ink_3 max-w-sm leading-relaxed">
-                  Rap, vlogs, and long-form essays on ambition, faith, and building an empire without
-                  losing your center.
+                  Founder, operator and consultant in Phoenix, Arizona — plus rap, vlogs and
+                  long-form essays on ambition, faith, and building an empire without losing
+                  your center.
                 </p>
               </div>
               <div className="md:col-span-3">
@@ -206,13 +207,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     </Link>
                   </li>
                   <li>
-                    <Link className="hover:text-ink transition" href="/articles">
-                      Articles
+                    <Link className="hover:text-ink transition" href="/achievements">
+                      Achievements
                     </Link>
                   </li>
                   <li>
-                    <Link className="hover:text-ink transition" href="/#ventures">
+                    <Link className="hover:text-ink transition" href="/ventures">
                       Ventures
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="hover:text-ink transition" href="/hiring">
+                      Hiring
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="hover:text-ink transition" href="/articles">
+                      Articles
                     </Link>
                   </li>
                   <li>

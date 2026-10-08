@@ -1,5 +1,6 @@
 import { loadAllArticles } from "@/lib/articles";
 import { CONTACT_EMAIL, PERSON_ALTERNATE_NAME, PERSON_NAME, SITE_URL } from "@/lib/seo";
+import { VENTURES } from "@/lib/ventures";
 
 /**
  * Served at /llms.txt — the llms.txt convention: a short, link-rich plain-text
@@ -20,17 +21,26 @@ export async function GET() {
 
   const body = `# ${PERSON_NAME} (aka ${PERSON_ALTERNATE_NAME})
 
-> Personal site of ${PERSON_NAME}, also known as ${PERSON_ALTERNATE_NAME}: founder, operator and creator
-> based in New York City. Ventures across culture, software, real estate and design,
+> Personal site of ${PERSON_NAME}, also known as ${PERSON_ALTERNATE_NAME}: founder, operator and
+> consultant based in Phoenix, Arizona. Ventures across culture, software and real estate,
 > plus long-form essays on ambition, faith, identity and the pursuit of balance in chaos.
 
 ${PERSON_NAME} is the founder behind Rameelo (a non-profit reimagining Gujarati Raas Garba as
-large-scale cultural experiences), FinityOne, Maharaja Estates and Melux. "HP Maharaja" is his
-creator alias, used for music, vlogs and merch. Writing since 2013.
+large-scale cultural experiences), FinityOne (a fintech, event-tech and proptech product studio)
+and Maharaja Estates (an Arizona rental portfolio), and consults for tech ventures on product
+management and engineering teams at scale in fintech and proptech. "HP Maharaja" is his creator
+alias, used for music, vlogs and merch. Writing since 2013.
 
 ## Pages
 
-- [Home](${SITE_URL}/): Who he is, the four ventures, the Rameelo Garba Tour 2026 dates, music and merch, and how to get in touch.
+- [Home](${SITE_URL}/): Who he is, routed by audience — hiring, Rameelo fans, and first-time visitors.
+- [Achievements](${SITE_URL}/achievements): The record — ventures built, the Rameelo tour, and the writing.
+- [Ventures](${SITE_URL}/ventures): The four operating concerns, each with its own page.
+${VENTURES.map(
+  (venture) =>
+    `  - [${venture.name}](${SITE_URL}/ventures/${venture.slug}): ${venture.summary}`,
+).join("\n")}
+- [Hiring](${SITE_URL}/hiring): The professional record — strengths, domains, what he is open to, and how to send a role.
 - [Articles](${SITE_URL}/articles): The full journal archive — essays on hustle, faith, politics, culture and dharma.
 
 ## Articles

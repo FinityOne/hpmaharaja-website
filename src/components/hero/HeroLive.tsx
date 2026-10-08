@@ -26,8 +26,8 @@ type Props = {
   remaining: number;
 };
 
-/** Heran operates on New York time; show that rather than the reader's. */
-const ZONE = "America/New_York";
+/** Heran operates on Phoenix time; show that rather than the reader's. */
+const ZONE = "America/Phoenix";
 
 const timeFormatter = new Intl.DateTimeFormat("en-US", {
   timeZone: ZONE,
@@ -92,7 +92,7 @@ export default function HeroLive({ nextDate, nextLabel, nextCity, remaining }: P
             of its own above the label. */}
         <span className="hero-live-head">
           <span className="hero-live-dot" aria-hidden="true" />
-          <span className="label">Live · New York</span>
+          <span className="label">Live · Phoenix</span>
         </span>
         <span className="hero-live-value font-mono tabular-nums">
           {now ? timeFormatter.format(now) : "--:--:--"}

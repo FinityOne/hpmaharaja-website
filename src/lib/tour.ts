@@ -1,7 +1,7 @@
 /**
  * Rameelo Garba Tour 2026 — across America, one garba community.
  *
- * 11 events across 5 cities, Aug 29 – Oct 17. There are 10 stops below
+ * 12 events across 6 cities, Aug 29 – Oct 17. There are 11 stops below
  * because the Austin date (Oct 16 & 17) is a two-night event.
  *
  * Ported from core/views.py. Dates are plain ISO `YYYY-MM-DD` strings and are
@@ -77,6 +77,13 @@ export const RAMEELO_TOUR_2026: TourStop[] = [
     artist: "Geeta Rabari",
     city: "Boston, MA",
     organizer: "Mahadev Entertainment",
+  },
+  {
+    starts: "2026-10-02",
+    dateLabel: "Oct 2",
+    artist: "Kirtidan Gadhvi",
+    city: "Orlando, FL",
+    organizer: "Rameelo",
   },
   {
     starts: "2026-10-03",
