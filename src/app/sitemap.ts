@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { articleImageSrc, loadAllArticles } from "@/lib/articles";
 import { OG_IMAGE, SITE_URL } from "@/lib/seo";
+import { VENTURES } from "@/lib/ventures";
 
 /**
  * Served at /sitemap.xml.
@@ -21,6 +22,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
       images: [`${SITE_URL}${OG_IMAGE}`],
+    },
+    {
+      url: `${SITE_URL}/achievements`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/ventures`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    ...VENTURES.map((venture) => ({
+      url: `${SITE_URL}/ventures/${venture.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    {
+      url: `${SITE_URL}/hiring`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
     {
       url: `${SITE_URL}/articles`,

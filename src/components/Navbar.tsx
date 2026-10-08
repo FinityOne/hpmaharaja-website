@@ -54,12 +54,12 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "/", label: "Home", active: isHome },
-    { href: "/#for-recruiters", label: "Hiring" },
+    { href: "/achievements", label: "Achievements", active: pathname.startsWith("/achievements") },
+    { href: "/ventures", label: "Ventures", active: pathname.startsWith("/ventures") },
+    { href: "/hiring", label: "Hiring", active: pathname.startsWith("/hiring") },
     { href: "/articles", label: "Articles", active: isArticles },
-    { href: "/#ventures", label: "Ventures" },
+    { href: "/#tour", label: "Tour" },
     { href: "/#media", label: "Media" },
-    { href: "/#merch", label: "Merch" },
-    { href: "/#community", label: "Community" },
   ];
 
   return (

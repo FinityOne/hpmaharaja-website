@@ -28,7 +28,7 @@ import HeroRotator from "./HeroRotator";
  *    printing facts about the site;
  *  - a rotating identity panel — founder / operator / creator / writer — each
  *    with its evidence and its link;
- *  - a live row: New York time and a running countdown to the next tour date;
+ *  - a live row: Phoenix time and a running countdown to the next tour date;
  *  - a CSS marquee, the portrait band, then the static fact strip.
  *
  * All of it is server-rendered markup. The client components animate between
@@ -87,20 +87,23 @@ export default function Hero() {
                 className="hero-blurb text-ink_2 hero-seq"
                 style={{ "--seq": 4 } as React.CSSProperties}
               >
-                Four operating companies, a national garba tour, and long-form essays on
-                ambition, faith, and identity — built on discipline and the pursuit of a
-                Maharaja-level life.
+                Founder of Rameelo, FinityOne and Maharaja Estates, and a consultant to
+                tech ventures on product management and engineering teams at scale in
+                fintech and proptech. A national garba tour on the side of the desk.
               </p>
 
               <div className="hero-actions hero-seq" style={{ "--seq": 5 } as React.CSSProperties}>
-                <Link href="/articles" className="btn btn-solid group">
-                  Read the journal
+                <Link href="/achievements" className="btn btn-solid group">
+                  See what I&rsquo;ve built
                   <span className="arrow" aria-hidden="true">
                     →
                   </span>
                 </Link>
+                <Link href="/ventures" className="btn btn-ghost">
+                  The ventures
+                </Link>
                 <a href="#start-here" className="btn btn-ghost">
-                  Start here
+                  Why are you here?
                 </a>
               </div>
             </div>

@@ -12,8 +12,8 @@
  * a company or a tour stop is added.
  */
 
-import { VENTURES } from "./seo";
 import { buildTourDates, buildTourMeta, type TourDate, type TourMeta } from "./tour";
+import { VENTURES } from "./ventures";
 
 /** The rotating identity panel: one claim, one piece of evidence. */
 export type HeroFacet = {
@@ -42,10 +42,10 @@ export function buildHeroFacets(meta: TourMeta = buildTourMeta(buildTourDates())
   return [
     {
       word: "Founder",
-      line: `${spell(VENTURES.length)} operating companies across culture, software, real estate, and design.`,
+      line: `${spell(VENTURES.length)} operating concerns across culture, software, real estate, and advisory.`,
       proofLabel: "Ventures",
       proofValue: ventureNames,
-      href: "#ventures",
+      href: "/ventures",
       hrefLabel: "See the portfolio",
     },
     {
@@ -55,6 +55,14 @@ export function buildHeroFacets(meta: TourMeta = buildTourMeta(buildTourDates())
       proofValue: `${meta.events} events · ${meta.cities} cities · ${meta.window}`,
       href: "#tour",
       hrefLabel: "See the routing",
+    },
+    {
+      word: "Consultant",
+      line: "Product management and engineering teams at scale, for fintech and proptech ventures.",
+      proofLabel: "Advisory",
+      proofValue: "Org design · delivery · diligence",
+      href: "/ventures/consulting",
+      hrefLabel: "See the practice",
     },
     {
       word: "Creator",
@@ -78,9 +86,9 @@ export function buildHeroFacets(meta: TourMeta = buildTourMeta(buildTourDates())
 /** The hairline fact strip under the hero. Static, scannable, SEO-visible. */
 export const HERO_FACTS = [
   { label: "Ventures", value: "Four" },
-  { label: "Based", value: "New York City" },
-  { label: "Writing since", value: "2013" },
-  { label: "Operating thesis", value: "Discipline" },
+  { label: "Based", value: "Phoenix, Arizona" },
+  { label: "Sectors", value: "Fintech · Proptech" },
+  { label: "Building since", value: "2013" },
 ] as const;
 
 /** Marquee strip. Pure CSS motion, so it costs nothing on the main thread. */
@@ -92,7 +100,7 @@ export const HERO_TICKER = [
   "Gujarati American",
   "Discipline over motivation",
   "Faith · Family · Ambition",
-  "Tempe → New York City",
+  "Tempe → New York → Phoenix",
 ] as const;
 
 /**
@@ -115,7 +123,7 @@ export function buildHeroBootLines(
     {
       at: 40,
       label: "Ventures online",
-      value: `${spell(VENTURES.length)} companies — culture, software, real estate, design`,
+      value: `${spell(VENTURES.length)} concerns — culture, software, real estate, advisory`,
     },
     {
       at: 64,
