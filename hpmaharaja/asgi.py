@@ -12,7 +12,7 @@ from django.core.asgi import get_asgi_application
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "hpmaharaja.settings")
 
-app = get_asgi_application()     # 👈 Vercel uses this
-application = app                # 👈 Django convention (optional but nice)
+application = get_asgi_application()   # 👈 Django convention; Vercel uses this
+app = application                      # 👈 alias for other ASGI servers
 
 
