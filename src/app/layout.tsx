@@ -3,8 +3,18 @@ import { IBM_Plex_Mono, Inter } from "next/font/google";
 import Link from "next/link";
 
 import "./globals.css";
+import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
 import RevealOnScroll from "@/components/RevealOnScroll";
+import {
+  CONTACT_EMAIL,
+  PERSON_ALTERNATE_NAME,
+  PERSON_DESCRIPTION,
+  PERSON_NAME,
+  SITE_NAME,
+  SITE_URL,
+  SOCIAL_LINKS,
+} from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,9 +34,23 @@ const DESCRIPTION =
   "Heran Patel, also known as HP Maharaja, is a founder and creator building ventures across software, real estate, live events, and the non-profit world, and writing on ambition, identity, faith, and the pursuit of balance in chaos.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://hpmaharaja.com"),
+  metadataBase: new URL(SITE_URL),
   title: "Heran Patel (HP Maharaja) – Pursuing Balance in Chaos · #HustleMindset",
   description: DESCRIPTION,
+  applicationName: SITE_NAME,
+  alternates: { canonical: "/" },
+  /* Everything here is public and meant to be found, by search and by AI. */
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
   keywords: [
     "Heran Patel",
     "HP Maharaja",
@@ -45,6 +69,8 @@ export const metadata: Metadata = {
   icons: { icon: "/images/hp-favicon.ico" },
   openGraph: {
     type: "website",
+    siteName: SITE_NAME,
+    locale: "en_US",
     title: "Heran Patel (HP Maharaja) – Pursuing Balance in Chaos",
     description:
       "Where ambition meets discipline. Rap, vlogs, and essays built on the #HustleMindset and the pursuit of balance in chaos.",
@@ -89,6 +115,54 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-paper text-ink font-sans min-h-screen flex flex-col antialiased">
+        {/* Structured data: who the site is about, and what the site is. Lets
+            search engines and AI assistants state the Heran Patel / HP Maharaja
+            relationship as fact rather than inferring it from the copy. */}
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Person",
+                "@id": `${SITE_URL}/#person`,
+                name: PERSON_NAME,
+                alternateName: PERSON_ALTERNATE_NAME,
+                description: PERSON_DESCRIPTION,
+                url: SITE_URL,
+                image: `${SITE_URL}/images/base/header-bg.jpg`,
+                email: `mailto:${CONTACT_EMAIL}`,
+                jobTitle: "Founder, Operator, Creator",
+                address: {
+                  "@type": "PostalAddress",
+                  addressLocality: "New York City",
+                  addressRegion: "NY",
+                  addressCountry: "US",
+                },
+                sameAs: SOCIAL_LINKS,
+                knowsAbout: [
+                  "Entrepreneurship",
+                  "Software",
+                  "Real estate",
+                  "Live events",
+                  "Gujarati culture",
+                  "Raas Garba",
+                  "Sanatan Dharma",
+                  "Hip hop",
+                ],
+              },
+              {
+                "@type": "WebSite",
+                "@id": `${SITE_URL}/#website`,
+                url: SITE_URL,
+                name: SITE_NAME,
+                description: PERSON_DESCRIPTION,
+                inLanguage: "en",
+                publisher: { "@id": `${SITE_URL}/#person` },
+                about: { "@id": `${SITE_URL}/#person` },
+              },
+            ],
+          }}
+        />
         <Navbar />
         <main className="flex-1">{children}</main>
         {/* FOOTER */}
@@ -169,11 +243,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </div>
             <div className="hairline"></div>
-            <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-2">
-              <p className="label">
+            <div className="py-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <p className="label text-center sm:text-left">
                 © {new Date().getFullYear()} Heran Patel · aka HP Maharaja · All rights reserved
               </p>
-              <p className="label">Built with hustle, faith &amp; late-night sessions</p>
+              <nav
+                className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 sm:justify-end"
+                aria-label="Legal"
+              >
+                <Link className="label hover:text-ink transition" href="/terms">
+                  Terms
+                </Link>
+                <Link className="label hover:text-ink transition" href="/privacy">
+                  Privacy
+                </Link>
+                <span className="label hidden md:inline">
+                  Built with hustle, faith &amp; late-night sessions
+                </span>
+              </nav>
             </div>
           </div>
         </footer>

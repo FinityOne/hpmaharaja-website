@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import JsonLd from "@/components/JsonLd";
 import { articleImageSrc, loadAllArticles } from "@/lib/articles";
+import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Maharaja News – Articles by Heran Patel (HP Maharaja)",
+  description:
+    "Essays by Heran Patel (HP Maharaja) on hustle, faith, politics, culture and dharma — building an empire without losing your center.",
+  alternates: { canonical: `${SITE_URL}/articles` },
 };
 
 export default function ArticlesPage() {
@@ -19,6 +24,34 @@ export default function ArticlesPage() {
 
   return (
     <div className="pt-28 lg:pt-36 pb-20 bg-paper text-ink">
+      {/* Structured data: the archive as a Blog, with every post listed so an
+          assistant can enumerate the writing without crawling each page. */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "@id": `${SITE_URL}/articles#blog`,
+          name: "Maharaja News",
+          description:
+            "Essays on hustle, faith, politics, culture and dharma by Heran Patel (HP Maharaja).",
+          url: `${SITE_URL}/articles`,
+          inLanguage: "en",
+          author: { "@id": `${SITE_URL}/#person` },
+          publisher: { "@id": `${SITE_URL}/#person` },
+          isPartOf: { "@id": `${SITE_URL}/#website` },
+          blogPost: articles.map((article) => ({
+            "@type": "BlogPosting",
+            "@id": `${SITE_URL}/articles/${article.slug}#article`,
+            headline: article.title,
+            description: article.summary ?? undefined,
+            datePublished: article.date ?? undefined,
+            articleSection: article.category,
+            url: `${SITE_URL}/articles/${article.slug}`,
+            image: article.image ? articleImageSrc(article.image) : undefined,
+            author: { "@id": `${SITE_URL}/#person` },
+          })),
+        }}
+      />
       <div className="max-w-6xl mx-auto px-4">
         {/* TOP: NAMEPLATE / HEADING */}
         <header className="mb-8 md:mb-10 border-b border-slate-200 pb-4">

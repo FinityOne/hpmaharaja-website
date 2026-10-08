@@ -176,12 +176,14 @@ export default function Navbar() {
           <Link href="/#contact" className="btn btn-solid w-full mt-8" onClick={() => setMenuOpen(false)}>
             Get in touch
           </Link>
-          <div className="mt-auto pt-10 flex items-center gap-6">
+          {/* min-h-11 keeps these at the ~44px tap target; as bare `.label`
+              text they were only 17px tall, too small to hit reliably. */}
+          <div className="mt-auto pt-6 flex items-center gap-2">
             <a
               href="https://soundcloud.com/hpmaharaja"
               target="_blank"
               rel="noreferrer"
-              className="label hover:text-ink transition"
+              className="label hover:text-ink transition inline-flex items-center min-h-11 px-3 -ml-3"
             >
               SoundCloud
             </a>
@@ -189,7 +191,7 @@ export default function Navbar() {
               href="https://www.youtube.com/channel/UClwSJMiNA__2Ua2pyB30OQg"
               target="_blank"
               rel="noreferrer"
-              className="label hover:text-ink transition"
+              className="label hover:text-ink transition inline-flex items-center min-h-11 px-3"
             >
               YouTube
             </a>

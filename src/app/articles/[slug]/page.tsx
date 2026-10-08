@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import JsonLd from "@/components/JsonLd";
 import { articleImageSrc, getArticleBySlug, loadAllArticles } from "@/lib/articles";
+import { PERSON_ALTERNATE_NAME, PERSON_NAME, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 type Params = { slug: string };
 
@@ -22,10 +24,22 @@ export async function generateMetadata({
   return {
     title: `${article.title} – Heran Patel (HP Maharaja)`,
     description: article.summary ?? undefined,
+    alternates: { canonical: `${SITE_URL}/articles/${article.slug}` },
     openGraph: {
+      type: "article",
       title: article.title,
       description: article.summary ?? undefined,
+      url: `${SITE_URL}/articles/${article.slug}`,
+      publishedTime: article.date ?? undefined,
+      authors: [PERSON_NAME],
+      section: article.category,
       images: article.image ? [{ url: articleImageSrc(article.image) }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.summary ?? undefined,
+      images: article.image ? [articleImageSrc(article.image)] : undefined,
     },
   };
 }
@@ -36,8 +50,50 @@ export default async function ArticleDetailPage({ params }: { params: Promise<Pa
 
   if (!article) notFound();
 
+  const url = `${SITE_URL}/articles/${article.slug}`;
+
   return (
     <div className="bg-paper pt-28 lg:pt-36 pb-20 text-ink">
+      {/* Structured data so the essay is citable as an article with an author
+          and a date, rather than an unattributed page of text. */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "BlogPosting",
+              "@id": `${url}#article`,
+              headline: article.title,
+              alternativeHeadline: article.subtitle ?? undefined,
+              description: article.summary ?? undefined,
+              articleSection: article.category,
+              datePublished: article.date ?? undefined,
+              dateModified: article.date ?? undefined,
+              inLanguage: "en",
+              url,
+              mainEntityOfPage: { "@type": "WebPage", "@id": url },
+              image: article.image ? articleImageSrc(article.image) : undefined,
+              author: {
+                "@type": "Person",
+                "@id": `${SITE_URL}/#person`,
+                name: PERSON_NAME,
+                alternateName: PERSON_ALTERNATE_NAME,
+                url: SITE_URL,
+              },
+              publisher: { "@id": `${SITE_URL}/#person` },
+              isPartOf: { "@id": `${SITE_URL}/#website` },
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: SITE_NAME, item: SITE_URL },
+                { "@type": "ListItem", position: 2, name: "Articles", item: `${SITE_URL}/articles` },
+                { "@type": "ListItem", position: 3, name: article.title, item: url },
+              ],
+            },
+          ],
+        }}
+      />
       <div className="max-w-5xl mx-auto px-4">
         {/* Breadcrumb / Back */}
         <div className="mb-5 text-[0.7rem] uppercase tracking-[0.2em] sm:tracking-[0.24em] text-slate-500 flex flex-wrap items-center gap-2">
