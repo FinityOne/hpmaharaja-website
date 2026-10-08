@@ -8,12 +8,17 @@ import Navbar from "@/components/Navbar";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import {
   CONTACT_EMAIL,
+  LOCATION,
+  OG_IMAGE,
+  OG_IMAGE_ALT,
   PERSON_ALTERNATE_NAME,
   PERSON_DESCRIPTION,
   PERSON_NAME,
+  PHONE_NUMBER,
   SITE_NAME,
   SITE_URL,
   SOCIAL_LINKS,
+  VENTURES,
 } from "@/lib/seo";
 
 const inter = Inter({
@@ -35,7 +40,12 @@ const DESCRIPTION =
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Heran Patel (HP Maharaja) – Pursuing Balance in Chaos · #HustleMindset",
+  /* Every child page's own title flows through the template, so each one leads
+     with its subject and still carries both names a searcher might type. */
+  title: {
+    default: "Heran Patel (HP Maharaja) – Pursuing Balance in Chaos · #HustleMindset",
+    template: "%s · Heran Patel (HP Maharaja)",
+  },
   description: DESCRIPTION,
   applicationName: SITE_NAME,
   alternates: { canonical: "/" },
@@ -74,20 +84,15 @@ export const metadata: Metadata = {
     title: "Heran Patel (HP Maharaja) – Pursuing Balance in Chaos",
     description:
       "Where ambition meets discipline. Rap, vlogs, and essays built on the #HustleMindset and the pursuit of balance in chaos.",
-    url: "https://hpmaharaja.com/",
-    images: [
-      {
-        url: "/images/base/header-bg.jpg",
-        alt: "Heran Patel (HP Maharaja) – Pursuing Balance in Chaos",
-      },
-    ],
+    url: `${SITE_URL}/`,
+    images: [{ url: OG_IMAGE, alt: OG_IMAGE_ALT }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Heran Patel (HP Maharaja) – Pursuing Balance in Chaos · #HustleMindset",
     description:
       "Rap. Vlogs. Essays. Faith. Culture. Ambition. Heran Patel, aka HP Maharaja, explores the grind with the #HustleMindset while pursuing balance in chaos.",
-    images: ["/images/base/header-bg.jpg"],
+    images: [OG_IMAGE],
   },
   other: {
     title: "Heran Patel (HP Maharaja) – Pursuing Balance in Chaos · #HustleMindset",
@@ -129,15 +134,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 alternateName: PERSON_ALTERNATE_NAME,
                 description: PERSON_DESCRIPTION,
                 url: SITE_URL,
-                image: `${SITE_URL}/images/base/header-bg.jpg`,
+                image: `${SITE_URL}${OG_IMAGE}`,
                 email: `mailto:${CONTACT_EMAIL}`,
+                telephone: PHONE_NUMBER,
                 jobTitle: "Founder, Operator, Creator",
                 address: {
                   "@type": "PostalAddress",
-                  addressLocality: "New York City",
-                  addressRegion: "NY",
-                  addressCountry: "US",
+                  addressLocality: LOCATION.city,
+                  addressRegion: LOCATION.region,
+                  addressCountry: LOCATION.country,
                 },
+                /* The ventures are defined on the home page; named here by
+                   @id so the person resolves to them from any page. */
+                worksFor: VENTURES.map((venture) => ({
+                  "@id": `${SITE_URL}/#${venture.name.toLowerCase().replace(/\s+/g, "-")}`,
+                })),
                 sameAs: SOCIAL_LINKS,
                 knowsAbout: [
                   "Entrepreneurship",

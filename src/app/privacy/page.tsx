@@ -4,7 +4,7 @@ import LegalPage from "@/components/LegalPage";
 import { CONTACT_EMAIL, PERSON_NAME, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy – Heran Patel (HP Maharaja)",
+  title: "Privacy Policy",
   description:
     "What this site does and does not collect: no accounts, no analytics, no tracking cookies, no advertising.",
   alternates: { canonical: `${SITE_URL}/privacy` },

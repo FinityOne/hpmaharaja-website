@@ -2,14 +2,30 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import JsonLd from "@/components/JsonLd";
-import { articleImageSrc, loadAllArticles } from "@/lib/articles";
-import { SITE_URL } from "@/lib/seo";
+import { articleImageAlt, articleImageSrc, loadAllArticles } from "@/lib/articles";
+import { NAME_KEYWORDS, OG_IMAGE, OG_IMAGE_ALT, SITE_URL } from "@/lib/seo";
+
+const ARTICLES_DESCRIPTION =
+  "Essays by Heran Patel (HP Maharaja) on hustle, faith, politics, culture and dharma — building an empire without losing your center.";
 
 export const metadata: Metadata = {
-  title: "Maharaja News – Articles by Heran Patel (HP Maharaja)",
-  description:
-    "Essays by Heran Patel (HP Maharaja) on hustle, faith, politics, culture and dharma — building an empire without losing your center.",
+  title: "Articles – Maharaja News",
+  description: ARTICLES_DESCRIPTION,
+  keywords: [...NAME_KEYWORDS, "Maharaja News", "Heran Patel essays", "HP Maharaja blog"],
   alternates: { canonical: `${SITE_URL}/articles` },
+  openGraph: {
+    type: "website",
+    title: "Articles – Maharaja News by Heran Patel (HP Maharaja)",
+    description: ARTICLES_DESCRIPTION,
+    url: `${SITE_URL}/articles`,
+    images: [{ url: OG_IMAGE, alt: OG_IMAGE_ALT }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Articles – Maharaja News by Heran Patel (HP Maharaja)",
+    description: ARTICLES_DESCRIPTION,
+    images: [OG_IMAGE],
+  },
 };
 
 export default function ArticlesPage() {
@@ -121,7 +137,7 @@ export default function ArticlesPage() {
                     /* eslint-disable-next-line @next/next/no-img-element */
                     <img
                       src={articleImageSrc(feature.image)}
-                      alt={feature.title}
+                      alt={articleImageAlt(feature)}
                       className="w-full h-full object-cover transform group-hover:scale-[1.03] transition duration-700 ease-out"
                     />
                   ) : null}
@@ -170,7 +186,7 @@ export default function ArticlesPage() {
                       /* eslint-disable-next-line @next/next/no-img-element */
                       <img
                         src={articleImageSrc(article.image)}
-                        alt={article.title}
+                        alt={articleImageAlt(article)}
                         className="w-full h-full object-cover group-hover:scale-[1.03] transition duration-700"
                       />
                     ) : null}
@@ -219,7 +235,7 @@ export default function ArticlesPage() {
                       /* eslint-disable-next-line @next/next/no-img-element */
                       <img
                         src={articleImageSrc(article.image)}
-                        alt={article.title}
+                        alt={articleImageAlt(article)}
                         loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-[1.03] transition duration-700"
                       />

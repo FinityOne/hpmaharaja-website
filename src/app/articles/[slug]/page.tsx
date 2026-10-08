@@ -3,8 +3,21 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import JsonLd from "@/components/JsonLd";
-import { articleImageSrc, getArticleBySlug, loadAllArticles } from "@/lib/articles";
-import { PERSON_ALTERNATE_NAME, PERSON_NAME, SITE_NAME, SITE_URL } from "@/lib/seo";
+import {
+  articleImageAlt,
+  articleImageSrc,
+  getArticleBySlug,
+  loadAllArticles,
+} from "@/lib/articles";
+import {
+  NAME_KEYWORDS,
+  OG_IMAGE,
+  OG_IMAGE_ALT,
+  PERSON_ALTERNATE_NAME,
+  PERSON_NAME,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/seo";
 
 type Params = { slug: string };
 
@@ -21,25 +34,34 @@ export async function generateMetadata({
   const article = getArticleBySlug(slug);
   if (!article) return {};
 
+  /* The layout's title template appends the name, so the title here is just
+     the headline. Falls back to the site-wide share image when an essay has no
+     cover of its own, so the link never unfurls bare. */
+  const shareImage = article.image ? articleImageSrc(article.image) : OG_IMAGE;
+  const shareImageAlt = article.image ? articleImageAlt(article) : OG_IMAGE_ALT;
+  const description = article.summary ?? article.subtitle ?? undefined;
+
   return {
-    title: `${article.title} – Heran Patel (HP Maharaja)`,
-    description: article.summary ?? undefined,
+    title: article.title,
+    description,
+    keywords: [...NAME_KEYWORDS, article.category],
     alternates: { canonical: `${SITE_URL}/articles/${article.slug}` },
     openGraph: {
       type: "article",
       title: article.title,
-      description: article.summary ?? undefined,
+      description,
       url: `${SITE_URL}/articles/${article.slug}`,
       publishedTime: article.date ?? undefined,
+      modifiedTime: article.date ?? undefined,
       authors: [PERSON_NAME],
       section: article.category,
-      images: article.image ? [{ url: articleImageSrc(article.image) }] : undefined,
+      images: [{ url: shareImage, alt: shareImageAlt }],
     },
     twitter: {
       card: "summary_large_image",
       title: article.title,
-      description: article.summary ?? undefined,
-      images: article.image ? [articleImageSrc(article.image)] : undefined,
+      description,
+      images: [shareImage],
     },
   };
 }
@@ -111,7 +133,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<Pa
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={articleImageSrc(article.image)}
-                alt={article.title}
+                alt={articleImageAlt(article)}
                 className="w-full h-48 sm:h-64 md:h-80 object-cover"
               />
             </div>
