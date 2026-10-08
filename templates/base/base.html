@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#F5F4F1" />
     <!-- Favicon -->
     <link rel="icon"
           type="image/x-icon"
@@ -26,7 +27,7 @@
     <meta property="og:description"
           content="Where ambition meets discipline. Rap, vlogs, and essays built on the #HustleMindset and the pursuit of balance in chaos." />
     <meta property="og:url" content="https://hpmaharaja.com/" />
-    <meta property="og:image" content="{% static 'images/header-bg.jpg' %}" />
+    <meta property="og:image" content="{% static 'images/base/header-bg.jpg' %}" />
     <meta property="og:image:alt"
           content="HP Maharaja – Pursuing Balance in Chaos" />
     <!-- Twitter -->
@@ -35,7 +36,14 @@
           content="HP Maharaja – Pursuing Balance in Chaos · #HustleMindset" />
     <meta name="twitter:description"
           content="Rap. Vlogs. Essays. Faith. Culture. Ambition. HP Maharaja explores the grind with the #HustleMindset while pursuing balance in chaos." />
-    <meta name="twitter:image" content="{% static 'images/header-bg.jpg' %}" />
+    <meta name="twitter:image" content="{% static 'images/base/header-bg.jpg' %}" />
+    <!-- Type -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+          rel="stylesheet" />
+    <!-- Mark that JS is live, so reveal-on-scroll may hide content (see .js .reveal) -->
+    <script>document.documentElement.classList.add('js');</script>
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -43,34 +51,158 @@
       theme: {
         extend: {
           colors: {
+            /* Palantir-style neutral system */
+            paper:      '#F5F4F1',
+            paper_2:    '#EFEDE8',
+            surface:    '#FFFFFF',
+            ink:        '#0B0B0C',
+            ink_2:      '#3A3A3C',
+            ink_3:      '#6E6E73',
+            line:       'rgba(11,11,12,0.12)',
+            line_strong:'rgba(11,11,12,0.26)',
+            /* legacy brand tokens, still referenced by the article templates */
             maharaja_bg: '#050507',
-            maharaja_gold: '#f4c56a',
-            maharaja_gold_soft: '#f9e3b8',
-          }
+            maharaja_gold: '#8A6A2F',
+            maharaja_gold_soft: '#6F5425',
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+          },
         }
       }
     }
     </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+        /* keep anchored sections clear of the fixed header */
+        scroll-padding-top: 5rem;
+      }
+      @media (min-width: 1024px) { html { scroll-padding-top: 7rem; } }
+      body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+      /* Mono eyebrow label used across sections */
+      .label {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.6875rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #6E6E73;
+      }
+
+      /* Hairline rule */
+      .hairline { height: 1px; background: rgba(11,11,12,0.12); }
+
+      /* Display headline treatment */
+      .display { letter-spacing: -0.04em; line-height: 0.96; font-weight: 600; }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.6875rem; letter-spacing: 0.16em; text-transform: uppercase;
+        padding: 0.95rem 1.6rem; border: 1px solid transparent;
+        transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+      }
+      .btn-solid { background: #0B0B0C; color: #F5F4F1; }
+      .btn-solid:hover { background: #2A2A2D; }
+      .btn-ghost { border-color: rgba(11,11,12,0.26); color: #0B0B0C; }
+      .btn-ghost:hover { border-color: #0B0B0C; background: #0B0B0C; color: #F5F4F1; }
+      .btn-invert { border-color: rgba(245,244,241,0.34); color: #F5F4F1; }
+      .btn-invert:hover { background: #F5F4F1; color: #0B0B0C; border-color: #F5F4F1; }
+
+      /* Arrow that slides when its .group parent is hovered */
+      .arrow { transition: transform .3s ease; }
+      .group:hover .arrow { transform: translateX(4px); }
+
+      /* Reveal-on-scroll — progressive enhancement.
+         Content is visible by default; it only starts hidden once JS has
+         confirmed it can reveal it again (html.js), so a JS failure can
+         never leave sections blank. */
+      .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+      .js .reveal.in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .js .reveal { opacity: 1; transform: none; transition: none; }
+      }
+    </style>
   </head>
-  <body class="bg-maharaja_bg text-slate-100 min-h-screen flex flex-col">
+  <body class="bg-paper text-ink font-sans min-h-screen flex flex-col antialiased">
     {% include "partials/navbar.html" %}
     <main class="flex-1">
       {% block content %}{% endblock %}
     </main>
-    <footer class="border-t border-slate-800/60 bg-black/60 backdrop-blur">
-      <div class="max-w-6xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs md:text-sm text-slate-400">
-        <p>© {{ now|date:"Y" }} HP Maharaja. All rights reserved.</p>
-        <p class="text-slate-500">Built with hustle, faith, and late-night sessions.</p>
+    <!-- FOOTER -->
+    <footer class="bg-paper border-t border-line">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="py-14 grid gap-10 md:grid-cols-12">
+          <div class="md:col-span-5">
+            <a href="{% url 'home' %}" class="inline-flex items-center gap-3">
+              <span class="h-9 w-9 bg-ink text-paper flex items-center justify-center font-mono text-[0.62rem] tracking-[0.1em]">HP</span>
+              <span class="leading-tight">
+                <span class="block text-[0.8rem] font-semibold tracking-[0.2em] uppercase">Maharaja</span>
+                <span class="block label text-[0.6rem] mt-0.5">Pursuing Balance in Chaos</span>
+              </span>
+            </a>
+            <p class="mt-5 text-sm text-ink_3 max-w-sm leading-relaxed">
+              Rap, vlogs, and long-form essays on ambition, faith, and building an
+              empire without losing your center.
+            </p>
+          </div>
+          <div class="md:col-span-3">
+            <p class="label mb-4">Explore</p>
+            <ul class="space-y-2.5 text-sm text-ink_2">
+              <li><a class="hover:text-ink transition" href="{% url 'home' %}">Home</a></li>
+              <li><a class="hover:text-ink transition" href="{% url 'article_list' %}">Articles</a></li>
+              <li><a class="hover:text-ink transition" href="{% url 'home' %}#ventures">Ventures</a></li>
+              <li><a class="hover:text-ink transition" href="{% url 'home' %}#media">Media</a></li>
+            </ul>
+          </div>
+          <div class="md:col-span-4">
+            <p class="label mb-4">Connect</p>
+            <ul class="space-y-2.5 text-sm text-ink_2">
+              <li><a class="hover:text-ink transition" href="mailto:heran@finityone.com">heran@finityone.com</a></li>
+              <li>
+                <a class="hover:text-ink transition"
+                   href="https://www.youtube.com/channel/UClwSJMiNA__2Ua2pyB30OQg"
+                   target="_blank" rel="noreferrer">YouTube</a>
+              </li>
+              <li>
+                <a class="hover:text-ink transition"
+                   href="https://soundcloud.com/hpmaharaja"
+                   target="_blank" rel="noreferrer">SoundCloud</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="hairline"></div>
+        <div class="py-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p class="label">© {% now "Y" %} HP Maharaja · All rights reserved</p>
+          <p class="label">Built with hustle, faith &amp; late-night sessions</p>
+        </div>
       </div>
     </footer>
     <script>
-    const navToggle = document.getElementById("nav-toggle");
-    const navMenu = document.getElementById("nav-menu");
-    if (navToggle && navMenu) {
-      navToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("hidden");
-      });
-    }
+      /* Reveal-on-scroll */
+      (function () {
+        var items = document.querySelectorAll('.reveal');
+        if (!items.length) return;
+        if (!('IntersectionObserver' in window)) {
+          items.forEach(function (el) { el.classList.add('in'); });
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+        items.forEach(function (el) { io.observe(el); });
+      })();
     </script>
   </body>
 </html>
