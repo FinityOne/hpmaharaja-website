@@ -1,0 +1,255 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ported verbatim from the Django base template's inline <style> block. */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  /* keep anchored sections clear of the fixed header */
+  scroll-padding-top: 5rem;
+}
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: 7rem;
+  }
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* A stray wide element should never hand a phone a sideways scroll */
+  overflow-x: hidden;
+}
+img,
+svg,
+video,
+iframe {
+  max-width: 100%;
+}
+
+/* Long unbroken words (URLs, emails) wrap instead of widening the page */
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+dd,
+dt {
+  overflow-wrap: break-word;
+}
+
+/* Keep the footer clear of the home indicator on modern phones */
+@supports (padding: max(0px)) {
+  footer {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Mono eyebrow label used across sections */
+.label {
+  font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #6e6e73;
+}
+
+/* Hairline rule */
+.hairline {
+  height: 1px;
+  background: rgba(11, 11, 12, 0.12);
+}
+
+/* Display headline treatment */
+.display {
+  letter-spacing: -0.04em;
+  line-height: 0.96;
+  font-weight: 600;
+}
+
+/* Buttons — min-height keeps tappable controls at ~44px */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.95rem 1.6rem;
+  border: 1px solid transparent;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  min-height: 44px;
+}
+.btn-solid {
+  background: #0b0b0c;
+  color: #f5f4f1;
+}
+.btn-solid:hover {
+  background: #2a2a2d;
+}
+.btn-ghost {
+  border-color: rgba(11, 11, 12, 0.26);
+  color: #0b0b0c;
+}
+.btn-ghost:hover {
+  border-color: #0b0b0c;
+  background: #0b0b0c;
+  color: #f5f4f1;
+}
+.btn-invert {
+  border-color: rgba(245, 244, 241, 0.34);
+  color: #f5f4f1;
+}
+.btn-invert:hover {
+  background: #f5f4f1;
+  color: #0b0b0c;
+  border-color: #f5f4f1;
+}
+
+/* Arrow that slides when its .group parent is hovered */
+.arrow {
+  transition: transform 0.3s ease;
+}
+.group:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Reveal-on-scroll — progressive enhancement.
+   Content is visible by default; it only starts hidden once JS has
+   confirmed it can reveal it again (html.js), so a JS failure can
+   never leave sections blank. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.js .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---- Navbar (ported from partials/navbar.html) ---- */
+
+/* Desktop link: mono micro-caps with an underline that wipes in */
+.nav-link {
+  position: relative;
+  font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #3a3a3c;
+  padding-bottom: 3px;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background: #0b0b0c;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-link:hover {
+  color: #0b0b0c;
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+.nav-link.is-active {
+  color: #0b0b0c;
+}
+.nav-link.is-active::after {
+  transform: scaleX(1);
+}
+
+/* Hamburger lines -> X */
+.nav-bar-line {
+  display: block;
+  width: 16px;
+  height: 1px;
+  background: #0b0b0c;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+#nav-toggle.is-open .nav-bar-line:first-child {
+  transform: translateY(3px) rotate(45deg);
+}
+#nav-toggle.is-open .nav-bar-line:last-child {
+  transform: translateY(-3px) rotate(-45deg);
+}
+
+/* Scrolled state: frosted paper + hairline, meta strip collapses away */
+#site-nav.is-scrolled #nav-bar {
+  background: rgba(245, 244, 241, 0.82);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom-color: rgba(11, 11, 12, 0.12);
+}
+#site-nav.is-scrolled #nav-strip {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  border-bottom-color: transparent;
+}
+
+/* Mobile overlay link rows */
+.mobile-link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 1.1rem 0;
+  border-top: 1px solid rgba(11, 11, 12, 0.12);
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #0b0b0c;
+  transition: opacity 0.2s ease;
+}
+.mobile-link:last-of-type {
+  border-bottom: 1px solid rgba(11, 11, 12, 0.12);
+}
+.mobile-link:hover {
+  opacity: 0.55;
+}
+
+#nav-menu.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---- Article body (ported from detail.html's extra_head block) ----
+   Markdown bodies can carry tables and code blocks wider than a phone.
+   Let those scroll on their own rather than stretching the whole page. */
+.article-body table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.article-body pre {
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.article-body img {
+  height: auto;
+}

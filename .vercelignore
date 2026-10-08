@@ -1,11 +1,12 @@
-# Keep out of the deployment: Django serves none of it, and locally old-site/
-# carries ~380MB of node_modules that would be uploaded by `vercel deploy`.
+# The legacy Next.js site is kept for reference only. It carries its own
+# package.json and ~380MB of node_modules locally, so keep it out of the
+# deployment upload entirely.
 old-site/
 
+# Leftovers from the previous Django deployment, kept out of the upload.
 .venv/
 venv/
-__pycache__/
-*.pyc
 db.sqlite3
+
 .DS_Store
 .claude/
