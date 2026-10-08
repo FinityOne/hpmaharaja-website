@@ -253,28 +253,79 @@
       </div>
     </div>
   </section>
-  <!-- ============================ TRAJECTORY ============================ -->
-  <section id="trajectory" class="py-20 lg:py-28 bg-paper_2 border-y border-line">
+  <!-- ============================ TOUR ============================ -->
+  <section id="tour" class="py-20 lg:py-28 bg-paper_2 border-y border-line">
     <div class="max-w-7xl mx-auto px-6 lg:px-10">
-      <div class="grid lg:grid-cols-12 gap-y-6 lg:gap-x-10 mb-14">
+      <div class="grid lg:grid-cols-12 gap-y-6 lg:gap-x-10 mb-12">
         <div class="lg:col-span-4">
-          <p class="label">07 — Trajectory</p>
+          <p class="label">07 — Tour</p>
         </div>
         <div class="lg:col-span-8">
           <h2 class="display text-[clamp(1.85rem,3.6vw,3rem)] max-w-[24ch] mb-5">
-            Where the work shows up next.
+            Rameelo Garba Tour 2026.
           </h2>
-          <p class="text-base text-ink_2 max-w-xl leading-relaxed">
-            Trips, moves, and events on the calendar.
+          <p class="text-base text-ink_2 max-w-xl leading-relaxed mb-7">
+            Across America, one garba community — joined on tour by Suchit &amp;
+            Bhrugesh, supporting Rameelo organizers at their events.
           </p>
+          <a href="https://rameelo.com"
+             target="_blank"
+             rel="noreferrer"
+             class="btn btn-solid group">
+            Tickets at rameelo.com <span class="arrow" aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
+      <!-- Tour fact strip -->
+      <dl class="grid grid-cols-2 lg:grid-cols-4 border-t border-line mb-2">
+        <div class="py-6 pr-6 lg:border-r border-line">
+          <dt class="label mb-2">Events</dt>
+          <dd class="text-xl font-semibold tracking-tight">{{ tour_meta.events }}</dd>
+        </div>
+        <div class="py-6 pl-6 lg:pl-7 lg:pr-6 lg:border-r border-line">
+          <dt class="label mb-2">Cities</dt>
+          <dd class="text-xl font-semibold tracking-tight">{{ tour_meta.cities }}</dd>
+        </div>
+        <div class="py-6 pr-6 lg:pl-7 lg:border-r border-line">
+          <dt class="label mb-2">Run</dt>
+          <dd class="text-xl font-semibold tracking-tight">{{ tour_meta.window }}</dd>
+        </div>
+        <div class="py-6 pl-6 lg:pl-7">
+          <dt class="label mb-2">Still to come</dt>
+          <dd class="text-xl font-semibold tracking-tight">
+            {% if tour_meta.remaining %}
+              {{ tour_meta.remaining }} date{{ tour_meta.remaining|pluralize }}
+            {% else %}
+              Tour wrapped
+            {% endif %}
+          </dd>
+        </div>
+      </dl>
+      <!-- Tour dates -->
       <div class="border-t border-line">
-        {% for event in upcoming_events %}
-          <div class="reveal grid lg:grid-cols-12 gap-y-1 lg:gap-x-10 items-baseline border-b border-line py-6">
-            <p class="label lg:col-span-2">{{ forloop.counter|stringformat:"02d" }}</p>
-            <p class="label lg:col-span-3 !text-ink">{{ event.date }}</p>
-            <p class="lg:col-span-7 text-base lg:text-lg font-medium tracking-tight">{{ event.title }}</p>
+        {% for stop in tour_dates %}
+          <div class="reveal grid lg:grid-cols-12 gap-y-2 lg:gap-x-10 items-baseline border-b border-line py-6">
+            <p class="label lg:col-span-1">{{ stop.position|stringformat:"02d" }}</p>
+            <p class="label lg:col-span-2 {% if stop.is_past %}!text-ink_3{% else %}!text-ink{% endif %}">
+              {{ stop.date_label }}
+            </p>
+            <div class="lg:col-span-6">
+              <p class="text-base lg:text-lg font-medium tracking-tight {% if stop.is_past %}text-ink_2{% else %}text-ink{% endif %}">
+                {{ stop.artist }}
+              </p>
+              <p class="text-sm text-ink_3 mt-0.5">{{ stop.city }}</p>
+            </div>
+            <div class="lg:col-span-3 flex items-center justify-between lg:justify-end gap-4">
+              <p class="label">{{ stop.organizer }}</p>
+              {% if stop.is_past %}
+                <span class="label shrink-0">Played</span>
+              {% else %}
+                <span class="label !text-ink shrink-0 inline-flex items-center gap-1.5">
+                  <span class="h-1.5 w-1.5 rounded-full bg-ink inline-block" aria-hidden="true"></span>
+                  Upcoming
+                </span>
+              {% endif %}
+            </div>
           </div>
         {% endfor %}
       </div>
