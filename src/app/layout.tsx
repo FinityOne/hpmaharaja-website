@@ -198,42 +198,45 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   your center.
                 </p>
               </div>
-              <div className="md:col-span-3">
-                <p className="label mb-4">Explore</p>
+              {/* Every page, grouped. Each one is a real route: the footer no
+                  longer sends anyone to a section of the home page. */}
+              <div className="md:col-span-2">
+                <p className="label mb-4">The work</p>
                 <ul className="space-y-2.5 text-sm text-ink_2">
-                  <li>
-                    <Link className="hover:text-ink transition" href="/">
-                      Home
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="hover:text-ink transition" href="/achievements">
-                      Achievements
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="hover:text-ink transition" href="/ventures">
-                      Ventures
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="hover:text-ink transition" href="/hiring">
-                      Hiring
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="hover:text-ink transition" href="/articles">
-                      Articles
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="hover:text-ink transition" href="/#media">
-                      Media
-                    </Link>
-                  </li>
+                  {[
+                    { href: "/about", label: "About" },
+                    { href: "/achievements", label: "Achievements" },
+                    { href: "/ventures", label: "Ventures" },
+                    { href: "/hiring", label: "Hiring" },
+                    { href: "/contact", label: "Contact" },
+                  ].map((link) => (
+                    <li key={link.href}>
+                      <Link className="hover:text-ink transition" href={link.href}>
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
-              <div className="md:col-span-4">
+              <div className="md:col-span-2">
+                <p className="label mb-4">The rest</p>
+                <ul className="space-y-2.5 text-sm text-ink_2">
+                  {[
+                    { href: "/tour", label: "Tour" },
+                    { href: "/media", label: "Media" },
+                    { href: "/articles", label: "Articles" },
+                    { href: "/merch", label: "Merch" },
+                    { href: "/community", label: "Community" },
+                  ].map((link) => (
+                    <li key={link.href}>
+                      <Link className="hover:text-ink transition" href={link.href}>
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="md:col-span-3">
                 <p className="label mb-4">Connect</p>
                 <ul className="space-y-2.5 text-sm text-ink_2">
                   <li>

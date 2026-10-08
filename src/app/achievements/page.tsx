@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import Figure from "@/components/Figure";
 import JsonLd from "@/components/JsonLd";
 import { ACHIEVEMENT_TRACKS, ALL_ACHIEVEMENTS } from "@/lib/achievements";
 import { loadAllArticles } from "@/lib/articles";
@@ -55,8 +56,8 @@ export default function AchievementsPage() {
       {/* ============================ HERO ============================ */}
       <section className="pt-28 lg:pt-40">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="grid lg:grid-cols-12 gap-y-8 lg:gap-x-10 items-end">
-            <div className="lg:col-span-8">
+          <div className="grid lg:grid-cols-12 gap-y-10 lg:gap-x-10 items-end">
+            <div className="lg:col-span-7">
               <p className="label mb-7">The record</p>
               <h1 className="display text-[clamp(2.4rem,6.4vw,5rem)] max-w-[20ch]">
                 Achievements
@@ -64,13 +65,14 @@ export default function AchievementsPage() {
               <p className="mt-7 text-xl lg:text-2xl tracking-tight text-ink_2 max-w-[34ch]">
                 Built, booked, shipped and published.
               </p>
-            </div>
-            <div className="lg:col-span-4 lg:pb-3">
-              <p className="text-base text-ink_2 leading-relaxed">
+              <p className="mt-6 text-base text-ink_2 leading-relaxed max-w-[48ch]">
                 Three tracks run in parallel — the ventures, the stage, and the
                 writing. This is what each of them has actually produced, with
                 nothing padded out.
               </p>
+            </div>
+            <div className="lg:col-span-5">
+              <Figure slot="achievements" ratio="wide" />
             </div>
           </div>
 

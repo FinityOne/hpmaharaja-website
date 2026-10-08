@@ -10,7 +10,6 @@ import { useEffect, useState } from "react";
  */
 export default function Navbar() {
   const pathname = usePathname();
-  const isHome = pathname === "/";
   const isArticles = pathname.startsWith("/articles");
 
   const [scrolled, setScrolled] = useState(false);
@@ -52,15 +51,21 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
+  /* Every entry is a real page — the nav used to mix routes with jumps to
+     sections further down the home page, which made "Tour" and "Media"
+     behave differently depending on where you already were. */
   const navLinks = [
-    { href: "/", label: "Home", active: isHome },
-    { href: "/achievements", label: "Achievements", active: pathname.startsWith("/achievements") },
-    { href: "/ventures", label: "Ventures", active: pathname.startsWith("/ventures") },
-    { href: "/hiring", label: "Hiring", active: pathname.startsWith("/hiring") },
+    { href: "/about", label: "About" },
+    { href: "/achievements", label: "Achievements" },
+    { href: "/ventures", label: "Ventures" },
+    { href: "/hiring", label: "Hiring" },
+    { href: "/tour", label: "Tour" },
+    { href: "/media", label: "Media" },
     { href: "/articles", label: "Articles", active: isArticles },
-    { href: "/#tour", label: "Tour" },
-    { href: "/#media", label: "Media" },
-  ];
+  ].map((link) => ({
+    ...link,
+    active: link.active ?? pathname.startsWith(link.href),
+  }));
 
   return (
     <>
@@ -125,7 +130,7 @@ export default function Navbar() {
               </nav>
               {/* CTA + MOBILE TOGGLE */}
               <div className="flex items-center gap-3">
-                <Link href="/#contact" className="btn btn-solid hidden lg:inline-flex !py-3 !px-5">
+                <Link href="/contact" className="btn btn-solid hidden lg:inline-flex !py-3 !px-5">
                   Get in touch
                 </Link>
                 <button
@@ -173,7 +178,7 @@ export default function Navbar() {
               </Link>
             ))}
           </nav>
-          <Link href="/#contact" className="btn btn-solid w-full mt-8" onClick={() => setMenuOpen(false)}>
+          <Link href="/contact" className="btn btn-solid w-full mt-8" onClick={() => setMenuOpen(false)}>
             Get in touch
           </Link>
           {/* min-h-11 keeps these at the ~44px tap target; as bare `.label`

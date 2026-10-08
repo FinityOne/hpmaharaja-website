@@ -53,7 +53,7 @@ export function buildHeroFacets(meta: TourMeta = buildTourMeta(buildTourDates())
       line: "A national garba tour run end to end — routing, artists, production, ticketing.",
       proofLabel: "Rameelo Tour 2026",
       proofValue: `${meta.events} events · ${meta.cities} cities · ${meta.window}`,
-      href: "#tour",
+      href: "/tour",
       hrefLabel: "See the routing",
     },
     {
@@ -69,7 +69,7 @@ export function buildHeroFacets(meta: TourMeta = buildTourMeta(buildTourDates())
       line: "Rap and vlogs as HP Maharaja, made for everyone who grew up between two worlds.",
       proofLabel: "Channels",
       proofValue: "YouTube · SoundCloud · Instagram",
-      href: "#media",
+      href: "/media",
       hrefLabel: "Watch & listen",
     },
     {

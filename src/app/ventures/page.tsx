@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import Figure from "@/components/Figure";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL } from "@/lib/seo";
 import { VENTURES } from "@/lib/ventures";
@@ -78,7 +79,8 @@ export default function VenturesPage() {
                     isLeft ? "md:pr-12 md:border-r" : "md:pl-12"
                   } border-b ${isLastRow ? "md:border-b-0" : ""}`}
                 >
-                  <div className="flex items-start justify-between gap-6 mb-6">
+                  <Figure slot={venture.slug} ratio="wide" className="mb-7" />
+                  <div className="flex items-start justify-between gap-6 mb-5">
                     <p className="label">{String(index + 1).padStart(2, "0")}</p>
                     <span
                       className="arrow text-ink_3 group-hover:text-ink transition"
@@ -87,7 +89,7 @@ export default function VenturesPage() {
                       →
                     </span>
                   </div>
-                  <h2 className="text-2xl lg:text-3xl font-semibold tracking-tight mb-3">
+                  <h2 className="text-2xl lg:text-3xl font-semibold tracking-tight mb-3 group-hover:opacity-60 transition">
                     {venture.name}
                   </h2>
                   <p className="text-sm text-ink_3 leading-relaxed mb-7 max-w-md">

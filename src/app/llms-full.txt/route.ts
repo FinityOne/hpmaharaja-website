@@ -89,11 +89,17 @@ Full page: ${SITE_URL}/achievements
 
 ## Pages
 
-- ${SITE_URL}/ — biography, routed by audience: hiring, Rameelo fans, and first-time visitors.
+- ${SITE_URL}/ — routed by audience: hiring, Rameelo fans, and first-time visitors.
+- ${SITE_URL}/about — who he is in plain language, and the three threads in the work.
 - ${SITE_URL}/achievements — the record: ventures built, the tour, and the writing.
 - ${SITE_URL}/ventures — the four operating concerns, each with a dedicated page.
 - ${SITE_URL}/hiring — the professional record for recruiters and hiring managers.
+- ${SITE_URL}/tour — every Rameelo Garba Tour 2026 date, city, artist and organizer.
+- ${SITE_URL}/media — the HP Maharaja music catalogue and vlog archive.
 - ${SITE_URL}/articles — the full journal archive, "Maharaja News".
+- ${SITE_URL}/merch — HP Maharaja Essentials, Drop 001, pre-launch.
+- ${SITE_URL}/community — three ways in: share a story, collaborate, or meet in person.
+- ${SITE_URL}/contact — email, phone, and templates by reason for writing.
 - ${SITE_URL}/terms — terms of use.
 - ${SITE_URL}/privacy — privacy policy. No accounts, no analytics, no tracking cookies.
 

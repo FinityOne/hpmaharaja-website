@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import Figure from "@/components/Figure";
 import JsonLd from "@/components/JsonLd";
 import { CONTACT_EMAIL, SITE_URL } from "@/lib/seo";
 import { LINKEDIN_URL, RESUME_URL } from "@/lib/site";
@@ -113,6 +114,7 @@ export default function HiringPage() {
               </p>
             </div>
             <div className="lg:col-span-4 lg:pb-3">
+              <Figure slot="hiring" ratio="wide" className="mb-8" />
               <div className="flex flex-wrap gap-3">
                 <a
                   href={`mailto:${CONTACT_EMAIL}?subject=Opportunity%20for%20Heran%20Patel&body=Role%3A%0ACompany%3A%0AWhat%20you%20need%20built%3A%0ACompensation%20range%3A`}
