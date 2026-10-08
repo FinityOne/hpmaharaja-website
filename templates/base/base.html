@@ -4,7 +4,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#F5F4F1" />
     <!-- Favicon -->
     <link rel="icon"
@@ -44,8 +45,8 @@
           rel="stylesheet" />
     <!-- Mark that JS is live, so reveal-on-scroll may hide content (see .js .reveal) -->
     <script>document.documentElement.classList.add('js');</script>
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind — the typography plugin powers the article body `prose` classes -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <script>
     tailwind.config = {
       theme: {
@@ -82,6 +83,21 @@
       }
       @media (min-width: 1024px) { html { scroll-padding-top: 7rem; } }
       body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+      /* A stray wide element should never hand a phone a sideways scroll */
+      body { overflow-x: hidden; }
+      img, svg, video, iframe { max-width: 100%; }
+
+      /* Long unbroken words (URLs, emails) wrap instead of widening the page */
+      h1, h2, h3, h4, p, li, dd, dt { overflow-wrap: break-word; }
+
+      /* Keep the footer clear of the home indicator on modern phones */
+      @supports (padding: max(0px)) {
+        footer { padding-bottom: env(safe-area-inset-bottom); }
+      }
+
+      /* Comfortable thumb targets: keep tappable controls at ~44px */
+      .btn { min-height: 44px; }
 
       /* Mono eyebrow label used across sections */
       .label {
@@ -128,6 +144,7 @@
         .js .reveal { opacity: 1; transform: none; transition: none; }
       }
     </style>
+    {% block extra_head %}{% endblock %}
   </head>
   <body class="bg-paper text-ink font-sans min-h-screen flex flex-col antialiased">
     {% include "partials/navbar.html" %}

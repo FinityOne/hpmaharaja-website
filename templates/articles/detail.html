@@ -6,7 +6,7 @@
   <div class="bg-paper pt-28 lg:pt-36 pb-20 text-ink">
     <div class="max-w-5xl mx-auto px-4">
       <!-- Breadcrumb / Back -->
-      <div class="mb-5 text-[0.7rem] uppercase tracking-[0.24em] text-slate-500 flex items-center gap-2">
+      <div class="mb-5 text-[0.7rem] uppercase tracking-[0.2em] sm:tracking-[0.24em] text-slate-500 flex flex-wrap items-center gap-2">
         <a href="{% url 'article_list' %}"
            class="hover:text-maharaja_gold transition">← All Articles</a>
         <span class="h-px w-6 bg-slate-300"></span>
@@ -14,23 +14,23 @@
       </div>
       <!-- Hero Image -->
       <div class="mb-8">
-        <div class="overflow-hidden rounded-3xl shadow-md border border-slate-200 bg-slate-100">
+        <div class="overflow-hidden rounded-2xl sm:rounded-3xl shadow-md border border-slate-200 bg-slate-100">
           <img src="{{ article.image|article_image_src }}"
                alt="{{ article.title }}"
-               class="w-full h-64 md:h-80 object-cover" />
+               class="w-full h-48 sm:h-64 md:h-80 object-cover" />
         </div>
       </div>
       <!-- Header -->
       <header class="mb-6">
-        <p class="text-[0.7rem] uppercase tracking-[0.3em] text-slate-500 mb-2">{{ article.category|default:"Editorial" }}</p>
-        <h1 class="text-3xl md:text-4xl font-semibold tracking-tight mb-3 leading-tight">{{ article.title }}</h1>
+        <p class="text-[0.7rem] uppercase tracking-[0.22em] sm:tracking-[0.3em] text-slate-500 mb-2">{{ article.category|default:"Editorial" }}</p>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight mb-3 leading-tight">{{ article.title }}</h1>
         {% if article.subtitle %}
           <p class="text-sm md:text-base text-slate-600 mb-3 max-w-2xl">{{ article.subtitle }}</p>
         {% endif %}
-        <div class="flex flex-wrap items-center gap-3 text-[0.8rem] text-slate-500">
+        <div class="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 text-[0.8rem] text-slate-500">
           <!-- Circle Icon / Author Badge -->
           <div class="flex items-center gap-2">
-            <div class="h-9 w-9 rounded-full bg-slate-900 text-white flex items-center justify-center text-[0.6rem] font-semibold tracking-[0.18em]">
+            <div class="h-9 w-9 shrink-0 rounded-full bg-slate-900 text-white flex items-center justify-center text-[0.6rem] font-semibold tracking-[0.18em]">
               HP
             </div>
             <div class="flex flex-col">
@@ -51,11 +51,32 @@
         </div>
       </header>
       <!-- Body -->
-      <article class="mt-6 bg-white border border-slate-200 rounded-3xl shadow-sm px-5 py-6 md:px-8 md:py-8">
-        <div class="prose prose-slate prose-sm md:prose-base max-w-none prose-headings:font-semibold prose-h1:text-slate-900 prose-h2:text-slate-900 prose-h3:text-slate-900 prose-p:text-slate-700 prose-strong:text-slate-900 prose-em:text-slate-700 prose-a:text-maharaja_gold prose-a:no-underline hover:prose-a:underline prose-img:rounded-2xl prose-img:shadow-sm">
+      <article class="mt-6 bg-white border border-slate-200 rounded-2xl sm:rounded-3xl shadow-sm px-4 py-5 sm:px-5 sm:py-6 md:px-8 md:py-8">
+        <div class="article-body prose prose-slate prose-sm md:prose-base max-w-none prose-headings:font-semibold prose-h1:text-slate-900 prose-h2:text-slate-900 prose-h3:text-slate-900 prose-p:text-slate-700 prose-strong:text-slate-900 prose-em:text-slate-700 prose-a:text-maharaja_gold prose-a:no-underline hover:prose-a:underline prose-a:break-words prose-img:rounded-2xl prose-img:shadow-sm">
           {{ article.body_html|safe }}
         </div>
       </article>
     </div>
   </div>
+{% endblock %}
+{% block extra_head %}
+  <style>
+    /* Markdown bodies can carry tables and code blocks wider than a phone.
+       Let those scroll on their own rather than stretching the whole page. */
+    .article-body table {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .article-body pre {
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    .article-body img {
+      height: auto;
+    }
+  </style>
 {% endblock %}
