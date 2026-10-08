@@ -7,27 +7,21 @@
           <span class="text-sm font-semibold tracking-widest text-maharaja_gold">HP</span>
         </div>
         <div class="leading-tight">
-          <p class="text-sm font-semibold tracking-[0.22em] uppercase text-slate-200">Maharaja</p>
-          <p class="text-[0.60rem] tracking-[0.28em] uppercase text-slate-500">Pursuing Balance in Chaos</p>
+          <p class="text-sm font-semibold tracking-[0.22em] uppercase text-slate-200">Heran Patel</p>
+          <p class="text-[0.60rem] tracking-[0.28em] uppercase text-slate-500">aka HP Maharaja</p>
         </div>
       </a>
       <!-- DESKTOP NAV -->
-      <div class="hidden md:flex items-center gap-10">
+      <div class="hidden md:flex items-center gap-8">
         {% with cp=current_page|default:"" %}
           <a href="{% url 'home' %}"
              class="nav-link {% if cp == 'home' %}text-maharaja_gold{% else %}text-slate-300{% endif %}">Home</a>
-          <a href="#music" class="nav-link text-slate-300">Music</a>
-          <a href="#vlogs" class="nav-link text-slate-300">Vlogs</a>
-          {% with cp=current_page|default:"" %}
-            <a href="{% url 'article_list' %}"
-               class="nav-link {% if cp == 'articles' %}text-maharaja_gold{% else %}text-slate-300{% endif %}">
-              Articles
-            </a>
-            <!-- and keep Music/Vlogs as section anchors -->
-          {% endwith %}
-          <a href="#merch" class="nav-link text-slate-300">Merch</a>
-          <a href="#community" class="nav-link text-slate-300">Community</a>
-          <a href="#contact" class="nav-link text-slate-300">Contact</a>
+          <a href="{% url 'home' %}#for-recruiters" class="nav-link text-slate-300">Hiring</a>
+          <a href="{% url 'home' %}#for-founders" class="nav-link text-slate-300">Ventures</a>
+          <a href="{% url 'home' %}#for-family" class="nav-link text-slate-300">The Court</a>
+          <a href="{% url 'article_list' %}"
+             class="nav-link {% if cp == 'articles' %}text-maharaja_gold{% else %}text-slate-300{% endif %}">Articles</a>
+          <a href="{% url 'home' %}#contact" class="nav-link text-slate-300">Contact</a>
         {% endwith %}
       </div>
       <!-- MOBILE TOGGLE -->
@@ -48,12 +42,12 @@
          class="md:hidden hidden pb-4 border-t border-slate-800/70">
       <div class="flex flex-col gap-2 pt-3">
         <a href="{% url 'home' %}#hero" class="mobile-link">Home</a>
-        <a href="#music" class="mobile-link">Music</a>
-        <a href="#vlogs" class="mobile-link">Vlogs</a>
-        <a href="#articles" class="mobile-link">Articles</a>
-        <a href="#merch" class="mobile-link">Merch</a>
-        <a href="#community" class="mobile-link">Community</a>
-        <a href="#contact" class="mobile-link">Contact</a>
+        <a href="{% url 'home' %}#for-recruiters" class="mobile-link">Hiring</a>
+        <a href="{% url 'home' %}#for-founders" class="mobile-link">Ventures</a>
+        <a href="{% url 'home' %}#for-family" class="mobile-link">The Court</a>
+        <a href="{% url 'article_list' %}" class="mobile-link">Articles</a>
+        <a href="{% url 'home' %}#merch" class="mobile-link">Merch</a>
+        <a href="{% url 'home' %}#contact" class="mobile-link">Contact</a>
       </div>
     </div>
   </div>
@@ -82,11 +76,3 @@
     color: #f9e3b8;
   }
 </style>
-<script>
-  const navToggle = document.getElementById("nav-toggle");
-  const navMenu = document.getElementById("nav-menu");
-
-  navToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("hidden");
-  });
-</script>

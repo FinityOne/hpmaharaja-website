@@ -1,6 +1,6 @@
 {% extends "base/base.html" %}
 {% load static %}
-{% block title %}HP Maharaja – HustleMindset.{% endblock %}
+{% block title %}Heran Patel (HP Maharaja) – Founder, Builder, Creator{% endblock %}
 {% block content %}
   <div class="pt-16"></div>
   <!-- HERO -->
@@ -8,85 +8,222 @@
            class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0">
       <img src="{% static 'images/base/header-bg.jpg' %}"
-           alt="HP Maharaja Header"
+           alt="Heran Patel, aka HP Maharaja"
            class="w-full h-full object-cover" />
       <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/75 to-maharaja_bg/95"></div>
     </div>
     <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
-      <p class="text-xs md:text-sm uppercase tracking-[0.32em] text-maharaja_gold_soft mb-3">
-        HP Maharaja · Hustle Mindset · Royal Energy
+      <p class="text-xs md:text-sm uppercase tracking-[0.32em] text-slate-400 mb-3">
+        Founder · Operator · Creator
       </p>
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight mb-4">Hustle Mindset is the Way.</h1>
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight mb-3">Heran Patel</h1>
+      <p class="text-[0.7rem] md:text-xs uppercase tracking-[0.34em] text-maharaja_gold mb-5">
+        aka HP Maharaja
+      </p>
       <p class="text-base md:text-xl text-slate-300 max-w-2xl mx-auto mb-8">
-        Rap. Vlogs. Essays. One empire of ideas built on grind, faith, and a
-        Maharaja-level life.
+        I build companies, culture, and content — tech products, real estate, large-scale
+        events, and a non-profit — while writing and rapping about the pursuit of balance in chaos.
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
-        <a href="#articles"
+        <a href="#start-here"
            class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-maharaja_gold text-black text-xs md:text-sm font-semibold uppercase tracking-[0.28em] hover:bg-maharaja_gold_soft transition">
-          Read Articles
+          Start Here
         </a>
         <div class="flex flex-wrap items-center justify-center gap-2">
-          <a href="https://soundcloud.com/hpmaharaja"
-             target="_blank"
-             rel="noreferrer"
+          <a href="#for-recruiters"
              class="inline-flex items-center justify-center px-4 py-2 rounded-full border border-slate-700 text-[0.7rem] uppercase tracking-[0.24em] text-slate-200 hover:border-maharaja_gold hover:text-maharaja_gold_soft transition">
-            Listen on SoundCloud
+            I'm Hiring
           </a>
-          <a href="https://www.youtube.com/channel/UClwSJMiNA__2Ua2pyB30OQg"
-             target="_blank"
-             rel="noreferrer"
+          <a href="#for-founders"
              class="inline-flex items-center justify-center px-4 py-2 rounded-full border border-slate-700 text-[0.7rem] uppercase tracking-[0.24em] text-slate-200 hover:border-maharaja_gold hover:text-maharaja_gold_soft transition">
-            Watch on YouTube
+            I'm a Founder
+          </a>
+          <a href="#for-family"
+             class="inline-flex items-center justify-center px-4 py-2 rounded-full border border-slate-700 text-[0.7rem] uppercase tracking-[0.24em] text-slate-200 hover:border-maharaja_gold hover:text-maharaja_gold_soft transition">
+            I Follow the Maharaja
           </a>
         </div>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left text-xs md:text-sm">
-        <div class="bg-black/40 border border-slate-800 rounded-xl p-4">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left max-w-3xl mx-auto">
+        <div class="border border-slate-800/80 bg-black/50 rounded-xl p-4">
           <p class="text-maharaja_gold text-[0.65rem] uppercase tracking-[0.26em] mb-1">Mindset</p>
-          <p class="text-slate-200 font-medium mb-1">The Hustle</p>
-          <p class="text-slate-400 text-xs">Stories, scars, and systems for staying locked in on the bigger dream.</p>
+          <p class="text-sm font-semibold text-slate-100 mb-1">#HustleMindset</p>
+          <p class="text-slate-400 text-xs">Discipline over motivation. Output over noise.</p>
         </div>
-        <div class="bg-black/40 border border-slate-800 rounded-xl p-4">
+        <div class="border border-slate-800/80 bg-black/50 rounded-xl p-4">
           <p class="text-maharaja_gold text-[0.65rem] uppercase tracking-[0.26em] mb-1">Spirit</p>
-          <p class="text-slate-200 font-medium mb-1">Faith & Values</p>
-          <p class="text-slate-400 text-xs">Politics, religion, and philosophy from a grounded, desi-son-of-immigrants lens.</p>
+          <p class="text-sm font-semibold text-slate-100 mb-1">Faith &amp; Culture</p>
+          <p class="text-slate-400 text-xs">Sanatan roots, immigrant grit, and an unapologetic identity.</p>
         </div>
-        <div class="bg-black/40 border border-slate-800 rounded-xl p-4">
+        <div class="border border-slate-800/80 bg-black/50 rounded-xl p-4">
           <p class="text-maharaja_gold text-[0.65rem] uppercase tracking-[0.26em] mb-1">Empire</p>
-          <p class="text-slate-200 font-medium mb-1">Brands & Moves</p>
-          <p class="text-slate-400 text-xs">Rameelo, Maharaja Estates, Melux, and whatever wild venture comes next.</p>
+          <p class="text-sm font-semibold text-slate-100 mb-1">Ventures</p>
+          <p class="text-slate-400 text-xs">Rameelo, FinityOne, Maharaja Estates, Melux — and whatever is next.</p>
         </div>
       </div>
     </div>
   </section>
-  <!-- TIMELINE -->
-  <section id="timeline" class="py-12 md:py-16">
-    <div class="max-w-5xl mx-auto px-4">
-      <h2 class="text-xl md:text-2xl font-semibold text-center mb-2">👑 Journey of Majesty: Upcoming Royal Affairs 👑</h2>
-      <p class="text-sm text-slate-400 text-center mb-8">Where HP and the Maharaja energy are physically pulling up next.</p>
-      <div class="space-y-4">
-        {% for event in upcoming_events %}
-          <div class="relative pl-4">
-            <div class="absolute left-0 top-0 bottom-0 w-px bg-slate-800"></div>
-            <div class="ml-2 border-l-4 {{ event.accent }} bg-black/40 border-slate-700 rounded-lg shadow-sm p-3">
-              <p class="text-[0.7rem] text-slate-400 uppercase tracking-[0.18em] mb-1">{{ event.date }}</p>
-              <p class="text-sm md:text-base font-medium text-slate-100">{{ event.title }}</p>
+  <!-- AUDIENCE ROUTER -->
+  <section id="start-here"
+           class="py-12 md:py-16 bg-black/60 border-y border-slate-900">
+    <div class="max-w-6xl mx-auto px-4">
+      <p class="text-[0.7rem] uppercase tracking-[0.3em] text-maharaja_gold text-center mb-2">Start Here</p>
+      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-3">Who&rsquo;s Pulling Up?</h2>
+      <p class="text-sm text-slate-400 text-center mb-10 max-w-2xl mx-auto">
+        One person, a few different reasons you might be here. Pick your lane and
+        I&rsquo;ll take you straight to what matters.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+        <a href="#for-recruiters"
+           class="group border border-blue-700/60 bg-gradient-to-br from-black to-blue-950/40 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 p-5 flex flex-col">
+          <p class="text-2xl mb-2">💼</p>
+          <h3 class="text-lg font-semibold mb-1">Recruiters &amp; Hiring Managers</h3>
+          <p class="text-xs text-slate-300 mb-3">
+            The professional record: what I build, how I operate, and how to reach me about a role.
+          </p>
+          <span class="mt-auto text-[0.65rem] uppercase tracking-[0.22em] text-blue-300 group-hover:text-blue-200">
+            See the Resume →
+          </span>
+        </a>
+        <a href="#for-founders"
+           class="group border border-emerald-700/60 bg-gradient-to-br from-black to-emerald-950/40 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 p-5 flex flex-col">
+          <p class="text-2xl mb-2">🤝</p>
+          <h3 class="text-lg font-semibold mb-1">Founders &amp; Operators</h3>
+          <p class="text-xs text-slate-300 mb-3">
+            The venture portfolio, what I&rsquo;m building now, and where a partnership actually makes sense.
+          </p>
+          <span class="mt-auto text-[0.65rem] uppercase tracking-[0.22em] text-emerald-300 group-hover:text-emerald-200">
+            See the Ventures →
+          </span>
+        </a>
+        <a href="#for-family"
+           class="group border border-maharaja_gold/50 bg-gradient-to-br from-black to-maharaja_gold/10 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 p-5 flex flex-col">
+          <p class="text-2xl mb-2">👑</p>
+          <h3 class="text-lg font-semibold mb-1">The Maharaja Family</h3>
+          <p class="text-xs text-slate-300 mb-3">
+            Music, vlogs, merch drops, and the community built for the kids of immigrants and the grinders.
+          </p>
+          <span class="mt-auto text-[0.65rem] uppercase tracking-[0.22em] text-maharaja_gold group-hover:text-maharaja_gold_soft">
+            Enter the Court →
+          </span>
+        </a>
+        <a href="#journal"
+           class="group border border-purple-700/60 bg-gradient-to-br from-black to-purple-950/40 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 p-5 flex flex-col">
+          <p class="text-2xl mb-2">📜</p>
+          <h3 class="text-lg font-semibold mb-1">Readers &amp; Seekers</h3>
+          <p class="text-xs text-slate-300 mb-3">
+            Long-form essays on faith, politics, dharma, ambition, and the philosophy behind the grind.
+          </p>
+          <span class="mt-auto text-[0.65rem] uppercase tracking-[0.22em] text-purple-300 group-hover:text-purple-200">
+            Read the Journal →
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- ======================= LANE 1: RECRUITERS ======================= -->
+  <section id="for-recruiters" class="py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-8">
+        <div>
+          <p class="text-[0.7rem] uppercase tracking-[0.3em] text-blue-300 mb-2">For Recruiters &amp; Hiring Managers</p>
+          <h2 class="text-2xl md:text-3xl font-semibold">Heran Patel &mdash; The Professional Record</h2>
+        </div>
+        <p class="text-xs text-slate-500 md:text-right max-w-xs">
+          Open to the right opportunity, advisory work, and board seats. Straight answers, fast replies.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        <!-- SNAPSHOT -->
+        <div class="md:col-span-2 border border-slate-800 bg-black/50 rounded-xl p-6">
+          <h3 class="text-lg font-semibold mb-3">Snapshot</h3>
+          <p class="text-sm text-slate-300 mb-4">
+            I&rsquo;m a founder and operator who builds things end to end &mdash; software, physical
+            assets, and large live events. I&rsquo;ve started and run four ventures across tech,
+            real estate, experience design, and the non-profit world, which means I&rsquo;ve had to
+            own product, finance, hiring, vendors, and delivery under a real deadline with real money
+            on the line.
+          </p>
+          <p class="text-sm text-slate-300 mb-5">
+            What I bring to a team: zero-to-one product sense, comfort with ambiguity, and the
+            operational discipline to actually ship and maintain what gets built.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4 text-xs">
+            <div>
+              <p class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-500 mb-2">Operating Strengths</p>
+              <ul class="space-y-1.5 text-slate-300">
+                <li>· Zero-to-one product &amp; launch</li>
+                <li>· Full-stack build and ship</li>
+                <li>· Event &amp; program operations at scale</li>
+                <li>· P&amp;L, budgeting, vendor negotiation</li>
+                <li>· Team building and volunteer leadership</li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-500 mb-2">Domains</p>
+              <ul class="space-y-1.5 text-slate-300">
+                <li>· Fintech &amp; event-tech</li>
+                <li>· Proptech &amp; real estate ops</li>
+                <li>· Non-profit &amp; community programs</li>
+                <li>· Media, content, and brand</li>
+              </ul>
             </div>
           </div>
-        {% endfor %}
+        </div>
+        <!-- CONTACT CARD -->
+        <div class="border border-blue-800/60 bg-gradient-to-br from-black to-blue-950/30 rounded-xl p-6 flex flex-col">
+          <h3 class="text-lg font-semibold mb-1">Hiring or Recruiting?</h3>
+          <p class="text-xs text-slate-400 mb-5">
+            Send the role, the team, and the problem you need solved. I&rsquo;ll tell you honestly
+            if I&rsquo;m the right fit.
+          </p>
+          <div class="space-y-2.5 text-xs mb-6">
+            <div class="flex justify-between gap-3 border-b border-slate-800/80 pb-2">
+              <span class="text-slate-500 uppercase tracking-[0.18em] text-[0.6rem]">Based</span>
+              <span class="text-slate-200 text-right">New York / Arizona</span>
+            </div>
+            <div class="flex justify-between gap-3 border-b border-slate-800/80 pb-2">
+              <span class="text-slate-500 uppercase tracking-[0.18em] text-[0.6rem]">Open To</span>
+              <span class="text-slate-200 text-right">Leadership, advisory, board</span>
+            </div>
+            <div class="flex justify-between gap-3">
+              <span class="text-slate-500 uppercase tracking-[0.18em] text-[0.6rem]">Email</span>
+              <a href="mailto:heran@finityone.com"
+                 class="text-maharaja_gold hover:text-maharaja_gold_soft text-right break-all">heran@finityone.com</a>
+            </div>
+          </div>
+          <div class="mt-auto space-y-2">
+            <a href="mailto:heran@finityone.com?subject=Opportunity%20for%20Heran%20Patel&body=Role%3A%0ACompany%3A%0AWhat%20you%20need%20built%3A"
+               class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-full bg-slate-100 text-black text-[0.7rem] font-semibold uppercase tracking-[0.24em] hover:bg-maharaja_gold transition">
+              Send a Role
+            </a>
+            <a href="{{ resume_url|default:'#' }}"
+               class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-full border border-slate-700 text-[0.7rem] uppercase tracking-[0.24em] text-slate-200 hover:border-maharaja_gold hover:text-maharaja_gold_soft transition">
+              Download Resume
+            </a>
+            <a href="{{ linkedin_url|default:'#' }}"
+               target="_blank"
+               rel="noreferrer"
+               class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-full border border-slate-700 text-[0.7rem] uppercase tracking-[0.24em] text-slate-200 hover:border-maharaja_gold hover:text-maharaja_gold_soft transition">
+              LinkedIn
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-  <!-- VENTURES -->
-  <section id="projects"
+  <!-- ======================= LANE 2: FOUNDERS ======================= -->
+  <section id="for-founders"
            class="py-12 md:py-16 bg-black/50 border-y border-slate-900">
     <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-2">My Majestic Ventures</h2>
-      <p class="text-sm text-slate-400 text-center mb-10 max-w-xl mx-auto">
-        HP isn’t just bars and blogs. It’s an ecosystem of brands building culture,
-        community, and real-world equity.
-      </p>
+      <div class="text-center mb-10">
+        <p class="text-[0.7rem] uppercase tracking-[0.3em] text-emerald-300 mb-2">For Founders &amp; Operators</p>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-2">My Majestic Ventures</h2>
+        <p class="text-sm text-slate-400 max-w-xl mx-auto">
+          Four companies across tech, culture, real estate, and experience design &mdash;
+          an ecosystem built for culture, community, and real-world equity.
+        </p>
+      </div>
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
         <a href="#"
            class="group border border-red-700/60 bg-gradient-to-br from-black to-red-950/40 text-slate-100 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 p-5 flex flex-col">
@@ -122,27 +259,62 @@
            class="group border border-purple-700/60 bg-gradient-to-br from-black to-purple-950/40 text-slate-100 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 p-5 flex flex-col">
           <h3 class="text-lg font-semibold mb-1">Melux Events</h3>
           <p class="text-xs text-slate-300 mb-3">
-            Design-first event decor and experience studio born from Rameelo’s production DNA.
+            Design-first event decor and experience studio born from Rameelo&rsquo;s production DNA.
           </p>
           <span class="mt-auto text-[0.65rem] uppercase tracking-[0.22em] text-purple-300 group-hover:text-purple-200">
             Aesthetic Ops
           </span>
         </a>
       </div>
+      <!-- FOUNDER CTA -->
+      <div class="mt-8 grid md:grid-cols-3 gap-5">
+        <div class="border border-slate-800 rounded-xl bg-black/50 p-5">
+          <p class="text-[0.65rem] uppercase tracking-[0.22em] text-emerald-300 mb-2">Build Together</p>
+          <p class="text-sm font-semibold text-slate-100 mb-1">Partnerships &amp; JVs</p>
+          <p class="text-xs text-slate-400">
+            Event-tech, proptech, and culture-first products. If our users overlap, there&rsquo;s a deal here.
+          </p>
+        </div>
+        <div class="border border-slate-800 rounded-xl bg-black/50 p-5">
+          <p class="text-[0.65rem] uppercase tracking-[0.22em] text-emerald-300 mb-2">Compare Notes</p>
+          <p class="text-sm font-semibold text-slate-100 mb-1">Founder to Founder</p>
+          <p class="text-xs text-slate-400">
+            Hiring, fundraising, running events at scale, or operating a portfolio solo &mdash; happy to trade real numbers.
+          </p>
+        </div>
+        <div class="border border-slate-800 rounded-xl bg-black/50 p-5 flex flex-col">
+          <p class="text-[0.65rem] uppercase tracking-[0.22em] text-emerald-300 mb-2">Reach Out</p>
+          <p class="text-sm font-semibold text-slate-100 mb-3">Pitch me something real</p>
+          <a href="mailto:heran@finityone.com?subject=Founder%20Intro&body=Company%3A%0AWhat%20you%27re%20building%3A%0AWhere%20we%20overlap%3A"
+             class="mt-auto inline-flex items-center justify-center px-4 py-2 rounded-full bg-maharaja_gold text-black text-[0.7rem] font-semibold uppercase tracking-[0.24em] hover:bg-maharaja_gold_soft transition">
+            Founder Intro
+          </a>
+        </div>
+      </div>
     </div>
   </section>
-  <!-- CONTENT HUB -->
-  <section class="py-12 md:py-16" id="music">
+  <!-- ======================= LANE 3: THE MAHARAJA FAMILY ======================= -->
+  <section id="for-family" class="py-12 md:py-16">
     <div class="max-w-6xl mx-auto px-4">
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="border border-slate-800 rounded-xl bg-black/50 p-5 flex flex-col">
+      <div class="text-center mb-10">
+        <p class="text-[0.7rem] uppercase tracking-[0.3em] text-maharaja_gold mb-2">For the Maharaja Family</p>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-2">👑 Welcome to the Court 👑</h2>
+        <p class="text-sm text-slate-400 max-w-xl mx-auto">
+          This is the HP Maharaja side of the house &mdash; the music, the vlogs, the drip,
+          and the people pursuing balance in chaos right alongside me.
+        </p>
+      </div>
+      <!-- CONTENT HUB -->
+      <div class="grid md:grid-cols-2 gap-5 mb-8">
+        <div id="music"
+             class="border border-slate-800 rounded-xl bg-black/50 p-5 flex flex-col">
           <p class="text-[0.7rem] uppercase tracking-[0.26em] text-maharaja_gold mb-1">Music</p>
           <h3 class="text-lg font-semibold mb-2">HP Maharaja on the Mic</h3>
           <p class="text-sm text-slate-300 mb-4">
             Rap tracks about hustle, heartbreak, faith, and building something bigger than yourself.
           </p>
           <div class="mt-auto">
-            <a href="https://soundcloud.com"
+            <a href="https://soundcloud.com/hpmaharaja"
                target="_blank"
                rel="noreferrer"
                class="inline-flex items-center px-4 py-2 rounded-full bg-maharaja_gold text-black text-xs uppercase tracking-[0.24em] hover:bg-maharaja_gold_soft transition">
@@ -155,7 +327,7 @@
           <p class="text-[0.7rem] uppercase tracking-[0.26em] text-maharaja_gold mb-1">Vlogs</p>
           <h3 class="text-lg font-semibold mb-2">Life in Motion</h3>
           <p class="text-sm text-slate-300 mb-4">
-            Vlogs from trips, events, late-night sessions, and behind-the-scenes of building the HP empire.
+            Vlogs from trips, events, late-night sessions, and behind-the-scenes of building the empire.
           </p>
           <div class="mt-auto">
             <a href="https://youtube.com"
@@ -166,70 +338,91 @@
             </a>
           </div>
         </div>
-        <div id="articles"
-             class="border border-slate-800 rounded-xl bg-black/50 p-5 flex flex-col">
-          <p class="text-[0.7rem] uppercase tracking-[0.26em] text-maharaja_gold mb-1">Articles</p>
-          <h3 class="text-lg font-semibold mb-2">Essays from the Throne</h3>
-          <p class="text-sm text-slate-300 mb-4">
-            Long-form thoughts on motivation, politics, religion, and personal philosophy.
-          </p>
-          <div class="space-y-3 mb-4">
-            {% for article in featured_articles %}
-              <article class="border border-slate-800/60 rounded-lg p-3 hover:border-maharaja_gold/70 transition">
-                <p class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-1">
-                  {{ article.category }} · {{ article.reading_time }}
-                </p>
-                <h4 class="text-sm font-semibold text-slate-100 mb-1">{{ article.title }}</h4>
-                <p class="text-xs text-slate-400">{{ article.summary }}</p>
-              </article>
-            {% endfor %}
+      </div>
+      <!-- COMMUNITY -->
+      <div id="community" class="mb-8">
+        <h3 class="text-xl md:text-2xl font-semibold text-center mb-3">Build the Maharaja Community</h3>
+        <p class="text-sm md:text-base text-slate-300 text-center max-w-2xl mx-auto mb-6">
+          This is for the kids of immigrants, the grinders, the ones trying to
+          balance faith, family, and ambition without losing themselves.
+        </p>
+        <div class="grid md:grid-cols-3 gap-4 text-xs md:text-sm">
+          <div class="border border-slate-800 rounded-xl p-4 bg-black/50">
+            <p class="font-semibold text-slate-100 mb-1">Share Your Story</p>
+            <p class="text-slate-400">DM or email your journey. Some stories will be featured in future articles &amp; vlogs.</p>
           </div>
-          <a href="/articles"
-             class="inline-flex items-center px-4 py-2 rounded-full bg-slate-100 text-black text-xs uppercase tracking-[0.24em] hover:bg-maharaja_gold transition">
-            View All Articles
-          </a>
+          <div class="border border-slate-800 rounded-xl p-4 bg-black/50">
+            <p class="font-semibold text-slate-100 mb-1">Collab on Content</p>
+            <p class="text-slate-400">Producers, videographers, writers &ndash; if you resonate with the mission, reach out.</p>
+          </div>
+          <div class="border border-slate-800 rounded-xl p-4 bg-black/50">
+            <p class="font-semibold text-slate-100 mb-1">Pull Up IRL</p>
+            <p class="text-slate-400">Meet at Rameelo, NYC linkups, and future Maharaja pop-ups tied to trips &amp; shows.</p>
+          </div>
         </div>
+      </div>
+      <!-- MERCH -->
+      <div id="merch"
+           class="border border-maharaja_gold/30 bg-gradient-to-r from-maharaja_gold/10 via-black to-maharaja_gold/5 rounded-2xl p-6 md:p-8 text-center">
+        <p class="text-[0.7rem] uppercase tracking-[0.26em] text-maharaja_gold mb-2">Maharaja Drip · Coming Soon</p>
+        <h3 class="text-xl md:text-2xl font-semibold mb-3">Wear the Crown Before the World Knows the Name.</h3>
+        <p class="text-sm md:text-base text-slate-300 max-w-2xl mx-auto mb-4">
+          Limited drop hoodies, tees, and pieces inspired by royal Indian aesthetics, NYC grit,
+          and West Coast hustle. Early supporters get first dibs.
+        </p>
+        <p class="text-xs text-slate-400 mb-4">Drop 001: HP Maharaja Essentials. Sign up below to be first in line.</p>
+        <a href="mailto:heran@finityone.com?subject=Merch%20Drop%20List&body=Add%20me%20to%20the%20Maharaja%20merch%20list."
+           class="inline-flex items-center px-5 py-2.5 rounded-full bg-maharaja_gold text-black text-xs uppercase tracking-[0.26em] hover:bg-maharaja_gold_soft transition">
+          Join the Merch List
+        </a>
       </div>
     </div>
   </section>
-  <!-- MERCH -->
-  <section id="merch"
-           class="py-12 md:py-16 bg-black/60 border-y border-slate-900">
-    <div class="max-w-5xl mx-auto px-4 text-center">
-      <p class="text-[0.7rem] uppercase tracking-[0.26em] text-maharaja_gold mb-2">Maharaja Drip · Coming Soon</p>
-      <h2 class="text-2xl md:text-3xl font-semibold mb-3">Wear the Crown Before the World Knows the Name.</h2>
-      <p class="text-sm md:text-base text-slate-300 max-w-2xl mx-auto mb-6">
-        Limited drop hoodies, tees, and pieces inspired by royal Indian aesthetics, NYC grit,
-        and West Coast hustle. Early supporters get first dibs.
-      </p>
-      <p class="text-xs text-slate-400 mb-3">Drop 001: HP Maharaja Essentials. Sign up below to be first in line.</p>
-      <a href="mailto:hp@maharaja.com?subject=Merch%20Drop%20List&body=Add%20me%20to%20the%20Maharaja%20merch%20list."
-         class="inline-flex items-center px-5 py-2.5 rounded-full bg-maharaja_gold text-black text-xs uppercase tracking-[0.26em] hover:bg-maharaja_gold_soft transition">
-        Join the Merch List
-      </a>
+  <!-- ======================= LANE 4: READERS ======================= -->
+  <section id="journal"
+           class="py-12 md:py-16 bg-black/50 border-y border-slate-900">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <p class="text-[0.7rem] uppercase tracking-[0.3em] text-purple-300 mb-2">For Readers &amp; Seekers</p>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-2">Essays from the Throne</h2>
+        <p class="text-sm text-slate-400 max-w-xl mx-auto">
+          Long-form thoughts on motivation, politics, religion, dharma, and personal philosophy.
+        </p>
+      </div>
+      <div id="articles" class="grid md:grid-cols-3 gap-5 mb-8">
+        {% for article in featured_articles %}
+          <article class="border border-slate-800/60 bg-black/40 rounded-xl p-5 hover:border-maharaja_gold/70 transition flex flex-col">
+            <p class="text-[0.65rem] uppercase tracking-[0.22em] text-slate-400 mb-2">
+              {{ article.category }} · {{ article.reading_time }}
+            </p>
+            <h3 class="text-base font-semibold text-slate-100 mb-2">{{ article.title }}</h3>
+            <p class="text-xs text-slate-400">{{ article.summary }}</p>
+          </article>
+        {% endfor %}
+      </div>
+      <div class="text-center">
+        <a href="{% url 'article_list' %}"
+           class="inline-flex items-center px-5 py-2.5 rounded-full bg-slate-100 text-black text-xs uppercase tracking-[0.24em] hover:bg-maharaja_gold transition">
+          View All Articles
+        </a>
+      </div>
     </div>
   </section>
-  <!-- COMMUNITY -->
-  <section id="community" class="py-12 md:py-16">
+  <!-- TIMELINE -->
+  <section id="timeline" class="py-12 md:py-16">
     <div class="max-w-5xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-semibold text-center mb-3">Build the Maharaja Community</h2>
-      <p class="text-sm md:text-base text-slate-300 text-center max-w-2xl mx-auto mb-6">
-        HP Maharaja is for the kids of immigrants, the grinders, the ones trying to
-        balance faith, family, and ambition without losing themselves.
-      </p>
-      <div class="grid md:grid-cols-3 gap-4 text-xs md:text-sm">
-        <div class="border border-slate-800 rounded-xl p-4 bg-black/50">
-          <p class="font-semibold text-slate-100 mb-1">Share Your Story</p>
-          <p class="text-slate-400">DM or email your journey. Some stories will be featured in future articles & vlogs.</p>
-        </div>
-        <div class="border border-slate-800 rounded-xl p-4 bg-black/50">
-          <p class="font-semibold text-slate-100 mb-1">Collab on Content</p>
-          <p class="text-slate-400">Producers, videographers, writers – if you resonate with the mission, reach out.</p>
-        </div>
-        <div class="border border-slate-800 rounded-xl p-4 bg-black/50">
-          <p class="font-semibold text-slate-100 mb-1">Pull Up IRL</p>
-          <p class="text-slate-400">Meet at Rameelo, NYC linkups, and future Maharaja pop-ups tied to trips & shows.</p>
-        </div>
+      <h2 class="text-xl md:text-2xl font-semibold text-center mb-2">👑 Journey of Majesty: Upcoming Royal Affairs 👑</h2>
+      <p class="text-sm text-slate-400 text-center mb-8">Where I&rsquo;m physically pulling up next &mdash; shows, trips, and events.</p>
+      <div class="space-y-4">
+        {% for event in upcoming_events %}
+          <div class="relative pl-4">
+            <div class="absolute left-0 top-0 bottom-0 w-px bg-slate-800"></div>
+            <div class="ml-2 border-l-4 {{ event.accent }} bg-black/40 border-slate-700 rounded-lg shadow-sm p-3">
+              <p class="text-[0.7rem] text-slate-400 uppercase tracking-[0.18em] mb-1">{{ event.date }}</p>
+              <p class="text-sm md:text-base font-medium text-slate-100">{{ event.title }}</p>
+            </div>
+          </div>
+        {% endfor %}
       </div>
     </div>
   </section>
@@ -237,19 +430,20 @@
   <section id="contact" class="py-12 md:py-16">
     <div class="max-w-4xl mx-auto px-4">
       <div class="bg-gradient-to-r from-maharaja_gold/10 via-black to-maharaja_gold/5 border border-maharaja_gold/30 rounded-2xl p-6 md:p-8 text-center md:text-left">
-        <h2 class="text-2xl md:text-3xl font-semibold mb-3">Let’s Build Something Majestic</h2>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-3">Let&rsquo;s Build Something Majestic</h2>
         <p class="text-sm md:text-base text-slate-200 mb-5 max-w-2xl">
-          For collaborations, speaking, partnerships, or just a real conversation about hustle
+          Recruiter, founder, collaborator, or someone who just rocks with the music &mdash;
+          for roles, partnerships, speaking, or a real conversation about hustle
           and purpose, hit me directly.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3">
           <a href="tel:+19499039366"
              class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-slate-100 text-black text-xs uppercase tracking-[0.26em] hover:bg-maharaja_gold transition">
-            Call HP
+            Call Heran
           </a>
           <a href="mailto:heran@finityone.com"
              class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border border-slate-200 text-slate-100 text-xs uppercase tracking-[0.26em] hover:border-maharaja_gold hover:text-maharaja_gold_soft transition">
-            Email HP
+            Email Heran
           </a>
         </div>
       </div>

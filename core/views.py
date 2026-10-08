@@ -8,6 +8,12 @@ import markdown
 from .articles_repo import load_all_articles, get_article_by_slug
 
 
+# Public links for the recruiter-facing section of the home page.
+# TODO: point RESUME_URL at the hosted resume (e.g. a static PDF) and set LINKEDIN_URL.
+RESUME_URL = ""
+LINKEDIN_URL = ""
+
+
 def home(request):
     upcoming_events = [
         {
@@ -17,7 +23,7 @@ def home(request):
         },
         {
             "date": "February 2025",
-            "title": "NYC Move (yes, HP has moved to NYC)",
+            "title": "NYC Move (yes, Heran has moved to NYC)",
             "accent": "border-sky-500",
         },
         {
@@ -65,6 +71,8 @@ def home(request):
         "current_page": "home",
         "upcoming_events": upcoming_events,
         "featured_articles": featured_articles,
+        "resume_url": RESUME_URL,
+        "linkedin_url": LINKEDIN_URL,
     }
     return render(request, "core/index.html", context)
 
