@@ -58,8 +58,10 @@ export default function Hero() {
           <div className="grid lg:grid-cols-12 gap-y-10 lg:gap-x-10">
             {/* ---- Name, thesis, primary actions ---- */}
             <div className="lg:col-span-7">
+              {/* No leading number: the page below is no longer a numbered
+                  run of sections, so "01 —" had nothing to belong to. */}
               <p className="label hero-seq" style={{ "--seq": 0 } as React.CSSProperties}>
-                01 — Founder · Operator · Creator
+                Founder · Operator · Consultant
               </p>
 
               <h1
@@ -87,9 +89,9 @@ export default function Hero() {
                 className="hero-blurb text-ink_2 hero-seq"
                 style={{ "--seq": 4 } as React.CSSProperties}
               >
-                Founder of Rameelo, FinityOne and Maharaja Estates, and a consultant to
-                tech ventures on product management and engineering teams at scale in
-                fintech and proptech. A national garba tour on the side of the desk.
+                I build software, hold real estate, and put Gujarati Raas Garba on
+                stages across America. Four ventures, one national garba tour, and
+                thirteen years of writing about what it costs.
               </p>
 
               <div className="hero-actions hero-seq" style={{ "--seq": 5 } as React.CSSProperties}>
