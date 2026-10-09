@@ -33,7 +33,8 @@ alias, used for music, vlogs and merch. Writing since 2013.
 
 ## Pages
 
-- [Home](${SITE_URL}/): Who he is, routed by audience — hiring, Rameelo fans, and first-time visitors.
+- [Home](${SITE_URL}/): Routed by audience — hiring, Rameelo fans, and first-time visitors — then a card per page.
+- [About](${SITE_URL}/about): Who he is in plain language, and the three threads running through the work.
 - [Achievements](${SITE_URL}/achievements): The record — ventures built, the Rameelo tour, and the writing.
 - [Ventures](${SITE_URL}/ventures): The four operating concerns, each with its own page.
 ${VENTURES.map(
@@ -41,7 +42,12 @@ ${VENTURES.map(
     `  - [${venture.name}](${SITE_URL}/ventures/${venture.slug}): ${venture.summary}`,
 ).join("\n")}
 - [Hiring](${SITE_URL}/hiring): The professional record — strengths, domains, what he is open to, and how to send a role.
+- [Tour](${SITE_URL}/tour): Every Rameelo Garba Tour 2026 date, city, artist and organizer.
+- [Media](${SITE_URL}/media): The HP Maharaja music catalogue and vlog archive.
 - [Articles](${SITE_URL}/articles): The full journal archive — essays on hustle, faith, politics, culture and dharma.
+- [Merch](${SITE_URL}/merch): HP Maharaja Essentials, Drop 001 — pre-launch.
+- [Community](${SITE_URL}/community): Three ways in — share a story, collaborate, or meet in person.
+- [Contact](${SITE_URL}/contact): Email, phone, and pre-filled templates by reason for writing.
 
 ## Articles
 

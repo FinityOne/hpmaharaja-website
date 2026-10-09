@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import Figure from "@/components/Figure";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL } from "@/lib/seo";
 import { VENTURES, findVenture } from "@/lib/ventures";
@@ -69,8 +70,8 @@ export default async function VenturePage({
             </Link>
           </nav>
 
-          <div className="grid lg:grid-cols-12 gap-y-8 lg:gap-x-10 items-end">
-            <div className="lg:col-span-8">
+          <div className="grid lg:grid-cols-12 gap-y-10 lg:gap-x-10 items-end">
+            <div className="lg:col-span-7">
               <p className="label mb-7">
                 {venture.category} · {venture.status}
               </p>
@@ -80,9 +81,12 @@ export default async function VenturePage({
               <p className="mt-7 text-xl lg:text-2xl tracking-tight text-ink_2 max-w-[30ch]">
                 {venture.headline}
               </p>
+              <p className="mt-6 text-base text-ink_3 leading-relaxed max-w-[48ch]">
+                {venture.summary}
+              </p>
             </div>
-            <div className="lg:col-span-4 lg:pb-3">
-              <p className="text-base text-ink_2 leading-relaxed">{venture.summary}</p>
+            <div className="lg:col-span-5">
+              <Figure slot={venture.slug} ratio="wide" />
             </div>
           </div>
 

@@ -102,9 +102,9 @@ export default function Hero() {
                 <Link href="/ventures" className="btn btn-ghost">
                   The ventures
                 </Link>
-                <a href="#start-here" className="btn btn-ghost">
-                  Why are you here?
-                </a>
+                <Link href="/about" className="btn btn-ghost">
+                  Who I am
+                </Link>
               </div>
             </div>
 
