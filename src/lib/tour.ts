@@ -137,3 +137,8 @@ export function buildTourMeta(tourDates: TourDate[]): TourMeta {
     remaining: tourDates.filter((stop) => !stop.isPast).length,
   };
 }
+
+/** Next unplayed stop, for the live countdown. Null once the tour has wrapped. */
+export function nextTourStop(tour: TourDate[] = buildTourDates()): TourDate | null {
+  return tour.find((stop) => !stop.isPast) ?? null;
+}

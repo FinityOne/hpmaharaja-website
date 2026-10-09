@@ -137,7 +137,7 @@ export function buildHeroBootLines(
   ];
 }
 
-/** Next unplayed stop, for the live countdown. Null once the tour has wrapped. */
-export function nextTourStop(tour: TourDate[] = buildTourDates()): TourDate | null {
-  return tour.find((stop) => !stop.isPast) ?? null;
-}
+/* `nextTourStop` moved to ./tour, which is where the rest of the schedule
+   lives — the home page needs it too, and should not have to import hero
+   internals to get it. Re-exported here so the hero components keep working. */
+export { nextTourStop } from "./tour";
