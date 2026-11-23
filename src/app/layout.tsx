@@ -227,6 +227,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     { href: "/articles", label: "Articles" },
                     { href: "/merch", label: "Merch" },
                     { href: "/community", label: "Community" },
+                    { href: "/marriage", label: "Marriage" },
                   ].map((link) => (
                     <li key={link.href}>
                       <Link className="hover:text-ink transition" href={link.href}>
