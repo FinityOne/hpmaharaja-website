@@ -9,7 +9,6 @@ import FactGrid from "@/components/marriage/FactGrid";
 import HeroRotator from "@/components/marriage/HeroRotator";
 import HobbyGrid from "@/components/marriage/HobbyGrid";
 import MatchMeter from "@/components/marriage/MatchMeter";
-import PhotoBand from "@/components/marriage/PhotoBand";
 import PhotoReel from "@/components/marriage/PhotoReel";
 import ScrollProgress from "@/components/marriage/ScrollProgress";
 import SectionMotif from "@/components/marriage/SectionMotif";
@@ -20,7 +19,6 @@ import {
   ABOUT_LETTER,
   ABOUT_SIGNOFF,
   APPROACH,
-  BANDS,
   BIRTH_TIME,
   CONTACT,
   CREDENTIALS,
@@ -238,8 +236,6 @@ export default function MarriagePage() {
         </div>
       </section>
 
-      <PhotoBand band={BANDS.work} />
-
       {/* --------------------------------------------------------- THE ROOTS */}
       <section id="roots" className="mp-section">
         <div className="mp-wrap">
@@ -288,8 +284,6 @@ export default function MarriagePage() {
           </div>
         </div>
       </section>
-
-      <PhotoBand band={BANDS.life} />
 
       {/* -------------------------------------------------------- THE METER */}
       <section id="match" className="mp-section mp-section-rose">
@@ -354,8 +348,6 @@ export default function MarriagePage() {
           <p className="mp-footnote reveal">{FILTER_NOTE}</p>
         </div>
       </section>
-
-      <PhotoBand band={BANDS.honest} />
 
       {/* ----------------------------------------------------- WHAT TO EXPECT */}
       <section id="promises" className="mp-section mp-section-ink">

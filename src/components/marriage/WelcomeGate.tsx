@@ -25,8 +25,8 @@ import useGuestName from "./useGuestName";
  *   biodata. Crawlers and anyone without JS never meet the gate.
  * - It only appears when the link actually carries a name. A bare
  *   /marriage behaves exactly as it did before.
- * - It is dismissible by button, by Escape, and it remembers the choice for
- *   the session, so a reload mid-read does not put the door back.
+ * - It is dismissible by button and by Escape, and the page behind it is
+ *   the whole biodata — nothing is gated away, only delayed by one tap.
  */
 export default function WelcomeGate() {
   const name = useGuestName();
@@ -35,17 +35,14 @@ export default function WelcomeGate() {
   const [line, setLine] = useState(0);
   const enterRef = useRef<HTMLButtonElement>(null);
 
-  /* Open once a name has been read — and only if she hasn't already come
-     through it in this tab. */
+  /* Open whenever the link carries a name — every time, including on a
+     reload. It used to remember that she had already come through it in
+     this tab, which meant Heran could not reliably show anyone the
+     greeting, and a refresh mid-read silently dropped the one part of the
+     page addressed to her personally. The link is the switch; nothing
+     else. */
   useEffect(() => {
-    if (!name) return;
-    let seen = false;
-    try {
-      seen = window.sessionStorage.getItem("mp-gate") === "done";
-    } catch {
-      /* Private mode or blocked storage: just show the gate. */
-    }
-    if (!seen) setOpen(true);
+    if (name) setOpen(true);
   }, [name]);
 
   /* Hold the page still behind the overlay. */
@@ -75,11 +72,6 @@ export default function WelcomeGate() {
   }, [open]);
 
   const dismiss = useCallback((target?: string) => {
-    try {
-      window.sessionStorage.setItem("mp-gate", "done");
-    } catch {
-      /* Not being able to remember is survivable. */
-    }
     setLeaving(true);
     /* Let the curtain finish before it leaves the tree. */
     window.setTimeout(() => {
