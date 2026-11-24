@@ -2989,3 +2989,17 @@
     transition: none;
   }
 }
+
+/* The sitewide footer is not rendered on this page (see FooterGate), so the
+   contact card is the last thing on it. It takes over the footer's job of
+   holding content clear of the bottom edge and, on a phone, of the home
+   indicator. */
+#contact.mp-section {
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 768px) {
+  #contact.mp-section {
+    padding-bottom: calc(8rem + env(safe-area-inset-bottom, 0px));
+  }
+}

@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
+import FooterGate from "@/components/FooterGate";
 import Navbar from "@/components/Navbar";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import {
@@ -176,7 +177,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <Navbar />
         <main className="flex-1">{children}</main>
-        {/* FOOTER */}
+        {/* FOOTER — hidden on the biodata, which ends on a single call-to-action
+            and should not offer twenty other places to go instead. */}
+        <FooterGate>
         <footer className="bg-paper border-t border-line">
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
             <div className="py-14 grid gap-10 md:grid-cols-12">
@@ -290,6 +293,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </div>
         </footer>
+        </FooterGate>
         <RevealOnScroll />
       </body>
     </html>
