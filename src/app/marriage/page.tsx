@@ -9,8 +9,10 @@ import FactGrid from "@/components/marriage/FactGrid";
 import HeroRotator from "@/components/marriage/HeroRotator";
 import HobbyGrid from "@/components/marriage/HobbyGrid";
 import MatchMeter from "@/components/marriage/MatchMeter";
+import PhotoBand from "@/components/marriage/PhotoBand";
 import PhotoReel from "@/components/marriage/PhotoReel";
 import ScrollProgress from "@/components/marriage/ScrollProgress";
+import SectionMotif from "@/components/marriage/SectionMotif";
 import StickyCta from "@/components/marriage/StickyCta";
 import WelcomeGate from "@/components/marriage/WelcomeGate";
 import {
@@ -18,6 +20,7 @@ import {
   ABOUT_LETTER,
   ABOUT_SIGNOFF,
   APPROACH,
+  BANDS,
   BIRTH_TIME,
   CONTACT,
   CREDENTIALS,
@@ -186,6 +189,7 @@ export default function MarriagePage() {
                 {para}
               </p>
             ))}
+            <SectionMotif variant="lotus" />
             <p className="mp-letter-sign">{ABOUT_SIGNOFF}</p>
           </div>
         </div>
@@ -233,6 +237,8 @@ export default function MarriagePage() {
           </div>
         </div>
       </section>
+
+      <PhotoBand band={BANDS.work} />
 
       {/* --------------------------------------------------------- THE ROOTS */}
       <section id="roots" className="mp-section">
@@ -283,6 +289,8 @@ export default function MarriagePage() {
         </div>
       </section>
 
+      <PhotoBand band={BANDS.life} />
+
       {/* -------------------------------------------------------- THE METER */}
       <section id="match" className="mp-section mp-section-rose">
         <div className="mp-wrap mp-wrap-narrow">
@@ -314,6 +322,10 @@ export default function MarriagePage() {
 
           <p className="mp-quote reveal">{LOOKING_FOR_LEAD}</p>
 
+          <div className="reveal">
+            <SectionMotif variant="dandiya" />
+          </div>
+
           <div className="mp-columns">
             <div className="mp-col mp-col-good reveal">
               <h3 className="mp-h3">What I&rsquo;ll bring</h3>
@@ -343,6 +355,8 @@ export default function MarriagePage() {
         </div>
       </section>
 
+      <PhotoBand band={BANDS.honest} />
+
       {/* ----------------------------------------------------- WHAT TO EXPECT */}
       <section id="promises" className="mp-section mp-section-ink">
         <div className="mp-wrap">
@@ -350,6 +364,9 @@ export default function MarriagePage() {
             <p className="mp-eyebrow">09 — What to expect</p>
             <h2 className="mp-h2">If this becomes something, here&rsquo;s how I&rsquo;d show up.</h2>
           </header>
+          <div className="reveal">
+            <SectionMotif variant="diya" />
+          </div>
           <ul className="mp-promises">
             {PROMISES.map((p) => (
               <li key={p.title} className="reveal">
@@ -368,6 +385,9 @@ export default function MarriagePage() {
             <p className="mp-eyebrow">10 — My pace</p>
             <h2 className="mp-h2">I know what I want. I&rsquo;m not in a rush about it.</h2>
           </header>
+          <div className="reveal">
+            <SectionMotif variant="path" />
+          </div>
           <ol className="mp-timeline">
             {TIMELINE.map((phase) => (
               <li key={phase.label} className="reveal">
@@ -443,6 +463,8 @@ export default function MarriagePage() {
                 </a>
               </li>
             </ul>
+
+            <SectionMotif variant="knot" />
 
             <p className="mp-cta-families">{FAMILIES_WELCOME}</p>
 

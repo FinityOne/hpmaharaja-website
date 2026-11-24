@@ -61,7 +61,7 @@ export default function PhotoReel({ shots }: { shots: Shot[] }) {
   return (
     <div className="mp-reel">
       <ul className="mp-reel-track" ref={trackRef}>
-        {shots.map((shot, i) => (
+        {shots.map((shot) => (
           <li key={shot.src} className="mp-reel-card">
             <figure>
               <div className="mp-reel-frame">
@@ -72,7 +72,6 @@ export default function PhotoReel({ shots }: { shots: Shot[] }) {
                   height={950}
                   sizes="(max-width: 640px) 78vw, 340px"
                   className="mp-reel-img"
-                  priority={i === 0}
                 />
                 <span className="mp-reel-tag">{shot.tag}</span>
               </div>

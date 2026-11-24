@@ -2595,3 +2595,118 @@
     font-size: 1rem;
   }
 }
+
+/* ============================================================================
+   PHOTO BANDS + SECTION MOTIFS
+   ----------------------------------------------------------------------------
+   The biodata is a long read on a phone, and an unbroken column of prose is
+   where people stop scrolling. Two devices break it up, at two weights:
+
+   - A band is a full-bleed photograph with one line over it, placed at the
+     three longest stretches of text. No interaction, nothing to decide.
+   - A motif is a few strokes of line art between paragraphs, for the
+     sections where a photograph every screen would itself become numbing.
+   ========================================================================== */
+
+@layer components {
+  .mp-band {
+    position: relative;
+    /* Tall enough on a phone to feel like a pause rather than a divider,
+       capped in viewport units so it never eats a whole screen on a short
+       one. */
+    height: clamp(19rem, 58svh, 28rem);
+    overflow: hidden;
+    isolation: isolate;
+    background: #1d1518;
+  }
+
+  .mp-band-img {
+    object-fit: cover;
+  }
+
+  .mp-band-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(29, 21, 24, 0.16) 0%,
+      rgba(29, 21, 24, 0.1) 38%,
+      rgba(29, 21, 24, 0.68) 82%,
+      rgba(29, 21, 24, 0.9) 100%
+    );
+  }
+
+  .mp-band-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1.5rem 1.25rem 1.75rem;
+    color: #fdf8f4;
+  }
+
+  .mp-band-kicker {
+    display: block;
+    font-family: var(--font-plex-mono), monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(253, 248, 244, 0.74);
+  }
+
+  .mp-band-line {
+    display: block;
+    margin-top: 0.45rem;
+    max-width: 22ch;
+    font-family: var(--mp-serif);
+    font-size: clamp(1.6rem, 7vw, 2.4rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+  }
+
+  /* ---- motifs ---- */
+
+  .mp-motif {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem auto;
+    max-width: 22rem;
+    color: var(--mp-rose);
+  }
+
+  .mp-motif svg {
+    flex: 0 0 auto;
+    width: 46px;
+    height: 34px;
+    opacity: 0.85;
+  }
+
+  .mp-motif-rule {
+    flex: 1 1 auto;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.26;
+  }
+}
+
+/* The ink sections run on near-black, where the rose is too dark to read as
+   a line. */
+.mp-section-ink .mp-motif {
+  color: #dda0a6;
+}
+
+@media (min-width: 768px) {
+  .mp-band {
+    height: clamp(24rem, 64svh, 34rem);
+  }
+  .mp-band-caption {
+    padding: 2.5rem;
+  }
+  .mp-band-line {
+    max-width: 24ch;
+  }
+  .mp-motif {
+    margin: 2.5rem auto;
+  }
+}
