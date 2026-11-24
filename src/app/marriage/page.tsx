@@ -11,6 +11,7 @@ import HobbyGrid from "@/components/marriage/HobbyGrid";
 import MatchMeter from "@/components/marriage/MatchMeter";
 import PhotoReel from "@/components/marriage/PhotoReel";
 import ScrollProgress from "@/components/marriage/ScrollProgress";
+import SectionDrift from "@/components/marriage/SectionDrift";
 import SectionMotif from "@/components/marriage/SectionMotif";
 import StickyCta from "@/components/marriage/StickyCta";
 import WelcomeGate from "@/components/marriage/WelcomeGate";
@@ -158,6 +159,7 @@ export default function MarriagePage() {
 
       {/* ------------------------------------------------- THE SHORT VERSION */}
       <section id="facts" className="mp-section">
+        <SectionDrift count={5} />
         <div className="mp-wrap">
           <header className="mp-head reveal">
             <p className="mp-eyebrow">01 — The short version</p>
@@ -175,6 +177,7 @@ export default function MarriagePage() {
 
       {/* --------------------------------------------------------- THE LETTER */}
       <section id="letter" className="mp-section mp-section-cream">
+        <SectionDrift count={4} />
         <div className="mp-wrap mp-wrap-narrow">
           <header className="mp-head reveal">
             <p className="mp-eyebrow">02 — In my words</p>
@@ -209,6 +212,7 @@ export default function MarriagePage() {
 
       {/* ---------------------------------------------------------- THE WORK */}
       <section id="work" className="mp-section mp-section-ink">
+        <SectionDrift count={6} tone="gold" />
         <div className="mp-wrap">
           <header className="mp-head reveal">
             <p className="mp-eyebrow">04 — What I do</p>
@@ -273,6 +277,7 @@ export default function MarriagePage() {
 
       {/* ---------------------------------------------------- OFF THE CLOCK */}
       <section id="life" className="mp-section mp-section-cream">
+        <SectionDrift count={5} />
         <div className="mp-wrap">
           <header className="mp-head reveal">
             <p className="mp-eyebrow">06 — Off the clock</p>
@@ -287,6 +292,7 @@ export default function MarriagePage() {
 
       {/* -------------------------------------------------------- THE METER */}
       <section id="match" className="mp-section mp-section-rose">
+        <SectionDrift count={6} />
         <div className="mp-wrap mp-wrap-narrow">
           <header className="mp-head reveal">
             <p className="mp-eyebrow">07 — Your turn</p>
@@ -351,6 +357,7 @@ export default function MarriagePage() {
 
       {/* ----------------------------------------------------- WHAT TO EXPECT */}
       <section id="promises" className="mp-section mp-section-ink">
+        <SectionDrift count={6} tone="gold" />
         <div className="mp-wrap">
           <header className="mp-head reveal">
             <p className="mp-eyebrow">09 — What to expect</p>
@@ -425,6 +432,7 @@ export default function MarriagePage() {
 
       {/* -------------------------------------------------------- THE CONTACT */}
       <section id="contact" className="mp-section mp-section-rose">
+        <SectionDrift count={6} />
         <div className="mp-wrap mp-wrap-narrow">
           <div className="mp-cta reveal">
             <p className="mp-eyebrow">12 — Say hello</p>

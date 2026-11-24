@@ -6,6 +6,7 @@ import {
   GATE_ENTER,
   GATE_EYEBROW,
   GATE_FALLBACK_GREETING,
+  GATE_GREETING,
   GATE_LINES,
   GATE_SKIP,
 } from "@/lib/marriage";
@@ -107,15 +108,18 @@ export default function WelcomeGate() {
       <div className="mp-gate-body">
         <p className="mp-gate-eyebrow">{GATE_EYEBROW}</p>
 
+        {/* Two lines, two sizes. "Jai Shree Krishna," is four times the
+            length of the "Hello," it replaced, so it takes a modest size of
+            its own and her name keeps the display one — she should still be
+            the biggest thing on the screen. */}
         <h2 className="mp-gate-greeting">
           {name ? (
             <>
-              Hello,
-              <br />
-              <span className="mp-gate-name">{name}</span>.
+              <span className="mp-gate-hello">{GATE_GREETING}</span>
+              <span className="mp-gate-name">{name}</span>
             </>
           ) : (
-            GATE_FALLBACK_GREETING
+            <span className="mp-gate-hello is-solo">{GATE_FALLBACK_GREETING}</span>
           )}
         </h2>
 
