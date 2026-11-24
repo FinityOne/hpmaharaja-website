@@ -3003,3 +3003,15 @@
     padding-bottom: calc(8rem + env(safe-area-inset-bottom, 0px));
   }
 }
+
+/* The age under the birth date. Visible without a tap — it is the thing most
+   people check first — but quieter than the date itself. */
+.mp-fact-note {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mp-rose);
+}
