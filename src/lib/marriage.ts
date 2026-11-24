@@ -131,12 +131,6 @@ export type Shot = {
 
 export const GALLERY: Shot[] = [
   {
-    src: "/images/marriage/garba-arena.jpg",
-    alt: "Heran Patel in a navy kurta and printed jacket on stage at a packed Garba night at UC Irvine, arms open to the crowd",
-    caption: "A full arena at Navratri. This is the night I work all year for.",
-    tag: "Navratri",
-  },
-  {
     src: "/images/marriage/golf-casual.jpg",
     alt: "Heran Patel in a white shirt on a sunlit golf course lined with palm trees",
     caption: "Off the clock. Arizona mornings are undefeated.",
@@ -147,12 +141,6 @@ export const GALLERY: Shot[] = [
     alt: "Heran Patel in a blue suit holding a microphone on a conference stage",
     caption: "On stage talking about building things. Still get nervous. Still go up.",
     tag: "Work",
-  },
-  {
-    src: "/images/marriage/pier-sunset.jpg",
-    alt: "Heran Patel in a magenta kurta and printed scarf on a beach at sunset with a pier behind him",
-    caption: "Sunset, kurta, no agenda. I take the quiet seriously too.",
-    tag: "Stillness",
   },
   {
     src: "/images/marriage/stage-garba.jpg",
@@ -167,6 +155,52 @@ export const GALLERY: Shot[] = [
     tag: "Live",
   },
 ];
+
+/* ------------------------------------------------------------------ bands */
+
+export type Band = {
+  src: string;
+  alt: string;
+  /** One line over the photograph. Keep it short enough to read at a glance. */
+  line: string;
+  /** Optional mono kicker above the line. */
+  kicker?: string;
+  /** object-position, for photos whose subject is not at 50% 35%. */
+  focus?: string;
+};
+
+/**
+ * Full-bleed photographs dropped between the text-heavy sections.
+ *
+ * The page is a long read on a phone, and a wall of prose is where people
+ * stop scrolling — so these sit at the three longest stretches: after the
+ * career numbers, after the hobbies, and after the honest list. Each
+ * photograph on this page is used exactly once, here or in the reel, never
+ * both.
+ */
+export const BANDS: Record<"work" | "life" | "honest", Band> = {
+  work: {
+    src: "/images/marriage/garba-arena.jpg",
+    alt: "Heran Patel in a navy kurta and printed jacket on stage at a packed Garba night at UC Irvine, arms open to the crowd",
+    kicker: "Navratri, every year",
+    line: "This is what fifty thousand people actually looks like.",
+    focus: "50% 30%",
+  },
+  life: {
+    src: "/images/marriage/city-street.jpg",
+    alt: "Heran Patel in sunglasses and a white knit polo on a sunlit street in downtown New York",
+    kicker: "Off the clock",
+    line: "New city, no itinerary. My favorite kind of weekend.",
+    focus: "50% 32%",
+  },
+  honest: {
+    src: "/images/marriage/pier-sunset.jpg",
+    alt: "Heran Patel in a magenta kurta and printed scarf on a beach at sunset with a pier behind him",
+    kicker: "Still here?",
+    line: "Then I think we should probably talk.",
+    focus: "50% 38%",
+  },
+};
 
 /* ----------------------------------------------------------------- career */
 
