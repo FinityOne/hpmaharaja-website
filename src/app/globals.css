@@ -2405,15 +2405,32 @@
     margin-top: 1.1rem;
     font-family: var(--mp-serif);
     font-weight: 300;
-    font-size: clamp(2.7rem, 15vw, 4.4rem);
-    line-height: 0.98;
+    line-height: 1;
     letter-spacing: -0.025em;
     color: var(--mp-ink);
     animation: mp-rise 0.8s ease-out 0.2s both;
   }
 
-  /* Her name is the one thing on this screen that should feel handwritten. */
+  /* "Jai Shree Krishna," is four times the length of the "Hello," it
+     replaced, so it takes a modest size and leaves the display one to her
+     name. */
+  .mp-gate-hello {
+    display: block;
+    font-size: clamp(1.45rem, 6.5vw, 2.1rem);
+    color: var(--mp-ink-2);
+  }
+
+  .mp-gate-hello.is-solo {
+    font-size: clamp(2rem, 9vw, 3rem);
+    color: var(--mp-ink);
+  }
+
+  /* Her name is the one thing on this screen that should feel handwritten,
+     and the biggest thing on it. */
   .mp-gate-name {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: clamp(2.6rem, 14vw, 4.2rem);
     font-style: italic;
     color: var(--mp-rose-deep);
   }
@@ -2640,5 +2657,335 @@
 @media (min-width: 768px) {
   .mp-motif {
     margin: 2.5rem auto;
+  }
+}
+
+/* ============================================================================
+   MOTION
+   ----------------------------------------------------------------------------
+   The page is a long scroll, and a long scroll with nothing moving in it
+   reads as a document. Four devices give it life, in rough order of how much
+   they cost:
+
+   1. Staggered reveals. The existing IntersectionObserver already adds `.in`
+      to each `.reveal` block; these rules make that block's children cascade
+      rather than all appearing at once. Pure CSS, works everywhere, no
+      component changes.
+   2. Drifting shapes, moved by a scroll-driven `view()` timeline. No scroll
+      listener and no rAF loop — the compositor does it.
+   3. Photographs that pan very slightly inside their frames as they pass,
+      same mechanism.
+   4. A one-shot slow zoom on the hero as the page loads.
+
+   Everything here is transform and opacity only, so none of it triggers
+   layout. Every hiding rule is scoped under `html.js`, so a reader without
+   JavaScript still sees the whole page, and the entire block is disabled
+   under prefers-reduced-motion.
+   ========================================================================== */
+
+@layer components {
+  /* ---- drifting shapes ---------------------------------------------- */
+
+  .mp-drift {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    /* Behind the section's content, above its background. */
+    z-index: 0;
+  }
+
+  .mp-drift-shape {
+    position: absolute;
+    border-radius: 50% 12% 50% 12%;
+    opacity: 0.5;
+    will-change: transform;
+  }
+
+  /* Sections that host a drift layer need to be a positioning context, and
+     need their own content lifted above it. */
+  .mp-section {
+    position: relative;
+  }
+
+  .mp-wrap {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* ---- the shapes themselves: size, place, tint ------------------------- */
+
+.mp-drift-warm .mp-drift-shape {
+  background: linear-gradient(140deg, rgba(180, 99, 108, 0.3), rgba(171, 132, 73, 0.18));
+}
+.mp-drift-gold .mp-drift-shape {
+  background: linear-gradient(140deg, rgba(171, 132, 73, 0.4), rgba(221, 160, 166, 0.2));
+}
+
+.mp-drift-1 { width: 76px;  height: 76px;  left: -14px;  top: 12%; }
+.mp-drift-2 { width: 30px;  height: 30px;  left: 22%;    top: 68%; }
+.mp-drift-3 { width: 120px; height: 120px; right: -34px; top: 26%; }
+.mp-drift-4 { width: 44px;  height: 44px;  right: 18%;   top: 80%; }
+.mp-drift-5 { width: 20px;  height: 20px;  left: 46%;    top: 8%;  }
+.mp-drift-6 { width: 60px;  height: 60px;  right: 38%;   top: 54%; }
+
+/* ---- scroll-driven motion, where the browser supports it -------------- */
+
+@supports (animation-timeline: view()) {
+  .mp-drift-shape {
+    animation: mp-drift-pass linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+  /* Different distances and directions per shape, so the layer parallaxes
+     instead of sliding as one sheet. */
+  .mp-drift-1 { --mp-dy: 120px;  --mp-dx: 18px;  --mp-rot: 26deg;  }
+  .mp-drift-2 { --mp-dy: -90px;  --mp-dx: -24px; --mp-rot: -40deg; }
+  .mp-drift-3 { --mp-dy: 180px;  --mp-dx: -30px; --mp-rot: 18deg;  }
+  .mp-drift-4 { --mp-dy: -140px; --mp-dx: 16px;  --mp-rot: 52deg;  }
+  .mp-drift-5 { --mp-dy: 200px;  --mp-dx: 34px;  --mp-rot: -30deg; }
+  .mp-drift-6 { --mp-dy: -110px; --mp-dx: -18px; --mp-rot: 36deg;  }
+
+  /* Photographs breathe a little as they pass. Scoped to the frame, which
+     clips, so nothing shifts the layout around them. */
+  .mp-reel-img,
+  .mp-step-photo img,
+  .mp-hero-img {
+    animation: mp-photo-pass linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+
+  /* The headline rises as its section arrives. */
+  .mp-h2 {
+    animation: mp-head-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 10% entry 90%;
+  }
+}
+
+@keyframes mp-drift-pass {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  to {
+    transform: translate3d(var(--mp-dx, 0), var(--mp-dy, 0), 0) rotate(var(--mp-rot, 0deg));
+  }
+}
+
+@keyframes mp-photo-pass {
+  from {
+    transform: scale(1.07) translateY(-1.4%);
+  }
+  to {
+    transform: scale(1.07) translateY(1.4%);
+  }
+}
+
+@keyframes mp-head-rise {
+  from {
+    opacity: 0.25;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- staggered cascades ----------------------------------------------- */
+
+/* The children of a revealed block start low and arrive one after another.
+   Scoped under `.js`, like every other hiding rule in this file. */
+.js .reveal .mp-fact-grid > li,
+.js .reveal .mp-hobby-grid > li,
+.js .reveal .mp-family-list > li,
+.js .reveal .mp-reel-track > li,
+.js .reveal .mp-cta-list > li,
+.js .reveal .mp-list > li {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js .reveal.in .mp-fact-grid > li,
+.js .reveal.in .mp-hobby-grid > li,
+.js .reveal.in .mp-family-list > li,
+.js .reveal.in .mp-reel-track > li,
+.js .reveal.in .mp-cta-list > li,
+.js .reveal.in .mp-list > li {
+  opacity: 1;
+  transform: none;
+}
+
+/* The cascade itself. Scoped to the containers that actually stagger —
+   a looser `.reveal.in > * > :nth-child()` handed transition-delays to
+   unrelated descendants, including controls whose own transitions then
+   arrived late. */
+.js .reveal.in .mp-fact-grid > :nth-child(1),
+.js .reveal.in .mp-hobby-grid > :nth-child(1),
+.js .reveal.in .mp-family-list > :nth-child(1),
+.js .reveal.in .mp-reel-track > :nth-child(1),
+.js .reveal.in .mp-cta-list > :nth-child(1),
+.js .reveal.in .mp-list > :nth-child(1) {
+  transition-delay: 0.04s;
+}
+.js .reveal.in .mp-fact-grid > :nth-child(2),
+.js .reveal.in .mp-hobby-grid > :nth-child(2),
+.js .reveal.in .mp-family-list > :nth-child(2),
+.js .reveal.in .mp-reel-track > :nth-child(2),
+.js .reveal.in .mp-cta-list > :nth-child(2),
+.js .reveal.in .mp-list > :nth-child(2) {
+  transition-delay: 0.10s;
+}
+.js .reveal.in .mp-fact-grid > :nth-child(3),
+.js .reveal.in .mp-hobby-grid > :nth-child(3),
+.js .reveal.in .mp-family-list > :nth-child(3),
+.js .reveal.in .mp-reel-track > :nth-child(3),
+.js .reveal.in .mp-cta-list > :nth-child(3),
+.js .reveal.in .mp-list > :nth-child(3) {
+  transition-delay: 0.16s;
+}
+.js .reveal.in .mp-fact-grid > :nth-child(4),
+.js .reveal.in .mp-hobby-grid > :nth-child(4),
+.js .reveal.in .mp-family-list > :nth-child(4),
+.js .reveal.in .mp-reel-track > :nth-child(4),
+.js .reveal.in .mp-cta-list > :nth-child(4),
+.js .reveal.in .mp-list > :nth-child(4) {
+  transition-delay: 0.22s;
+}
+.js .reveal.in .mp-fact-grid > :nth-child(5),
+.js .reveal.in .mp-hobby-grid > :nth-child(5),
+.js .reveal.in .mp-family-list > :nth-child(5),
+.js .reveal.in .mp-reel-track > :nth-child(5),
+.js .reveal.in .mp-cta-list > :nth-child(5),
+.js .reveal.in .mp-list > :nth-child(5) {
+  transition-delay: 0.28s;
+}
+.js .reveal.in .mp-fact-grid > :nth-child(6),
+.js .reveal.in .mp-hobby-grid > :nth-child(6),
+.js .reveal.in .mp-family-list > :nth-child(6),
+.js .reveal.in .mp-reel-track > :nth-child(6),
+.js .reveal.in .mp-cta-list > :nth-child(6),
+.js .reveal.in .mp-list > :nth-child(6) {
+  transition-delay: 0.34s;
+}
+.js .reveal.in .mp-fact-grid > :nth-child(7),
+.js .reveal.in .mp-hobby-grid > :nth-child(7),
+.js .reveal.in .mp-family-list > :nth-child(7),
+.js .reveal.in .mp-reel-track > :nth-child(7),
+.js .reveal.in .mp-cta-list > :nth-child(7),
+.js .reveal.in .mp-list > :nth-child(7) {
+  transition-delay: 0.40s;
+}
+.js .reveal.in .mp-fact-grid > :nth-child(8),
+.js .reveal.in .mp-hobby-grid > :nth-child(8),
+.js .reveal.in .mp-family-list > :nth-child(8),
+.js .reveal.in .mp-reel-track > :nth-child(8),
+.js .reveal.in .mp-cta-list > :nth-child(8),
+.js .reveal.in .mp-list > :nth-child(8) {
+  transition-delay: 0.46s;
+}
+.js .reveal.in .mp-fact-grid > :nth-child(9),
+.js .reveal.in .mp-hobby-grid > :nth-child(9),
+.js .reveal.in .mp-family-list > :nth-child(9),
+.js .reveal.in .mp-reel-track > :nth-child(9),
+.js .reveal.in .mp-cta-list > :nth-child(9),
+.js .reveal.in .mp-list > :nth-child(9) {
+  transition-delay: 0.52s;
+}
+
+/* Items that carry `.reveal` themselves — the credential cards, the
+   promises, the timeline phases, the steps — get a gentler lift than the
+   sitewide default, since several of them arrive together. */
+.js .mp-cred.reveal,
+.js .mp-promises > li.reveal,
+.js .mp-timeline > li.reveal,
+.js .mp-steps > li.reveal {
+  transform: translateY(22px);
+}
+
+/* ---- the hero ---------------------------------------------------------- */
+
+/* One slow settle as the page opens, rather than an endless Ken Burns —
+   movement that announces the page and then gets out of the way. */
+.mp-hero-img {
+  animation: mp-hero-settle 2.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@supports (animation-timeline: view()) {
+  /* With a scroll timeline available the hero pans instead, which the
+     settle would fight. */
+  .mp-hero-img {
+    animation: mp-photo-pass linear both;
+  }
+}
+
+@keyframes mp-hero-settle {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* ---- the calculator's bar gets a travelling sheen while it is moving --- */
+
+.mp-calc-fill {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Only once the score is strong. An infinite shimmer on every visit is noise
+   and a needless drain; here it marks a moment. */
+.mp-calc.is-strong .mp-calc-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 80%
+  );
+  animation: mp-sheen 2.6s ease-in-out infinite;
+}
+
+@keyframes mp-sheen {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* ---- nobody who asked for stillness gets any of it --------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .mp-drift {
+    display: none;
+  }
+  .mp-drift-shape,
+  .mp-reel-img,
+  .mp-step-photo img,
+  .mp-hero-img,
+  .mp-h2,
+  .mp-calc.is-strong .mp-calc-fill::after {
+    animation: none;
+  }
+  .js .reveal .mp-fact-grid > li,
+  .js .reveal .mp-hobby-grid > li,
+  .js .reveal .mp-family-list > li,
+  .js .reveal .mp-reel-track > li,
+  .js .reveal .mp-cta-list > li,
+  .js .reveal .mp-list > li {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

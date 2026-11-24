@@ -642,4 +642,12 @@ export const GATE_ENTER = "Come in";
 export const GATE_SKIP = "Skip to the compatibility calculator";
 
 /** Shown in place of her name when the link carries no name at all. */
-export const GATE_FALLBACK_GREETING = "Hello there.";
+/**
+ * The greeting itself. "Jai Shree Krishna" is how Heran actually opens — it
+ * is the first line of his own letter further down the page — so the door
+ * should sound like him rather than like a form letter.
+ */
+export const GATE_GREETING = "Jai Shree Krishna,";
+
+/** Shown when the link carries no name at all. */
+export const GATE_FALLBACK_GREETING = "Jai Shree Krishna.";
