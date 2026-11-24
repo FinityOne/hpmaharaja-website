@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import CountUp from "@/components/marriage/CountUp";
+import CtaTitle from "@/components/marriage/CtaTitle";
 import FactGrid from "@/components/marriage/FactGrid";
 import HeroRotator from "@/components/marriage/HeroRotator";
 import HobbyGrid from "@/components/marriage/HobbyGrid";
@@ -11,6 +12,7 @@ import MatchMeter from "@/components/marriage/MatchMeter";
 import PhotoReel from "@/components/marriage/PhotoReel";
 import ScrollProgress from "@/components/marriage/ScrollProgress";
 import StickyCta from "@/components/marriage/StickyCta";
+import WelcomeGate from "@/components/marriage/WelcomeGate";
 import {
   ABOUT_GREETING,
   ABOUT_LETTER,
@@ -100,6 +102,9 @@ export default function MarriagePage() {
 
   return (
     <div className={`mp ${cormorant.variable}`}>
+      {/* Only ever appears for a personalised link (/marriage?for=Name), and
+          only after mount — the server-rendered page is the full biodata. */}
+      <WelcomeGate />
       <ScrollProgress chapters={CHAPTERS} />
 
       {/* ------------------------------------------------------------ HERO */}
@@ -411,9 +416,7 @@ export default function MarriagePage() {
         <div className="mp-wrap mp-wrap-narrow">
           <div className="mp-cta reveal">
             <p className="mp-eyebrow">12 — Say hello</p>
-            <h2 className="mp-cta-title">
-              If you read this far, you already know whether to call.
-            </h2>
+            <CtaTitle />
             <p className="mp-cta-line">
               Pick whichever one feels easiest. There&rsquo;s no wrong way to start
               this.

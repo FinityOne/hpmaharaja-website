@@ -553,3 +553,87 @@ export const APPROACH = [
 
 export const FAMILIES_WELCOME =
   "Parents and family are welcome to reach out directly. I'd be glad to speak with them.";
+
+/* ------------------------------------------------------- the welcome gate */
+
+/**
+ * Query parameters that carry her name, so Heran can send a personalised
+ * link: /marriage?for=Priya. Both spellings work; `for` is the one to share.
+ */
+export const GUEST_PARAMS = ["for", "name"] as const;
+
+/**
+ * Cleans a name out of the URL before it is ever rendered.
+ *
+ * The value is attacker-controlled in the sense that anyone can edit the link
+ * before forwarding it, so this is deliberately strict: letters (including
+ * accented ones), spaces, hyphens and apostrophes, nothing else, capped at a
+ * length a real first name fits in. React escapes markup on its own — the
+ * risk being handled here is a shared link rewritten to put ugly text in
+ * Heran's mouth, not script injection.
+ *
+ * Returns "" when nothing usable survives, which the page treats as "no name
+ * given" and falls back to the ordinary, ungreeted version.
+ */
+export function sanitizeGuestName(raw: string | null | undefined): string {
+  if (!raw) return "";
+
+  const cleaned = raw
+    /* \p{M} keeps combining marks, without which Devanagari and Gujarati
+       names lose their matras — "प्रिया" would arrive as "परय". */
+    .replace(/[^\p{L}\p{M}\s'’-]/gu, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    /* At most two words. A first name, or a first and last — never a
+       sentence someone has smuggled into a forwarded link. */
+    .split(" ")
+    .slice(0, 2)
+    .join(" ")
+    .slice(0, 24)
+    .trim();
+
+  if (cleaned.replace(/[^\p{L}]/gu, "").length < 2) return "";
+
+  /* Title-case it, so "priya" and "PRIYA" both read as a name rather than
+     as a database row. Hyphenated and apostrophed names keep their shape. */
+  return cleaned
+    .split(" ")
+    .map((word) =>
+      word
+        .split(/([-'’])/)
+        .map((part) =>
+          /[-'’]/.test(part)
+            ? part
+            : part.charAt(0).toLocaleUpperCase() + part.slice(1).toLocaleLowerCase(),
+        )
+        .join(""),
+    )
+    .join(" ");
+}
+
+/** The small line above the greeting. */
+export const GATE_EYEBROW = "A private introduction";
+
+/**
+ * Rotated one at a time on the gate. The first half are gracious about her
+ * — about her time and her curiosity, never her looks, because he hasn't met
+ * her and a compliment about a face he hasn't seen is worth nothing. The
+ * rest are about what the two of them could actually be, which is the thing
+ * worth enticing her with.
+ */
+export const GATE_LINES = [
+  "Whoever thought of introducing us has good taste.",
+  "You didn't have to open this. Thank you for being curious.",
+  "Somewhere past this page is a Sunday morning, two cups of chai, and nowhere to be.",
+  "A house that's loud at Diwali and completely quiet on a Tuesday night.",
+  "Someone in your corner at every family wedding for the next fifty years.",
+  "A man who answers the phone, and who comes home for dinner.",
+  "Nine nights of Garba every year, and someone to find you in the crowd.",
+  "Most of these pages are a list of facts. This one is an actual person.",
+];
+
+export const GATE_ENTER = "Come in";
+export const GATE_SKIP = "Skip to the compatibility calculator";
+
+/** Shown in place of her name when the link carries no name at all. */
+export const GATE_FALLBACK_GREETING = "Hello there.";
