@@ -29,6 +29,7 @@ export default function FactGrid({ facts }: { facts: QuickFact[] }) {
             >
               <span className="mp-fact-label">{fact.label}</span>
               <span className="mp-fact-value">{fact.value}</span>
+              {fact.note && <span className="mp-fact-note">{fact.note}</span>}
               <span className={`mp-collapse${isOpen ? " is-open" : ""}`}>
                 <span className="mp-collapse-inner">
                   <span className="mp-fact-detail">{fact.detail}</span>

@@ -41,7 +41,7 @@ import {
   MATCH_VERDICTS,
   NOT_A_FIT,
   PROMISES,
-  QUICK_FACTS,
+  quickFacts,
   SIDE_NOTE,
   TIMELINE,
   TIMELINE_NOTE,
@@ -140,7 +140,7 @@ export default function MarriagePage() {
           </h1>
           <HeroRotator lines={HERO_LINES} />
           <ul className="mp-hero-chips">
-            <li>{age}</li>
+            <li>{age} years old</li>
             <li>6 ft</li>
             <li>Pure veg</li>
             <li>Phoenix, AZ</li>
@@ -167,10 +167,11 @@ export default function MarriagePage() {
             <p className="mp-lede">Tap any of these for the real answer.</p>
           </header>
           <div className="reveal">
-            <FactGrid facts={QUICK_FACTS} />
+            <FactGrid facts={quickFacts()} />
           </div>
           <p className="mp-footnote reveal">
-            Born {BIRTH_TIME}, London — for anyone who wants to run the chart.
+            Born 25 April 1996 at {BIRTH_TIME} in London — for anyone who wants to
+            run the chart.
           </p>
         </div>
       </section>

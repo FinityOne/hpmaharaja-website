@@ -67,42 +67,59 @@ export const HERO_PHOTO = {
 export type QuickFact = {
   label: string;
   value: string;
+  /** Sits under the value, always visible — not hidden behind a tap. */
+  note?: string;
   /** Revealed when the card is tapped. Keep it to one warm sentence. */
   detail: string;
 };
 
-export const QUICK_FACTS: QuickFact[] = [
-  {
-    label: "Born",
-    value: `April 25, 1996`,
-    detail: `${BIRTH_TIME} in London, U.K. — my mum still tells the story better than I do.`,
-  },
-  {
-    label: "Height",
-    value: "6 ft",
-    detail: "Tall enough that heels are never a problem. Wear them.",
-  },
-  {
-    label: "Based in",
-    value: "Phoenix, AZ",
-    detail: "Sunshine, space, and a thirty-minute drive to a trailhead. I'd show you around.",
-  },
-  {
-    label: "Diet",
-    value: "Pure veg",
-    detail: "Vegetarian, no eggs — always have been. A veg kitchen is home to me, not a rule.",
-  },
-  {
-    label: "Status",
-    value: "British citizen",
-    detail: "British citizen (U.K.) with a U.S. Green Card. Paperwork is sorted, both sides.",
-  },
-  {
-    label: "Community",
-    value: "Gujarati · Patel",
-    detail: "Raised in it, still living it — not just at weddings and Navratri.",
-  },
-];
+/**
+ * A function rather than a constant, because the first card carries his age
+ * and an age written down is wrong within a year. It is derived from
+ * BIRTH_DATE at render, and the page sets `revalidate = 86400`, so the
+ * number turns over within a day of his birthday on its own.
+ *
+ * The age sits beside the date rather than replacing it: a biodata is read
+ * by her and then by her parents, and the two of them want different things
+ * from that line — "is he my age" and "what is his exact date of birth".
+ */
+export function quickFacts(on: Date = new Date()): QuickFact[] {
+  const age = ageOn(on);
+
+  return [
+    {
+      label: "Born",
+      value: `April 25, 1996`,
+      note: `${age} years old`,
+      detail: `${BIRTH_TIME} in London, U.K. — my mum still tells the story better than I do.`,
+    },
+    {
+      label: "Height",
+      value: "6 ft",
+      detail: "Tall enough that heels are never a problem. Wear them.",
+    },
+    {
+      label: "Based in",
+      value: "Phoenix, AZ",
+      detail: "Sunshine, space, and a thirty-minute drive to a trailhead. I'd show you around.",
+    },
+    {
+      label: "Diet",
+      value: "Pure veg",
+      detail: "Vegetarian, no eggs — always have been. A veg kitchen is home to me, not a rule.",
+    },
+    {
+      label: "Status",
+      value: "British citizen",
+      detail: "British citizen (U.K.) with a U.S. Green Card. Paperwork is sorted, both sides.",
+    },
+    {
+      label: "Community",
+      value: "Gujarati · Patel",
+      detail: "Raised in it, still living it — not just at weddings and Navratri.",
+    },
+  ];
+}
 
 /* ------------------------------------------------------------------ about */
 
