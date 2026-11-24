@@ -2352,3 +2352,202 @@
 .mp-section-ink .mp-eyebrow {
   color: #dda0a6;
 }
+
+/* ============================================================================
+   THE WELCOME GATE (/marriage?for=Name)
+   ----------------------------------------------------------------------------
+   A full-screen door in front of the biodata, shown only for a personalised
+   link and only after mount. One name, one rotating line, one button — it has
+   to be readable and decidable in about four seconds, on a phone, by someone
+   who was sent a link by her mother.
+   ========================================================================== */
+
+@layer components {
+  .mp-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 2rem 1.5rem;
+    background:
+      radial-gradient(120% 80% at 50% 0%, #fdf1ec 0%, transparent 60%),
+      linear-gradient(165deg, #fbf3ee 0%, #f3e2dc 48%, #ead2cd 100%);
+    animation: mp-gate-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .mp-gate-petals {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .mp-gate-body {
+    position: relative;
+    width: 100%;
+    max-width: 30rem;
+    text-align: center;
+  }
+
+  .mp-gate-eyebrow {
+    font-family: var(--font-plex-mono), monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--mp-rose);
+    animation: mp-rise 0.7s ease-out 0.1s both;
+  }
+
+  .mp-gate-greeting {
+    margin-top: 1.1rem;
+    font-family: var(--mp-serif);
+    font-weight: 300;
+    font-size: clamp(2.7rem, 15vw, 4.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    color: var(--mp-ink);
+    animation: mp-rise 0.8s ease-out 0.2s both;
+  }
+
+  /* Her name is the one thing on this screen that should feel handwritten. */
+  .mp-gate-name {
+    font-style: italic;
+    color: var(--mp-rose-deep);
+  }
+
+  .mp-gate-sub {
+    margin-top: 1.1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--mp-ink-2);
+    animation: mp-rise 0.8s ease-out 0.35s both;
+  }
+
+  /* Fixed height, so a longer line never shunts the button down the screen
+     mid-rotation and moves the target under her thumb. */
+  .mp-gate-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 5.2rem;
+    margin-top: 1.6rem;
+    padding: 0 0.25rem;
+    font-family: var(--mp-serif);
+    font-size: 1.32rem;
+    line-height: 1.4;
+    color: var(--mp-ink);
+    animation: mp-rise 0.8s ease-out 0.5s both;
+  }
+
+  .mp-gate-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.3rem;
+    margin-top: 0.4rem;
+  }
+
+  .mp-gate-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(36, 27, 30, 0.18);
+    transition: background-color 0.4s ease, width 0.4s ease;
+  }
+
+  .mp-gate-enter {
+    width: 100%;
+    margin-top: 1.9rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    animation: mp-rise 0.8s ease-out 0.65s both;
+  }
+
+  .mp-gate-skip {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    margin-top: 0.6rem;
+    font-family: var(--font-plex-mono), monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mp-ink-3);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    animation: mp-rise 0.8s ease-out 0.75s both;
+  }
+}
+
+/* ---- stateful, outside the layer as elsewhere in this file ---- */
+
+.mp-gate-dot.is-active {
+  width: 16px;
+  background: var(--mp-rose);
+}
+
+/* The curtain lifts rather than blinking out. */
+.mp-gate.is-leaving {
+  animation: mp-gate-out 0.62s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+.mp-gate .mp-petal {
+  background: rgba(214, 142, 146, 0.42);
+}
+
+@media (min-width: 640px) {
+  .mp-gate-enter {
+    width: auto;
+    min-width: 15rem;
+  }
+}
+
+@keyframes mp-gate-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes mp-gate-out {
+  from {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.04);
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+@keyframes mp-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mp-gate,
+  .mp-gate.is-leaving,
+  .mp-gate-eyebrow,
+  .mp-gate-greeting,
+  .mp-gate-sub,
+  .mp-gate-line,
+  .mp-gate-enter,
+  .mp-gate-skip {
+    animation: none;
+  }
+  .mp-gate-dot {
+    transition: none;
+  }
+}
