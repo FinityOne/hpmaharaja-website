@@ -12,6 +12,15 @@ export default function Navbar() {
   const pathname = usePathname();
   const isArticles = pathname.startsWith("/articles");
 
+  /* The biodata is a single focused read, usually reached from a link
+     Heran sent to one person. A row of links to Hiring and Merch sitting
+     over her thumb the whole way down is a distraction from the only
+     decision that page is asking for, so the bar is dropped entirely
+     there — its own progress rail takes the top of the screen, and the
+     footer still carries every route for anyone who wants the rest of
+     the site. */
+  const hidden = pathname.startsWith("/marriage");
+
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -67,6 +76,10 @@ export default function Navbar() {
     ...link,
     active: link.active ?? pathname.startsWith(link.href),
   }));
+
+  /* After every hook, never before one — the component still has to run the
+     same hooks in the same order on the page where it renders nothing. */
+  if (hidden) return null;
 
   return (
     <>

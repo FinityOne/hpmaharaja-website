@@ -932,12 +932,12 @@
 
   /* ------------------------------------------------------- progress rail */
 
-  /* Sits directly under the fixed navbar. The navbar's meta strip collapses
-     on scroll, so the desktop offset matches the collapsed bar, not the tall
-     one — by the time there is any progress to show, it has collapsed. */
+  /* The site navbar is not rendered on this page (see Navbar.tsx), so the
+     rail sits flush at the top of the screen and becomes the only fixed
+     chrome the reader has. */
   .mp-progress {
     position: fixed;
-    top: 4rem;
+    top: 0;
     left: 0;
     right: 0;
     z-index: 30;
@@ -986,6 +986,11 @@
 
   .mp-section {
     padding: 4.5rem 0;
+    /* `html` sets scroll-padding-top to hold anchors clear of the fixed
+       navbar — which this page does not render. Without pulling that back,
+       the scroll cue and the gate's "skip to the calculator" both land a
+       few empty inches above the thing they were aiming at. */
+    scroll-margin-top: -3rem;
   }
 
   .mp-section-cream {
@@ -1086,7 +1091,7 @@
     width: 100%;
     max-width: 68rem;
     margin: 0 auto;
-    padding: 7rem 1.25rem 3rem;
+    padding: 4rem 1.25rem 3rem;
     color: #fdf8f4;
   }
 
@@ -1530,7 +1535,7 @@
      entire point of the section. */
   .mp-calc-readout {
     position: sticky;
-    top: 5.4rem;
+    top: 1.6rem;
     z-index: 20;
     margin: 1.5rem 0 2rem;
     padding: 1.1rem 1.1rem 1.25rem;
@@ -2278,7 +2283,7 @@
     padding: 0 2.5rem;
   }
   .mp-hero-body {
-    padding: 9rem 2.5rem 4.5rem;
+    padding: 5.5rem 2.5rem 4.5rem;
   }
   .mp-reel-track {
     padding-left: 2.5rem;
@@ -2312,11 +2317,8 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2rem 2.5rem;
   }
-  .mp-progress {
-    top: 4.5rem;
-  }
   .mp-calc-readout {
-    top: 5.9rem;
+    top: 1.9rem;
   }
   .mp-progress-meta {
     padding-left: 2.5rem;
@@ -2549,5 +2551,13 @@
   }
   .mp-gate-dot {
     transition: none;
+  }
+}
+
+/* `html` widens scroll-padding-top at the lg breakpoint; match it so the
+   anchor offset above stays the same two rems at every width. */
+@media (min-width: 1024px) {
+  .mp-section {
+    scroll-margin-top: -5rem;
   }
 }
