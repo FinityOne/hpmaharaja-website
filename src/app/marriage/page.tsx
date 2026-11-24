@@ -102,7 +102,7 @@ export default function MarriagePage() {
 
   return (
     <div className={`mp ${cormorant.variable}`}>
-      {/* Only ever appears for a personalised link (/marriage?for=Name), and
+      {/* Only ever appears for a personalized link (/marriage?for=Name), and
           only after mount — the server-rendered page is the full biodata. */}
       <WelcomeGate />
       <ScrollProgress chapters={CHAPTERS} />

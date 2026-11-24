@@ -156,7 +156,7 @@ export const GALLERY: Shot[] = [
   },
   {
     src: "/images/marriage/stage-garba.jpg",
-    alt: "Heran Patel in a pink kurta and black jacket singing into a microphone on a colourful festival stage",
+    alt: "Heran Patel in a pink kurta and black jacket singing into a microphone on a colorful festival stage",
     caption: "Hosting. If you've been to a Rameelo night, you've heard this voice.",
     tag: "On the mic",
   },
@@ -352,7 +352,7 @@ export const MATCH_QUESTIONS: MatchQuestion[] = [
     topic: "Parents",
     prompt: "How close do you want to be to both sets of parents?",
     options: [
-      { label: "Very — family is the centre of it all", score: 100 },
+      { label: "Very — family is the center of it all", score: 100 },
       { label: "Close, with our own space too", score: 85 },
       { label: "Warm but independent", score: 55 },
       { label: "I'd want real distance from them", score: 15, dealbreaker: true },
@@ -366,7 +366,7 @@ export const MATCH_QUESTIONS: MatchQuestion[] = [
       { label: "It's part of my everyday", score: 100 },
       { label: "Important to me, quietly", score: 90 },
       { label: "Cultural more than spiritual", score: 65 },
-      { label: "Not something I practise", score: 35 },
+      { label: "Not something I practice", score: 35 },
     ],
   },
   {
@@ -557,7 +557,7 @@ export const FAMILIES_WELCOME =
 /* ------------------------------------------------------- the welcome gate */
 
 /**
- * Query parameters that carry her name, so Heran can send a personalised
+ * Query parameters that carry her name, so Heran can send a personalized
  * link: /marriage?for=Priya. Both spellings work; `for` is the one to share.
  */
 export const GUEST_PARAMS = ["for", "name"] as const;

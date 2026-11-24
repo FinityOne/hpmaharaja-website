@@ -932,12 +932,12 @@
 
   /* ------------------------------------------------------- progress rail */
 
-  /* Sits directly under the fixed navbar. The navbar's meta strip collapses
-     on scroll, so the desktop offset matches the collapsed bar, not the tall
-     one — by the time there is any progress to show, it has collapsed. */
+  /* The site navbar is not rendered on this page (see Navbar.tsx), so the
+     rail sits flush at the top of the screen and becomes the only fixed
+     chrome the reader has. */
   .mp-progress {
     position: fixed;
-    top: 4rem;
+    top: 0;
     left: 0;
     right: 0;
     z-index: 30;
@@ -986,6 +986,11 @@
 
   .mp-section {
     padding: 4.5rem 0;
+    /* `html` sets scroll-padding-top to hold anchors clear of the fixed
+       navbar — which this page does not render. Without pulling that back,
+       the scroll cue and the gate's "skip to the calculator" both land a
+       few empty inches above the thing they were aiming at. */
+    scroll-margin-top: -3rem;
   }
 
   .mp-section-cream {
@@ -1086,7 +1091,7 @@
     width: 100%;
     max-width: 68rem;
     margin: 0 auto;
-    padding: 7rem 1.25rem 3rem;
+    padding: 4rem 1.25rem 3rem;
     color: #fdf8f4;
   }
 
@@ -1530,7 +1535,7 @@
      entire point of the section. */
   .mp-calc-readout {
     position: sticky;
-    top: 5.4rem;
+    top: 1.6rem;
     z-index: 20;
     margin: 1.5rem 0 2rem;
     padding: 1.1rem 1.1rem 1.25rem;
@@ -1633,7 +1638,7 @@
   }
 
   .mp-q {
-    padding: 1.1rem;
+    padding: 1.25rem 1.15rem 1.15rem;
     background: #fffdfb;
     border: 1px solid var(--mp-line);
     border-radius: 16px;
@@ -1642,7 +1647,7 @@
 
   .mp-q-legend {
     display: block;
-    margin-bottom: 0.9rem;
+    margin-bottom: 1.05rem;
   }
 
   .mp-q-topic {
@@ -1656,7 +1661,7 @@
 
   .mp-q-prompt {
     display: block;
-    margin-top: 0.4rem;
+    margin-top: 0.45rem;
     font-family: var(--mp-serif);
     font-size: 1.3rem;
     line-height: 1.25;
@@ -1664,16 +1669,16 @@
 
   .mp-q-options {
     display: grid;
-    gap: 0.5rem;
+    gap: 0.55rem;
   }
 
   .mp-opt {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.7rem;
     width: 100%;
     min-height: 48px;
-    padding: 0.75rem 0.9rem;
+    padding: 0.8rem 1rem;
     text-align: left;
     background: var(--mp-cream);
     border: 1px solid var(--mp-line);
@@ -1685,7 +1690,6 @@
     flex: 0 0 auto;
     width: 16px;
     height: 16px;
-    margin-top: 0.15rem;
     border: 1px solid var(--mp-line);
     border-radius: 999px;
     background: #fff;
@@ -2278,7 +2282,7 @@
     padding: 0 2.5rem;
   }
   .mp-hero-body {
-    padding: 9rem 2.5rem 4.5rem;
+    padding: 5.5rem 2.5rem 4.5rem;
   }
   .mp-reel-track {
     padding-left: 2.5rem;
@@ -2312,11 +2316,8 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2rem 2.5rem;
   }
-  .mp-progress {
-    top: 4.5rem;
-  }
   .mp-calc-readout {
-    top: 5.9rem;
+    top: 1.9rem;
   }
   .mp-progress-meta {
     padding-left: 2.5rem;
@@ -2549,5 +2550,48 @@
   }
   .mp-gate-dot {
     transition: none;
+  }
+}
+
+/* `html` widens scroll-padding-top at the lg breakpoint; match it so the
+   anchor offset above stays the same two rems at every width. */
+@media (min-width: 1024px) {
+  .mp-section {
+    scroll-margin-top: -5rem;
+  }
+}
+
+/* The calculator at desktop width. The phone values keep a question and its
+   four answers on one screen, which matters more than elegance; given the
+   room, the cards and their tap targets both grow. */
+@media (min-width: 768px) {
+  .mp-calc-questions {
+    gap: 1.75rem;
+  }
+  .mp-q {
+    padding: 1.75rem 1.75rem 1.6rem;
+    border-radius: 18px;
+  }
+  .mp-q-legend {
+    margin-bottom: 1.25rem;
+  }
+  .mp-q-prompt {
+    font-size: 1.5rem;
+  }
+  .mp-q-options {
+    gap: 0.6rem;
+  }
+  .mp-opt {
+    min-height: 52px;
+    padding: 0.9rem 1.15rem;
+  }
+  .mp-opt-text {
+    font-size: 0.97rem;
+  }
+  .mp-calc-readout {
+    padding: 1.4rem 1.5rem 1.5rem;
+  }
+  .mp-calc-intro {
+    font-size: 1rem;
   }
 }

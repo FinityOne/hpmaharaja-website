@@ -14,7 +14,7 @@ import useGuestName from "./useGuestName";
 /**
  * The door in front of the biodata.
  *
- * Heran shares a personalised link — /marriage?for=Priya — and this is the
+ * Heran shares a personalized link — /marriage?for=Priya — and this is the
  * first thing she sees: her name, one rotating line about what this could
  * be, and a single button. One decision, no scrolling, then the page opens.
  *

@@ -7,7 +7,7 @@ import type { MatchQuestion } from "@/lib/marriage";
 type Verdict = { min: number; headline: string; line: string };
 
 /**
- * The compatibility calculator — the interactive centre of the page.
+ * The compatibility calculator — the interactive center of the page.
  *
  * Every question is about *her*, so answering is honest self-description
  * rather than scoring him. Each option carries Heran's own weight for it, and
@@ -119,13 +119,26 @@ export default function MatchMeter({
           const pick = answers[q.id];
           return (
             <li key={q.id} className={pick === undefined ? undefined : "is-answered"}>
-              <fieldset className="mp-q">
-                <legend className="mp-q-legend">
-                  <span className="mp-q-topic">
+              {/* A grouping div rather than fieldset/legend. A <legend> is
+                  laid out in the fieldset's border box, not its padding box,
+                  so it escaped the top of the card and took the card's top
+                  padding with it. `role="group"` plus aria-labelledby gives
+                  the same semantics to a screen reader — the group is
+                  announced with its number, topic and question — while
+                  laying out like ordinary content. */}
+              <div
+                className="mp-q"
+                role="group"
+                aria-labelledby={`${q.id}-topic ${q.id}-prompt`}
+              >
+                <div className="mp-q-legend">
+                  <span className="mp-q-topic" id={`${q.id}-topic`}>
                     {String(qi + 1).padStart(2, "0")} · {q.topic}
                   </span>
-                  <span className="mp-q-prompt">{q.prompt}</span>
-                </legend>
+                  <span className="mp-q-prompt" id={`${q.id}-prompt`}>
+                    {q.prompt}
+                  </span>
+                </div>
                 <div className="mp-q-options">
                   {q.options.map((option, oi) => {
                     const on = pick === oi;
@@ -143,7 +156,7 @@ export default function MatchMeter({
                     );
                   })}
                 </div>
-              </fieldset>
+              </div>
             </li>
           );
         })}
