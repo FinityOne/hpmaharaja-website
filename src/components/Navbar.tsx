@@ -62,6 +62,7 @@ export default function Navbar() {
     { href: "/tour", label: "Tour" },
     { href: "/media", label: "Media" },
     { href: "/articles", label: "Articles", active: isArticles },
+    { href: "/marriage", label: "Marriage" },
   ].map((link) => ({
     ...link,
     active: link.active ?? pathname.startsWith(link.href),
@@ -79,7 +80,7 @@ export default function Navbar() {
           className="hidden lg:block border-b border-line/70 transition-all duration-300"
         >
           <div className="max-w-7xl mx-auto px-6 lg:px-10 h-8 flex items-center justify-between">
-            <p className="label text-[0.6rem]">Heran Patel · aka HP Maharaja · Est. 2013</p>
+            <p className="label text-[0.6rem]">Heran Patel · aka HP Maharaja · Est. 1996</p>
             <div className="flex items-center gap-6">
               <a
                 href="https://soundcloud.com/hpmaharaja"
@@ -117,7 +118,7 @@ export default function Navbar() {
                 </span>
               </Link>
               {/* DESKTOP NAV */}
-              <nav className="hidden lg:flex items-center gap-9" aria-label="Primary">
+              <nav className="hidden lg:flex items-center gap-4 xl:gap-9" aria-label="Primary">
                 {navLinks.map((link) => (
                   <Link
                     key={link.label}
@@ -130,7 +131,7 @@ export default function Navbar() {
               </nav>
               {/* CTA + MOBILE TOGGLE */}
               <div className="flex items-center gap-3">
-                <Link href="/contact" className="btn btn-solid hidden lg:inline-flex !py-3 !px-5">
+                <Link href="/contact" className="btn btn-solid hidden lg:inline-flex !py-3 !px-4 xl:!px-5">
                   Get in touch
                 </Link>
                 <button

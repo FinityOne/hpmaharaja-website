@@ -99,6 +99,10 @@ Full page: ${SITE_URL}/achievements
 - ${SITE_URL}/articles — the full journal archive, "Maharaja News".
 - ${SITE_URL}/merch — HP Maharaja Essentials, Drop 001, pre-launch.
 - ${SITE_URL}/community — three ways in: share a story, collaborate, or meet in person.
+- ${SITE_URL}/marriage — matrimonial biodata: born 25 April 1996 in London, raised in
+  Orange County, based in Phoenix; 6 ft, pure vegetarian (no eggs), British citizen
+  with a U.S. Green Card; what he is looking for in a partner, stated plainly, plus
+  an interactive compatibility calculator.
 - ${SITE_URL}/contact — email, phone, and templates by reason for writing.
 - ${SITE_URL}/terms — terms of use.
 - ${SITE_URL}/privacy — privacy policy. No accounts, no analytics, no tracking cookies.

@@ -891,3 +891,1464 @@
     transform: scaleX(1);
   }
 }
+
+/* ============================================================================
+   MARRIAGE BIODATA (/marriage)
+   ----------------------------------------------------------------------------
+   Everything here is scoped under `.mp`, the page's wrapper. The rest of the
+   site is a cool, neutral, Palantir-ish grey; this one page is warm, serif and
+   soft on purpose, because it is read by a person deciding whether she wants a
+   life with the man on it — not by a recruiter.
+
+   It is also read almost entirely on a phone, held in one hand. So: single
+   column by default, nothing below a 44px tap target, type that stays
+   readable at arm's length, and no hover state that carries meaning a thumb
+   cannot reach.
+
+   As everywhere else in this stylesheet, the single-class component rules
+   live inside `@layer components` so a Tailwind utility of equal specificity
+   still wins; the stateful and compound selectors sit below the layer, where
+   their own specificity carries them.
+   ========================================================================== */
+
+@layer components {
+  .mp {
+    --mp-cream: #fbf7f3;
+    --mp-cream-2: #f4ebe4;
+    --mp-blush: #f6e7e4;
+    --mp-rose: #b4636c;
+    --mp-rose-deep: #8d434d;
+    --mp-gold: #ab8449;
+    --mp-ink: #241b1e;
+    --mp-ink-2: #574a4e;
+    --mp-ink-3: #8b7b80;
+    --mp-line: rgba(36, 27, 30, 0.14);
+
+    --mp-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+
+    background: var(--mp-cream);
+    color: var(--mp-ink);
+  }
+
+  /* ------------------------------------------------------- progress rail */
+
+  /* Sits directly under the fixed navbar. The navbar's meta strip collapses
+     on scroll, so the desktop offset matches the collapsed bar, not the tall
+     one — by the time there is any progress to show, it has collapsed. */
+  .mp-progress {
+    position: fixed;
+    top: 4rem;
+    left: 0;
+    right: 0;
+    z-index: 30;
+    pointer-events: none;
+    background: rgba(251, 247, 243, 0.88);
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    border-bottom: 1px solid var(--mp-line);
+  }
+
+  .mp-progress-track {
+    height: 2px;
+    background: rgba(36, 27, 30, 0.1);
+    overflow: hidden;
+  }
+
+  .mp-progress-fill {
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform-origin: left;
+    background: linear-gradient(90deg, var(--mp-gold), var(--mp-rose));
+  }
+
+  .mp-progress-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.3rem 1.25rem 0.28rem;
+    font-family: var(--font-plex-mono), monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mp-ink-3);
+  }
+
+  /* ------------------------------------------------------------- shared */
+
+  .mp-eyebrow {
+    font-family: var(--font-plex-mono), monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mp-rose);
+  }
+
+  .mp-section {
+    padding: 4.5rem 0;
+  }
+
+  .mp-section-cream {
+    background: var(--mp-cream-2);
+  }
+
+  .mp-section-rose {
+    background: linear-gradient(170deg, var(--mp-blush), var(--mp-cream));
+  }
+
+  .mp-section-ink {
+    background: #1d1518;
+    color: var(--mp-cream);
+  }
+
+  .mp-wrap {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  .mp-wrap-narrow {
+    max-width: 44rem;
+  }
+
+  .mp-head {
+    margin-bottom: 2.25rem;
+  }
+
+  .mp-h2 {
+    margin-top: 0.7rem;
+    font-family: var(--mp-serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 8.5vw, 3.1rem);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+  }
+
+  .mp-h3 {
+    font-family: var(--mp-serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .mp-lede {
+    margin-top: 0.9rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--mp-ink-2);
+  }
+
+  .mp-footnote {
+    margin-top: 1.75rem;
+    font-size: 0.86rem;
+    line-height: 1.65;
+    color: var(--mp-ink-3);
+  }
+
+  /* ---------------------------------------------------------------- hero */
+
+  .mp-hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .mp-hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+  }
+
+  .mp-hero-img {
+    object-fit: cover;
+    object-position: 50% 22%;
+  }
+
+  /* Dark at the foot, clear at the top, so his face stays lit while the
+     type below it keeps its contrast. */
+  .mp-hero-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(29, 21, 24, 0.5) 0%,
+      rgba(29, 21, 24, 0.12) 32%,
+      rgba(29, 21, 24, 0.72) 72%,
+      rgba(29, 21, 24, 0.94) 100%
+    );
+  }
+
+  .mp-hero-body {
+    position: relative;
+    width: 100%;
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 7rem 1.25rem 3rem;
+    color: #fdf8f4;
+  }
+
+  .mp-hero-name {
+    margin-top: 0.6rem;
+    font-family: var(--mp-serif);
+    font-weight: 300;
+    font-size: clamp(3.6rem, 19vw, 8rem);
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+  }
+
+  .mp-hero-rotator {
+    margin-top: 1.1rem;
+    min-height: 1.6em;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: rgba(253, 248, 244, 0.9);
+  }
+
+  .mp-hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 1.4rem;
+  }
+
+  .mp-hero-note {
+    margin-top: 1.4rem;
+    max-width: 34ch;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: rgba(253, 248, 244, 0.72);
+  }
+
+  .mp-scrollcue {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    min-height: 44px;
+    font-family: var(--font-plex-mono), monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #fdf8f4;
+  }
+
+  .mp-scrollcue-line {
+    display: block;
+    width: 2.5rem;
+    height: 1px;
+    background: rgba(253, 248, 244, 0.5);
+  }
+
+  /* Decorative drifting petals over the hero. */
+  .mp-petals {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .mp-petal {
+    position: absolute;
+    top: -8%;
+    width: 11px;
+    height: 11px;
+    border-radius: 60% 10% 60% 10%;
+    background: rgba(255, 228, 228, 0.55);
+    animation: mp-drift 15s linear infinite;
+  }
+
+  /* ---------------------------------------------------------- quick facts */
+
+  .mp-fact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+  }
+
+  .mp-fact {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    padding: 1.1rem 2.2rem 1.1rem 1.1rem;
+    min-height: 88px;
+    background: #fff;
+    border: 1px solid var(--mp-line);
+    border-radius: 14px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .mp-fact-label {
+    display: block;
+    font-family: var(--font-plex-mono), monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mp-ink-3);
+  }
+
+  .mp-fact-value {
+    display: block;
+    margin-top: 0.3rem;
+    font-family: var(--mp-serif);
+    font-size: 1.3rem;
+    line-height: 1.15;
+  }
+
+  .mp-fact-detail {
+    display: block;
+    padding-top: 0.6rem;
+    font-size: 0.84rem;
+    line-height: 1.55;
+    color: var(--mp-ink-2);
+  }
+
+  /* A plus that becomes a minus when the card is open. */
+  .mp-fact-plus {
+    position: absolute;
+    top: 1.15rem;
+    right: 1rem;
+    width: 11px;
+    height: 11px;
+  }
+
+  /* Collapsible body. The 0fr -> 1fr grid trick animates to the content's
+     real height without anyone having to measure it. */
+  .mp-collapse {
+    display: grid;
+  }
+
+  .mp-collapse-inner {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  /* -------------------------------------------------------------- letter */
+
+  .mp-letter {
+    padding: 2rem 1.5rem 2.25rem;
+    background: #fffdfb;
+    border: 1px solid var(--mp-line);
+    border-radius: 18px;
+    box-shadow: 0 24px 60px -40px rgba(36, 27, 30, 0.5);
+  }
+
+  .mp-letter-greeting {
+    font-family: var(--mp-serif);
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--mp-rose-deep);
+  }
+
+  .mp-letter-para {
+    margin-top: 1.1rem;
+    font-family: var(--mp-serif);
+    font-size: 1.28rem;
+    line-height: 1.58;
+    color: var(--mp-ink);
+  }
+
+  .mp-letter-sign {
+    margin-top: 1.6rem;
+    font-family: var(--mp-serif);
+    font-style: italic;
+    font-size: 1.35rem;
+    color: var(--mp-rose-deep);
+  }
+
+  /* ---------------------------------------------------------------- reel */
+
+  .mp-reel {
+    margin-top: 0.5rem;
+  }
+
+  .mp-reel-track {
+    display: flex;
+    gap: 0.9rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 1.25rem 0.5rem;
+  }
+
+  .mp-reel-card {
+    flex: 0 0 auto;
+    width: min(78vw, 20rem);
+    scroll-snap-align: center;
+  }
+
+  .mp-reel-frame {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 18px;
+    background: var(--mp-cream-2);
+  }
+
+  .mp-reel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .mp-reel-tag {
+    position: absolute;
+    left: 0.75rem;
+    bottom: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(29, 21, 24, 0.66);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    font-family: var(--font-plex-mono), monospace;
+    font-size: 0.54rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #fdf8f4;
+  }
+
+  .mp-reel-caption {
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--mp-ink-2);
+  }
+
+  .mp-reel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-top: 1.1rem;
+  }
+
+  .mp-reel-dot {
+    width: 28px;
+    height: 44px;
+    position: relative;
+  }
+
+  /* ----------------------------------------------------------- the work */
+
+  .mp-cred-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .mp-cred {
+    padding: 1.5rem 1.25rem;
+    border: 1px solid rgba(251, 247, 243, 0.16);
+    border-radius: 16px;
+    background: rgba(251, 247, 243, 0.035);
+  }
+
+  .mp-cred-figure {
+    font-family: var(--mp-serif);
+    font-size: clamp(2.6rem, 12vw, 3.6rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--mp-gold);
+  }
+
+  .mp-count {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .mp-cred-title {
+    margin-top: 0.7rem;
+    font-family: var(--mp-serif);
+    font-size: 1.35rem;
+  }
+
+  .mp-cred-detail {
+    margin-top: 0.55rem;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: rgba(251, 247, 243, 0.68);
+  }
+
+  .mp-cred-foot {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid rgba(251, 247, 243, 0.16);
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: rgba(251, 247, 243, 0.7);
+  }
+
+  /* --------------------------------------------------------------- roots */
+
+  .mp-journey {
+    position: relative;
+    display: grid;
+    gap: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .mp-journey-stop {
+    position: relative;
+  }
+
+  .mp-journey-dot {
+    position: absolute;
+    left: -1.5rem;
+    top: 0.45rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background: var(--mp-rose);
+  }
+
+  .mp-journey-period {
+    font-family: var(--font-plex-mono), monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mp-ink-3);
+  }
+
+  .mp-journey-place {
+    margin-top: 0.25rem;
+    font-family: var(--mp-serif);
+    font-size: 1.6rem;
+    line-height: 1.15;
+  }
+
+  .mp-journey-note {
+    margin-top: 0.35rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--mp-ink-2);
+  }
+
+  .mp-family {
+    margin-top: 3rem;
+    padding: 1.75rem 1.25rem;
+    background: #fff;
+    border: 1px solid var(--mp-line);
+    border-radius: 18px;
+  }
+
+  .mp-family-list {
+    display: grid;
+    gap: 1.1rem;
+    margin-top: 1.25rem;
+  }
+
+  .mp-family-role {
+    font-family: var(--font-plex-mono), monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mp-rose);
+  }
+
+  .mp-family-name {
+    margin-top: 0.2rem;
+    font-family: var(--mp-serif);
+    font-size: 1.25rem;
+  }
+
+  .mp-family-note {
+    font-size: 0.85rem;
+    color: var(--mp-ink-3);
+  }
+
+  .mp-family-blurb {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--mp-line);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--mp-ink-2);
+  }
+
+  /* ------------------------------------------------------------ hobbies */
+
+  .mp-hobby-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+  }
+
+  .mp-hobby {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    padding: 1.1rem;
+    min-height: 110px;
+    background: #fff;
+    border: 1px solid var(--mp-line);
+    border-radius: 14px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .mp-hobby-icon {
+    display: block;
+    width: 26px;
+    height: 26px;
+    color: var(--mp-rose);
+  }
+
+  .mp-hobby-name {
+    display: block;
+    margin-top: 0.7rem;
+    font-family: var(--mp-serif);
+    font-size: 1.25rem;
+  }
+
+  .mp-hobby-line {
+    display: block;
+    padding-top: 0.5rem;
+    font-size: 0.84rem;
+    line-height: 1.55;
+    color: var(--mp-ink-2);
+  }
+
+  /* ------------------------------------------------ compatibility calculator */
+
+  .mp-calc {
+    position: relative;
+  }
+
+  .mp-calc-intro {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--mp-ink-2);
+  }
+
+  /* Pinned under the navbar and the progress rail, so the number is on
+     screen the whole way down the question list — watching it move is the
+     entire point of the section. */
+  .mp-calc-readout {
+    position: sticky;
+    top: 5.4rem;
+    z-index: 20;
+    margin: 1.5rem 0 2rem;
+    padding: 1.1rem 1.1rem 1.25rem;
+    background: rgba(255, 253, 251, 0.93);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    border: 1px solid var(--mp-line);
+    border-radius: 16px;
+    box-shadow: 0 18px 40px -30px rgba(36, 27, 30, 0.6);
+  }
+
+  .mp-calc-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .mp-calc-pct {
+    font-family: var(--mp-serif);
+    line-height: 1;
+    color: var(--mp-rose-deep);
+  }
+
+  .mp-calc-num {
+    font-size: 3rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .mp-calc-sign {
+    font-size: 1.4rem;
+    margin-left: 0.1rem;
+  }
+
+  .mp-calc-count {
+    font-family: var(--font-plex-mono), monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mp-ink-3);
+  }
+
+  .mp-calc-bar {
+    position: relative;
+    height: 8px;
+    margin-top: 0.85rem;
+    border-radius: 999px;
+    background: rgba(36, 27, 30, 0.09);
+    overflow: hidden;
+  }
+
+  .mp-calc-fill {
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform-origin: left;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--mp-gold), var(--mp-rose), var(--mp-rose-deep));
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .mp-calc-tick {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.55);
+  }
+
+  .mp-calc-headline {
+    margin-top: 0.85rem;
+    font-family: var(--mp-serif);
+    font-size: 1.35rem;
+    line-height: 1.2;
+  }
+
+  .mp-calc-line {
+    margin-top: 0.3rem;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--mp-ink-2);
+  }
+
+  .mp-calc-reset {
+    margin-top: 0.75rem;
+    min-height: 44px;
+    padding-right: 0.5rem;
+    font-family: var(--font-plex-mono), monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mp-ink-3);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .mp-calc-questions {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .mp-q {
+    padding: 1.1rem;
+    background: #fffdfb;
+    border: 1px solid var(--mp-line);
+    border-radius: 16px;
+    transition: border-color 0.3s ease;
+  }
+
+  .mp-q-legend {
+    display: block;
+    margin-bottom: 0.9rem;
+  }
+
+  .mp-q-topic {
+    display: block;
+    font-family: var(--font-plex-mono), monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mp-rose);
+  }
+
+  .mp-q-prompt {
+    display: block;
+    margin-top: 0.4rem;
+    font-family: var(--mp-serif);
+    font-size: 1.3rem;
+    line-height: 1.25;
+  }
+
+  .mp-q-options {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .mp-opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    width: 100%;
+    min-height: 48px;
+    padding: 0.75rem 0.9rem;
+    text-align: left;
+    background: var(--mp-cream);
+    border: 1px solid var(--mp-line);
+    border-radius: 11px;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .mp-opt-mark {
+    flex: 0 0 auto;
+    width: 16px;
+    height: 16px;
+    margin-top: 0.15rem;
+    border: 1px solid var(--mp-line);
+    border-radius: 999px;
+    background: #fff;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .mp-opt-text {
+    font-size: 0.92rem;
+    line-height: 1.4;
+  }
+
+  .mp-calc-done {
+    margin-top: 1.5rem;
+    font-family: var(--mp-serif);
+    font-size: 1.3rem;
+    line-height: 1.35;
+    color: var(--mp-rose-deep);
+  }
+
+  /* -------------------------------------------------------- being honest */
+
+  .mp-quote {
+    margin-bottom: 2.25rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--mp-rose);
+    font-family: var(--mp-serif);
+    font-size: 1.35rem;
+    line-height: 1.5;
+    color: var(--mp-ink);
+  }
+
+  .mp-columns {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .mp-col {
+    padding: 1.5rem 1.25rem;
+    border: 1px solid var(--mp-line);
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .mp-list {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 1.1rem;
+    font-size: 0.93rem;
+    line-height: 1.6;
+    color: var(--mp-ink-2);
+  }
+
+  .mp-bullet {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 0.6rem;
+    border-radius: 999px;
+    vertical-align: 0.12rem;
+  }
+
+  .mp-bullet-good {
+    background: #5d8a63;
+  }
+
+  .mp-bullet-bad {
+    background: var(--mp-rose);
+  }
+
+  /* ------------------------------------------------------------ promises */
+
+  .mp-promises {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .mp-promise-title {
+    font-family: var(--mp-serif);
+    font-size: 1.4rem;
+    color: var(--mp-gold);
+  }
+
+  .mp-promise-line {
+    margin-top: 0.3rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: rgba(251, 247, 243, 0.72);
+  }
+
+  /* ------------------------------------------------------------ timeline */
+
+  .mp-timeline {
+    display: grid;
+    gap: 0;
+  }
+
+  .mp-timeline-window {
+    font-family: var(--font-plex-mono), monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mp-rose);
+  }
+
+  .mp-timeline-label {
+    margin-top: 0.25rem;
+    font-family: var(--mp-serif);
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .mp-timeline-note {
+    margin-top: 0.35rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--mp-ink-2);
+  }
+
+  /* --------------------------------------------------------------- steps */
+
+  .mp-steps {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .mp-step-num {
+    font-family: var(--mp-serif);
+    font-size: 2.1rem;
+    line-height: 1;
+    color: var(--mp-rose);
+  }
+
+  .mp-step-title {
+    font-family: var(--mp-serif);
+    font-size: 1.45rem;
+    line-height: 1.2;
+  }
+
+  .mp-step-line {
+    margin-top: 0.35rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--mp-ink-2);
+  }
+
+  .mp-step-photo {
+    margin-top: 2.25rem;
+    overflow: hidden;
+    border-radius: 18px;
+    max-width: 24rem;
+  }
+
+  /* ----------------------------------------------------------------- cta */
+
+  .mp-cta {
+    padding: 2rem 1.35rem 2.25rem;
+    background: #fffdfb;
+    border: 1px solid var(--mp-line);
+    border-radius: 20px;
+    box-shadow: 0 30px 70px -50px rgba(36, 27, 30, 0.7);
+  }
+
+  .mp-cta-title {
+    margin-top: 0.7rem;
+    font-family: var(--mp-serif);
+    font-weight: 400;
+    font-size: clamp(1.9rem, 7.5vw, 2.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+  }
+
+  .mp-cta-line {
+    margin-top: 0.85rem;
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: var(--mp-ink-2);
+  }
+
+  .mp-cta-actions {
+    display: grid;
+    gap: 0.6rem;
+    margin-top: 1.6rem;
+  }
+
+  .mp-cta-list {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--mp-line);
+  }
+
+  .mp-cta-families {
+    margin-top: 1.5rem;
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    background: var(--mp-blush);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--mp-ink-2);
+  }
+
+  .mp-cta-more {
+    margin-top: 1.25rem;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--mp-ink-3);
+  }
+
+  /* --------------------------------------------------------------- buttons */
+
+  .mp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 0.85rem 1.4rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-family: var(--font-plex-mono), monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .mp-btn-solid {
+    background: var(--mp-rose-deep);
+    color: #fff;
+  }
+
+  .mp-btn-ghost {
+    border-color: var(--mp-line);
+    color: var(--mp-ink);
+    background: #fff;
+  }
+
+  /* ---------------------------------------------------------- sticky bar */
+
+  .mp-sticky {
+    position: fixed;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    z-index: 35;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.7rem 0.75rem 0.7rem 1rem;
+    border-radius: 16px;
+    background: rgba(29, 21, 24, 0.93);
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    box-shadow: 0 20px 40px -24px rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transform: translateY(130%);
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .mp-sticky-line {
+    font-size: 0.78rem;
+    line-height: 1.3;
+    color: rgba(253, 248, 244, 0.82);
+  }
+
+  .mp-sticky-actions {
+    display: flex;
+    gap: 0.4rem;
+    flex: 0 0 auto;
+  }
+
+  /* One-shot fade for the rotating hero line. */
+  .mp-fade-in {
+    display: inline-block;
+    animation: mp-fade 0.6s ease-out both;
+  }
+}
+
+/* ============================================================================
+   Stateful and compound selectors — deliberately outside the layer, as with
+   the rest of this stylesheet.
+   ========================================================================== */
+
+/* ---- collapsibles: open by default, collapsed only once JS is confirmed ---- */
+
+.js .mp-collapse {
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.js .mp-collapse.is-open {
+  grid-template-rows: 1fr;
+}
+
+/* ---- fact cards ---- */
+
+.mp-fact-plus::before,
+.mp-fact-plus::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  background: var(--mp-rose);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.mp-fact-plus::before {
+  width: 11px;
+  height: 1px;
+}
+.mp-fact-plus::after {
+  width: 1px;
+  height: 11px;
+}
+.mp-fact.is-open .mp-fact-plus::after {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+.mp-fact.is-open,
+.mp-hobby.is-open {
+  border-color: var(--mp-rose);
+  box-shadow: 0 16px 36px -28px rgba(141, 67, 77, 0.8);
+}
+
+/* A tile with its sentence open earns the full row — two columns of
+   half-width prose is unreadable on a phone. */
+.mp-hobby-grid > li.is-open {
+  grid-column: 1 / -1;
+}
+
+/* ---- reel dots: a 44px tap target around a 7px dot ---- */
+
+.mp-reel-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(36, 27, 30, 0.22);
+  transition: background-color 0.25s ease, width 0.25s ease;
+}
+.mp-reel-dot.is-active::after {
+  width: 20px;
+  background: var(--mp-rose);
+}
+.mp-reel-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---- calculator ---- */
+
+.mp-opt.is-on {
+  background: #fff;
+  border-color: var(--mp-rose);
+  color: var(--mp-ink);
+}
+.mp-opt.is-on .mp-opt-mark {
+  background: var(--mp-rose);
+  border-color: var(--mp-rose);
+  box-shadow: inset 0 0 0 3px #fff;
+}
+.mp-calc-questions > li.is-answered .mp-q {
+  border-color: rgba(180, 99, 108, 0.45);
+}
+
+/* A strong result warms the whole readout rather than throwing confetti. */
+.mp-calc.is-strong .mp-calc-readout {
+  border-color: var(--mp-rose);
+  box-shadow: 0 18px 50px -28px rgba(141, 67, 77, 0.75);
+}
+.mp-calc.is-strong .mp-calc-num {
+  animation: mp-pulse 1.6s ease-in-out 2;
+}
+
+/* A dealbreaker drains the colour out instead of pretending. */
+.mp-calc.is-blocked .mp-calc-fill {
+  background: rgba(36, 27, 30, 0.3);
+}
+.mp-calc.is-blocked .mp-calc-pct {
+  color: var(--mp-ink-3);
+}
+
+/* ---- timeline: a rail with a dot per phase ---- */
+
+.mp-timeline > li {
+  position: relative;
+  padding: 0 0 2rem 1.75rem;
+  border-left: 1px solid var(--mp-line);
+}
+.mp-timeline > li:last-child {
+  border-left-color: transparent;
+  padding-bottom: 0;
+}
+.mp-timeline > li::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 0.3rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--mp-cream);
+  border: 2px solid var(--mp-rose);
+}
+/* Fills in as the phase scrolls into view, so the track reads as a path
+   being walked rather than a static list. */
+.js .mp-timeline > li.reveal.in::before {
+  background: var(--mp-rose);
+}
+
+/* ---- steps ---- */
+
+.mp-steps > li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.35rem 1.25rem;
+  background: #fff;
+  border: 1px solid var(--mp-line);
+  border-radius: 16px;
+}
+
+/* ---- hero chips ---- */
+
+.mp-hero-chips > li {
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(253, 248, 244, 0.32);
+  background: rgba(253, 248, 244, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fdf8f4;
+}
+
+/* ---- cta rows ---- */
+
+.mp-cta-list > li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.mp-cta-list a {
+  font-size: 0.98rem;
+  color: var(--mp-rose-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.mp-cta-more a {
+  color: var(--mp-rose-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---- sticky bar ---- */
+
+.mp-sticky.is-shown {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.mp-sticky .mp-btn {
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+  font-size: 0.58rem;
+}
+.mp-sticky .mp-btn-ghost {
+  background: transparent;
+  color: #fdf8f4;
+  border-color: rgba(253, 248, 244, 0.34);
+}
+
+/* Keep the bar off the home indicator. */
+@supports (padding: max(0px)) {
+  .mp-sticky {
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* ---- focus, for anyone driving this with a keyboard ---- */
+
+.mp a:focus-visible,
+.mp button:focus-visible {
+  outline: 2px solid var(--mp-rose-deep);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* ---- hover, desktop only: a thumb cannot hover, so nothing here is load-bearing ---- */
+
+@media (hover: hover) {
+  .mp-fact:hover,
+  .mp-hobby:hover,
+  .mp-opt:hover {
+    border-color: var(--mp-rose);
+  }
+  .mp-btn-solid:hover {
+    background: var(--mp-rose);
+  }
+  .mp-btn-ghost:hover {
+    border-color: var(--mp-rose-deep);
+    color: var(--mp-rose-deep);
+  }
+}
+
+/* ---- keyframes ---- */
+
+@keyframes mp-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes mp-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes mp-drift {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.7;
+  }
+  88% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate3d(6vw, 112vh, 0) rotate(260deg);
+    opacity: 0;
+  }
+}
+
+/* Nine petals, each on its own lane, delay and pace. */
+.mp-petal-1 { left: 6%;  animation-duration: 17s; animation-delay: 0s;    }
+.mp-petal-2 { left: 18%; animation-duration: 21s; animation-delay: -4s;   }
+.mp-petal-3 { left: 29%; animation-duration: 15s; animation-delay: -9s;   }
+.mp-petal-4 { left: 41%; animation-duration: 23s; animation-delay: -2s;   }
+.mp-petal-5 { left: 54%; animation-duration: 18s; animation-delay: -12s;  }
+.mp-petal-6 { left: 66%; animation-duration: 20s; animation-delay: -6s;   }
+.mp-petal-7 { left: 77%; animation-duration: 16s; animation-delay: -15s;  }
+.mp-petal-8 { left: 86%; animation-duration: 24s; animation-delay: -10s;  }
+.mp-petal-9 { left: 94%; animation-duration: 19s; animation-delay: -18s;  }
+
+/* ---- wider screens ---------------------------------------------------- */
+
+@media (min-width: 640px) {
+  .mp-fact-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .mp-hobby-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .mp-letter,
+  .mp-cta,
+  .mp-family,
+  .mp-col {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .mp-cta-actions {
+    grid-auto-flow: column;
+    justify-content: start;
+  }
+}
+
+@media (min-width: 768px) {
+  .mp-section {
+    padding: 7rem 0;
+  }
+  .mp-wrap {
+    padding: 0 2.5rem;
+  }
+  .mp-hero-body {
+    padding: 9rem 2.5rem 4.5rem;
+  }
+  .mp-reel-track {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+  .mp-cred-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .mp-cred-foot {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem;
+  }
+  .mp-journey {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+    padding-left: 0;
+    padding-top: 1.75rem;
+  }
+  .mp-journey-dot {
+    left: 0;
+    top: -1.75rem;
+  }
+  .mp-family-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .mp-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+  .mp-promises {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 2.5rem;
+  }
+  .mp-progress {
+    top: 4.5rem;
+  }
+  .mp-calc-readout {
+    top: 5.9rem;
+  }
+  .mp-progress-meta {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+  .mp-sticky {
+    left: auto;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    max-width: 26rem;
+  }
+}
+
+/* ---- reduced motion ---------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .mp-petal {
+    display: none;
+  }
+  .mp-fade-in,
+  .mp-calc.is-strong .mp-calc-num {
+    animation: none;
+  }
+  .js .mp-collapse,
+  .mp-calc-fill,
+  .mp-sticky {
+    transition: none;
+  }
+}
+
+/* The rose eyebrow is tuned for cream; on the near-black sections it needs
+   lifting to stay legible at mono-caps size. */
+.mp-section-ink .mp-eyebrow {
+  color: #dda0a6;
+}

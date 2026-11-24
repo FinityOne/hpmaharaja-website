@@ -47,6 +47,9 @@ ${VENTURES.map(
 - [Articles](${SITE_URL}/articles): The full journal archive — essays on hustle, faith, politics, culture and dharma.
 - [Merch](${SITE_URL}/merch): HP Maharaja Essentials, Drop 001 — pre-launch.
 - [Community](${SITE_URL}/community): Three ways in — share a story, collaborate, or meet in person.
+- [Marriage biodata](${SITE_URL}/marriage): Heran's matrimonial biodata as a scrollable page —
+  background, family, what he is looking for in a partner, and an interactive
+  compatibility calculator.
 - [Contact](${SITE_URL}/contact): Email, phone, and pre-filled templates by reason for writing.
 
 ## Articles
