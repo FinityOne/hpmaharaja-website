@@ -16,7 +16,7 @@ export default function PhotoReel({ shots }: { shots: Shot[] }) {
   const trackRef = useRef<HTMLUListElement>(null);
   const [active, setActive] = useState(0);
 
-  /* Which card is nearest the centre of the track decides the active dot. */
+  /* Which card is nearest the center of the track decides the active dot. */
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
@@ -26,12 +26,12 @@ export default function PhotoReel({ shots }: { shots: Shot[] }) {
       if (raf) return;
       raf = requestAnimationFrame(() => {
         raf = 0;
-        const centre = track.scrollLeft + track.clientWidth / 2;
+        const center = track.scrollLeft + track.clientWidth / 2;
         let best = 0;
         let bestGap = Infinity;
         Array.from(track.children).forEach((child, i) => {
           const el = child as HTMLElement;
-          const gap = Math.abs(el.offsetLeft + el.offsetWidth / 2 - centre);
+          const gap = Math.abs(el.offsetLeft + el.offsetWidth / 2 - center);
           if (gap < bestGap) {
             bestGap = gap;
             best = i;
